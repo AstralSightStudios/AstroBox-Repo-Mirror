@@ -37,8 +37,10 @@ MAX_WORKERS = int(os.environ.get("MIRROR_WORKERS", "12"))
 SKIP_EXISTING_DIRS = os.environ.get("SKIP_EXISTING_DIRS", "1") == "1"
 
 # URL prefixes the client resolves verbatim (resolve_repo_asset_url) and that
-# live outside this mirror -- nothing to fetch for them.
-EXTERNAL_PREFIXES = ("http://", "https://", "blob:", "data:", "tauri:", "/")
+# live outside this mirror -- nothing to fetch for them. Leading "/" is not
+# treated as external: manifests sometimes store paths with a leading slash,
+# which we strip and mirror inside the resource dir.
+EXTERNAL_PREFIXES = ("http://", "https://", "blob:", "data:", "tauri:")
 
 
 def log(msg: str) -> None:
@@ -104,15 +106,15 @@ def manifest_asset_paths(manifest_path: str) -> set[str]:
         for key in ("icon", "cover"):
             v = item.get(key)
             if isinstance(v, str) and v:
-                rels.add(v)
+                rels.add(v.lstrip("/"))
         for v in item.get("preview", []) or []:
             if isinstance(v, str) and v:
-                rels.add(v)
+                rels.add(v.lstrip("/"))
         for entry in (m.get("downloads", {}) or {}).values():
             if isinstance(entry, dict):
                 fn = entry.get("file_name")
                 if isinstance(fn, str) and fn:
-                    rels.add(fn)
+                    rels.add(fn.lstrip("/"))
     except Exception as e:  # keep going with whatever we could parse
         log(f"  [warn] manifest parse failed: {e}")
     return rels
@@ -148,7 +150,7 @@ def sync_resource(row: dict) -> tuple[str, str, str, str]:
     for key in ("icon", "cover"):
         v = row.get(key)
         if isinstance(v, str) and v and not v.startswith(EXTERNAL_PREFIXES):
-            rels.add(v)
+            rels.add(v.lstrip("/"))
 
     fetched, failed = 0, 0
     for rel in sorted(rels):
