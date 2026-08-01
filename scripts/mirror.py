@@ -176,6 +176,12 @@ def main() -> int:
     for r in failed[:20]:
         log(f"  FAIL {r[0]} {r[1]}/{r[2]} {r[3]}")
 
+    # Dead upstream entries (deleted/renamed repos) must not block the whole
+    # sync forever; only a larger failure count signals a real problem.
+    allow_failed = int(os.environ.get("ALLOW_FAILED", "10"))
+    if failed and len(failed) <= allow_failed:
+        log(f"WARN: {len(failed)} failed but <= ALLOW_FAILED={allow_failed}, continuing")
+
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
         with open(summary, "a", encoding="utf-8") as f:
@@ -187,7 +193,7 @@ def main() -> int:
                     f.write(f"- `{r[0]}` {r[1]}/{r[2]} {r[3]}\n")
                 f.write("\n</details>\n")
 
-    return 0 if not failed else 1
+    return 0 if len(failed) <= allow_failed else 1
 
 
 if __name__ == "__main__":
