@@ -121,19 +121,24 @@ def manifest_asset_paths(manifest_path: str) -> set[str]:
 
 
 def sync_resource(row: dict) -> tuple[str, str, str, str]:
-    """Mirror one index_v2.csv row into {owner}/{repo}/{commit}/. Returns status."""
+    """Mirror one index_v2.csv row into {owner}/{repo}/{ref}/. Returns status.
+
+    ref = commit hash when present (short hashes are valid on raw),
+    else the repo's default branch via refs/heads/main.
+    """
     owner = row.get("repo_owner", "")
     repo = row.get("repo_name", "")
     commit = row.get("repo_commit_hash", "")
     res_id = row.get("id", "")
-    if not (owner and repo and commit):
-        return res_id, owner, repo, "skip:empty-owner-repo-commit"
+    if not (owner and repo):
+        return res_id, owner, repo, "skip:empty-owner-repo"
 
-    res_dir = os.path.join(WORK_DIR, owner, repo, commit)
+    ref = commit or "refs/heads/main"
+    res_dir = os.path.join(WORK_DIR, owner, repo, ref)
     if SKIP_EXISTING_DIRS and os.path.isdir(res_dir):
         return res_id, owner, repo, "skip:exists"
 
-    base = f"{RAW_BASE}/{owner}/{repo}/{commit}"
+    base = f"{RAW_BASE}/{owner}/{repo}/{ref}"
     os.makedirs(res_dir, exist_ok=True)
 
     # manifest_v2.json, fallback to legacy manifest.json on 404
