@@ -4,12 +4,16 @@
 Directory layout produced inside the mirror repo working tree:
 
   AstralSightStudios/AstroBox-Repo/refs/heads/main/   <- upstream repo snapshot
-  {repo_owner}/{repo_name}/{repo_commit_hash}/        <- per-resource snapshot
-      manifest_v2.json | manifest.json (404 fallback)
-      icon / cover / preview / download files
+  {repo_owner}/{repo_name}/{repo_ref}/                <- full checkout of the
+      resource repo at its index commit (whole file tree, no .git)
 
-Git commit hashes in index_v2.csv may be short (7 chars) or full (40 chars);
-raw.githubusercontent.com accepts both, so directory names keep them verbatim.
+For every resource row the resource repo is shallow-fetched at the commit
+listed in index_v2.csv and the whole working tree is copied over, so the
+client can resolve ANY asset path (manifest, icons, previews, rpk) against
+the mirror without us having to parse manifests. Short commit hashes are
+expanded to full SHAs through the GitHub API (git fetch needs full SHAs);
+40-char hashes are fetched directly. Rows without a commit hash mirror the
+repo's default branch tip.
 """
 
 import csv
@@ -19,76 +23,50 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import urllib.error
-import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Union
 
 UPSTREAM = "AstralSightStudios/AstroBox-Repo"
 UPSTREAM_REF = "refs/heads/main"
-RAW_BASE = "https://raw.githubusercontent.com"
 
 WORK_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MAIN_DIR = os.path.join(WORK_DIR, UPSTREAM, UPSTREAM_REF)
 UPSTREAM_CLONE = os.environ.get("UPSTREAM_CLONE", "/tmp/astrobox-upstream")
 MAX_WORKERS = int(os.environ.get("MIRROR_WORKERS", "12"))
-# Set to "0" to re-download resources whose snapshot dir already exists.
+# Set to "0" to re-fetch resources whose snapshot dir already exists.
 SKIP_EXISTING_DIRS = os.environ.get("SKIP_EXISTING_DIRS", "1") == "1"
 
-# URL prefixes the client resolves verbatim (resolve_repo_asset_url) and that
-# live outside this mirror -- nothing to fetch for them. Leading "/" is not
-# treated as external: manifests sometimes store paths with a leading slash,
-# which we strip and mirror inside the resource dir.
-EXTERNAL_PREFIXES = ("http://", "https://", "blob:", "data:", "tauri:")
+GIT = os.environ.get("GIT_BIN", "git")
+API_BASE = "https://api.github.com"
+GIT_TIMEOUT = int(os.environ.get("MIRROR_GIT_TIMEOUT", "600"))
 
 
 def log(msg: str) -> None:
     print(msg, flush=True)
 
 
-def fetch(url: str, dest: str, timeout: int = 180) -> Union[int, bool]:
-    """Download url to dest atomically. Returns True, or the HTTP status code."""
-    os.makedirs(os.path.dirname(dest) or ".", exist_ok=True)
-    tmp = dest + ".part"
-    req = urllib.request.Request(url, headers={"User-Agent": "AstroBox-Mirror/1.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp, open(tmp, "wb") as f:
-            shutil.copyfileobj(resp, f)
-        os.replace(tmp, dest)
-        return True
-    except urllib.error.HTTPError as e:
-        try:
-            os.remove(tmp)
-        except OSError:
-            pass
-        return e.code
-    except Exception:
-        try:
-            os.remove(tmp)
-        except OSError:
-            pass
-        raise
+def git(*args: str, cwd: str, check: bool = True) -> subprocess.CompletedProcess:
+    return subprocess.run(
+        [GIT, "-C", cwd, *args],
+        check=check,
+        capture_output=True,
+        text=True,
+        timeout=GIT_TIMEOUT,
+    )
 
 
 def sync_upstream() -> str:
     """Snapshot the upstream repo into MAIN_DIR. Returns path of index_v2.csv."""
     if os.path.isdir(os.path.join(UPSTREAM_CLONE, ".git")):
-        subprocess.run(
-            ["git", "-C", UPSTREAM_CLONE, "pull", "--ff-only", "--quiet"],
-            check=False,
-        )
+        git("pull", "--ff-only", "--quiet", cwd=UPSTREAM_CLONE, check=False)
     else:
         subprocess.run(
-            [
-                "git",
-                "clone",
-                "--depth",
-                "1",
-                f"https://github.com/{UPSTREAM}.git",
-                UPSTREAM_CLONE,
-            ],
+            ["git", "clone", "--depth", "1", f"https://github.com/{UPSTREAM}.git", UPSTREAM_CLONE],
             check=True,
+            capture_output=True,
+            timeout=GIT_TIMEOUT,
         )
     if os.path.isdir(MAIN_DIR):
         shutil.rmtree(MAIN_DIR)
@@ -96,35 +74,38 @@ def sync_upstream() -> str:
     return os.path.join(MAIN_DIR, "index_v2.csv")
 
 
-def manifest_asset_paths(manifest_path: str) -> set[str]:
-    """Collect relative asset paths referenced by a manifest (icons/previews/rpk)."""
-    rels: set[str] = set()
+def resolve_sha(owner: str, repo: str, commit: str) -> str:
+    """Expand a short commit hash to a full SHA via the GitHub API.
+
+    git fetch requires a full SHA while raw.githubusercontent.com accepts
+    short ones, so the CSV's 7/8-char hashes must be expanded first. Uses
+    GITHUB_TOKEN when present (auto-injected in GitHub Actions) to stay
+    clear of the anonymous rate limit.
+    """
+    url = f"{API_BASE}/repos/{owner}/{repo}/commits/{commit}"
+    req = urllib.request.Request(url, headers={"User-Agent": "AstroBox-Mirror/1.0"})
+    token = os.environ.get("GITHUB_TOKEN")
+    if token:
+        req.add_header("Authorization", f"Bearer {token}")
     try:
-        with open(manifest_path, encoding="utf-8") as f:
-            m = json.load(f)
-        item = m.get("item", {}) or {}
-        for key in ("icon", "cover"):
-            v = item.get(key)
-            if isinstance(v, str) and v:
-                rels.add(v.lstrip("/"))
-        for v in item.get("preview", []) or []:
-            if isinstance(v, str) and v:
-                rels.add(v.lstrip("/"))
-        for entry in (m.get("downloads", {}) or {}).values():
-            if isinstance(entry, dict):
-                fn = entry.get("file_name")
-                if isinstance(fn, str) and fn:
-                    rels.add(fn.lstrip("/"))
-    except Exception as e:  # keep going with whatever we could parse
-        log(f"  [warn] manifest parse failed: {e}")
-    return rels
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.load(resp)
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(
+            f"resolve sha: HTTP {e.code} for {owner}/{repo}@{commit}"
+        ) from e
+    sha = data.get("sha")
+    if not sha:
+        raise RuntimeError(f"resolve sha: no sha field for {owner}/{repo}@{commit}")
+    return sha
 
 
 def sync_resource(row: dict) -> tuple[str, str, str, str]:
-    """Mirror one index_v2.csv row into {owner}/{repo}/{ref}/. Returns status.
+    """Mirror one index_v2.csv row into {owner}/{repo}/{ref}/ via full checkout.
 
-    ref = commit hash when present (short hashes are valid on raw),
-    else the repo's default branch via refs/heads/main.
+    ref = commit hash when present (directory keeps the verbatim short hash,
+    raw serves it fine), else refs/heads/main. Shallow-fetches the repo at
+    that commit and copies the whole working tree (minus .git) into place.
     """
     owner = row.get("repo_owner", "")
     repo = row.get("repo_name", "")
@@ -138,45 +119,31 @@ def sync_resource(row: dict) -> tuple[str, str, str, str]:
     if SKIP_EXISTING_DIRS and os.path.isdir(res_dir):
         return res_id, owner, repo, "skip:exists"
 
-    base = f"{RAW_BASE}/{owner}/{repo}/{ref}"
-    os.makedirs(res_dir, exist_ok=True)
-
-    # manifest_v2.json, fallback to legacy manifest.json on 404
-    status = fetch(f"{base}/manifest_v2.json", os.path.join(res_dir, "manifest_v2.json"))
-    manifest_name = "manifest_v2.json"
-    if status == 404:
-        status = fetch(f"{base}/manifest.json", os.path.join(res_dir, "manifest.json"))
-        manifest_name = "manifest.json"
-    if status is not True:
-        return res_id, owner, repo, f"manifest:{status}"
-
-    # asset paths from manifest + index row (index covers list-page icons)
-    rels = manifest_asset_paths(os.path.join(res_dir, manifest_name))
-    for key in ("icon", "cover"):
-        v = row.get(key)
-        if isinstance(v, str) and v and not v.startswith(EXTERNAL_PREFIXES):
-            rels.add(v.lstrip("/"))
-
-    fetched, failed = 0, 0
-    for rel in sorted(rels):
-        # URL-encode path segments but keep existing percent-escapes intact
-        url = f"{base}/{urllib.parse.quote(rel, safe='/%')}"
-        local = os.path.join(res_dir, urllib.parse.unquote(rel))
-        try:
-            r = fetch(url, local)
-        except Exception as e:
-            failed += 1
-            log(f"  [warn] {url}: {e}")
-            continue
-        if r is True:
-            fetched += 1
-        elif r == 404:
-            failed += 1
-            log(f"  [warn] 404 {url}")
+    tmp = tempfile.mkdtemp(prefix="mirror-res-")
+    try:
+        git("init", "-q", cwd=tmp)
+        git("remote", "add", "origin", f"https://github.com/{owner}/{repo}.git", cwd=tmp)
+        if commit:
+            # full 40-char SHAs fetch directly; short ones need the API
+            sha = commit if len(commit) == 40 else resolve_sha(owner, repo, commit)
+            git("fetch", "--depth", "1", "origin", sha, cwd=tmp)
         else:
-            failed += 1
-            log(f"  [warn] HTTP {r} {url}")
-    return res_id, owner, repo, f"ok:manifest+{fetched}files" + (f",{failed}missing" if failed else "")
+            # no hash in the index: mirror the repo's default branch tip
+            git("fetch", "--depth", "1", "origin", cwd=tmp)
+        git("checkout", "-q", "--detach", "FETCH_HEAD", cwd=tmp)
+
+        if os.path.isdir(res_dir):
+            shutil.rmtree(res_dir)
+        os.makedirs(res_dir, exist_ok=True)
+        shutil.copytree(tmp, res_dir, ignore=shutil.ignore_patterns(".git"), dirs_exist_ok=True)
+        return res_id, owner, repo, "ok:checkout"
+    except subprocess.CalledProcessError as e:
+        detail = (e.stderr or "").strip().splitlines()
+        return res_id, owner, repo, f"checkout: {(detail[-1] if detail else e)[:200]}"
+    except Exception as e:
+        return res_id, owner, repo, f"checkout: {e}"
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 def main() -> int:
@@ -199,13 +166,12 @@ def main() -> int:
             try:
                 results.append(fut.result())
             except Exception as e:
-                res_id = f"<row>"
                 log(f"  [warn] resource sync crashed: {e}")
-                results.append((res_id, "", "", "crash"))
+                results.append(("<row>", "", "", "crash"))
 
     ok = [r for r in results if r[3].startswith("ok")]
     skipped = [r for r in results if r[3].startswith("skip")]
-    failed = [r for r in results if r[3].startswith(("manifest", "crash"))]
+    failed = [r for r in results if not r[3].startswith(("ok", "skip"))]
     log(f"done: {len(ok)} ok, {len(skipped)} skipped, {len(failed)} failed")
     for r in failed[:20]:
         log(f"  FAIL {r[0]} {r[1]}/{r[2]} {r[3]}")
