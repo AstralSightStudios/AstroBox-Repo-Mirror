@@ -24,6 +24,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -41,6 +42,28 @@ SKIP_EXISTING_DIRS = os.environ.get("SKIP_EXISTING_DIRS", "1") == "1"
 GIT = os.environ.get("GIT_BIN", "git")
 API_BASE = "https://api.github.com"
 GIT_TIMEOUT = int(os.environ.get("MIRROR_GIT_TIMEOUT", "600"))
+
+# Files larger than this are dropped from the snapshot: GitHub rejects
+# pushes with "Files size limit exceeded" above 25MiB (mirror.yml has hit
+# this with BandOTP-1.0-release.apk @ 43MiB). Tune via MAX_FILE_MB.
+MAX_FILE_MB = int(os.environ.get("MAX_FILE_MB", "25"))
+MAX_FILE_SIZE = MAX_FILE_MB * 1024 * 1024
+
+_oversized_count = 0
+_oversized_lock = threading.Lock()
+
+
+def _copy_ignore(directory: str, names: list[str]) -> set[str]:
+    """copytree ignore: drop .git and any file exceeding MAX_FILE_SIZE."""
+    global _oversized_count
+    ignored = set(shutil.ignore_patterns(".git")(directory, names))
+    for name in names:
+        path = os.path.join(directory, name)
+        if os.path.isfile(path) and os.path.getsize(path) > MAX_FILE_SIZE:
+            ignored.add(name)
+            with _oversized_lock:
+                _oversized_count += 1
+    return ignored
 
 
 def log(msg: str) -> None:
@@ -70,7 +93,7 @@ def sync_upstream() -> str:
         )
     if os.path.isdir(MAIN_DIR):
         shutil.rmtree(MAIN_DIR)
-    shutil.copytree(UPSTREAM_CLONE, MAIN_DIR, ignore=shutil.ignore_patterns(".git"))
+    shutil.copytree(UPSTREAM_CLONE, MAIN_DIR, ignore=_copy_ignore)
     return os.path.join(MAIN_DIR, "index_v2.csv")
 
 
@@ -135,7 +158,7 @@ def sync_resource(row: dict) -> tuple[str, str, str, str]:
         if os.path.isdir(res_dir):
             shutil.rmtree(res_dir)
         os.makedirs(res_dir, exist_ok=True)
-        shutil.copytree(tmp, res_dir, ignore=shutil.ignore_patterns(".git"), dirs_exist_ok=True)
+        shutil.copytree(tmp, res_dir, ignore=_copy_ignore, dirs_exist_ok=True)
         return res_id, owner, repo, "ok:checkout"
     except subprocess.CalledProcessError as e:
         detail = (e.stderr or "").strip().splitlines()
@@ -173,6 +196,7 @@ def main() -> int:
     skipped = [r for r in results if r[3].startswith("skip")]
     failed = [r for r in results if not r[3].startswith(("ok", "skip"))]
     log(f"done: {len(ok)} ok, {len(skipped)} skipped, {len(failed)} failed")
+    log(f"oversized files skipped: {_oversized_count} (limit {MAX_FILE_MB}MiB)")
     for r in failed[:20]:
         log(f"  FAIL {r[0]} {r[1]}/{r[2]} {r[3]}")
 
@@ -187,6 +211,7 @@ def main() -> int:
         with open(summary, "a", encoding="utf-8") as f:
             f.write(f"## Mirror sync\n\n- resources: {len(rows)}\n- ok: {len(ok)}\n")
             f.write(f"- skipped (dir exists): {len(skipped)}\n- failed: {len(failed)}\n")
+            f.write(f"- oversized files dropped (> {MAX_FILE_MB}MiB): {_oversized_count}\n")
             if failed:
                 f.write("\n<details><summary>failed rows</summary>\n\n")
                 for r in failed:
