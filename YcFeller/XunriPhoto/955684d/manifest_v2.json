@@ -1,0 +1,62 @@
+{
+  "item": {
+    "id": "com.xe0.photo.watch",
+    "restype": "quick_app",
+    "name": "Xr图库",
+    "description": "Xr图库，米环图库应用新方向，多端互通，智能管理，让每一张照片都触手可及。下单地址：https://wear.xunrix.com/shop",
+    "preview": [
+      "fangx.png",
+      "Band10-2026-02-09-21-40-51.png",
+      "RedWatch-2026-02-09-21-15-01.png",
+      "RedWatch-2026-02-09-21-42-47.png",
+      "RedWatch-2026-02-09-22-24-31.png",
+      "Xiaomi_S4-2026-02-09-22-19-09.png"
+    ],
+    "icon": "icon.png",
+    "cover": "cover.png",
+    "author": [
+      {
+        "name": "YcFeller",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "icon": "house",
+      "title": "官方网站",
+      "url": "https://wear.xunrix.com/"
+    }
+  ],
+  "downloads": {
+    "xmb9p": {
+      "version": "3.2.0",
+      "file_name": "xrphoto-v3.2.0.rpk"
+    },
+    "xmb10": {
+      "version": "3.2.0",
+      "file_name": "xrphoto-v3.2.0.rpk"
+    },
+    "xmb10nfc": {
+      "version": "3.2.0",
+      "file_name": "xrphoto-v3.2.0.rpk"
+    },
+    "xmrw5": {
+      "version": "3.2.0",
+      "file_name": "xrphoto-v3.2.0.rpk"
+    },
+    "xmrw5xring": {
+      "version": "3.2.0",
+      "file_name": "xrphoto-v3.2.0.rpk"
+    },
+    "xmrw6": {
+      "version": "3.2.0",
+      "file_name": "xrphoto-v3.2.0.rpk"
+    },
+    "xmws4": {
+      "version": "3.2.0",
+      "file_name": "xrphoto-v3.2.0.rpk"
+    }
+  },
+  "ext": {}
+}

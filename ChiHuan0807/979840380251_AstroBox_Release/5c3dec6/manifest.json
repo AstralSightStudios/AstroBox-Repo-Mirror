@@ -1,0 +1,39 @@
+{
+  "item": {
+    "id": "979840380251",
+    "name": "序列_Kipfel",
+    "description": "Kipfel可爱喵 - 已支持 小米手环10 Pro！",
+    "preview": [
+      "1.png",
+      "2.png",
+      "3.png"
+    ],
+    "icon": "序列LOGO.png",
+    "cover": "1.png",
+    "source_url": "https://github.com/ChiHuan0807/979840380251_AstroBox_Release",
+    "author": [
+      {
+        "name": "ChiHuan0807",
+        "author_url": "https://github.com/ChiHuan0807"
+      },
+      {
+        "name": "点击此处购买（v1）",
+        "author_url": "https://afdian.com/item/eae104f8b26911f0a44d52540025c377"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.0.4",
+      "file_name": "序列_Kipfel_9P.face"
+    },
+    "p67": {
+      "version": "1.0.4",
+      "file_name": "序列_Kipfel_10P.bin"
+    },
+    "p65": {
+      "version": "1.0.4",
+      "file_name": "序列_Kipfel_RW6.face"
+    }
+  }
+}

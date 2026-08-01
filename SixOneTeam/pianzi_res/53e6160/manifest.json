@@ -1,0 +1,30 @@
+{
+    "item": {
+      "name": "骗子酒馆",
+      "description": "充满谎言、欺骗的酒馆，你敢来吗？",
+      "preview": ["/preview.png"],
+      "icon": "/icon.png",
+      "author": [{
+        "name": "SixOneTeam",
+        "author_url": "https://sixoneteam.top"
+      }]
+    },
+    "downloads": {
+      "n66": {
+        "version": "1.0.0",
+        "file_name": "/9.bin"
+      },
+      "n67": {
+        "version": "1.0.0",
+        "file_name": "/9P.bin"
+      },
+      "o66": {
+        "version": "1.0.0",
+        "file_name": "/10.bin"
+      },
+      "o66nfc": {
+        "version": "1.0.0",
+        "file_name": "/10.bin"
+      }
+    }
+  }

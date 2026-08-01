@@ -1,0 +1,110 @@
+<import name="item" src="../../components/item"></import>
+<import name="appbar" src="../../components/appbar"></import>
+<template>
+  <div class="page">
+    <scroll scroll-y="true" class="content-{{ device }}">
+      <div style="width: 100%; height: 10px"></div>
+      <item value="元素周期表设置" @touch="change_router('/pages/chemistry/setting')"></item>
+      <item value="重制所有设置" @touch="reset_setting"></item>
+      <item value="反馈" @touch="feedback"></item>
+      <div class="divider"></div>
+      <div class="card">
+        <text class="card__title">开发者:AsahiQin</text>
+        <text class="card__title">协助测试:equalD</text>
+      </div>
+      <div class="card">
+        <text class="card__title">版本v1.0.0-stable</text>
+        <text class="card__title">该项目基于GPL v2.0开源</text>
+        <text class="card__title">branch: {{ branch }}</text>
+        <text class="card__title">last commit: {{ last_commit }}</text>
+      </div>
+      <div class="divider"></div>
+      <text class="title">该项目数据部分来源于Casio的Physium</text>
+      <div class="divider"></div>
+      <div style="width: 100%; height: 20px"></div>
+      <text class="title">用到的开源项目</text>
+      <div style="width: 100%; height: 20px"></div>
+      <div class="divider"></div>
+      <div class="card">
+        <text class="card__title">输入控件</text>
+        <text class="card__title">NEORUAA/Vela_input_method</text>
+        <text class="card__title">MIT License</text>
+      </div>
+      <div class="card">
+        <text class="card__title">元素周期表部分逻辑</text>
+        <text class="card__title">shangzhenyang/periodic-table</text>
+        <text class="card__title">MIT License</text>
+      </div>
+      <div class="divider"></div>
+      <div class="list_item" @click="gotoGPL">
+        <text class="card__title">查看GPL v2.0 英文副本</text>
+      </div>
+      <div style="width: 100%; height: 40px"></div>
+    </scroll>
+    <appbar title="更多信息"></appbar>
+  </div>
+</template>
+
+<script>
+import router from "@system.router"
+import git_info from "../../git.json"
+import prompt from "@system.prompt"
+import storage from "@system.storage"
+export default {
+  private: {
+    screen: "",
+    device: "",
+    branch: git_info.branch,
+    last_commit: git_info.last_commit
+  },
+  back() {
+    router.back()
+  },
+  onInit() {
+    this.device = this.$app.$def.device.device
+  },
+  gotoGPL() {
+    router.push({
+      uri: "pages/gpl"
+    })
+  },
+  change_router(uri) {
+    router.push({
+      uri: uri
+    })
+  },
+  feedback(){
+    router.push({
+      uri: "/pages/intro/feedback",
+      params: {
+        intro: 'false'
+      }
+    })
+  },
+  reset_setting() {
+    storage.clear({
+      success: function (data) {
+        prompt.showToast({
+          message: "清除成功，退出页面后生效",
+          duration: 1000
+        })
+      },
+      fail: function (data, code) {
+        console.log(`handling fail, code = ${code}`)
+      }
+    })
+  }
+}
+</script>
+
+<style lang="scss">
+@import "../../material/divider.scss";
+@import "../../material/base.scss";
+@import "../../material/app_bar.scss";
+@import "../../material/card.scss";
+.info-page {
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #141218;
+}
+</style>

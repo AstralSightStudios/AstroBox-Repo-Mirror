@@ -1,0 +1,23 @@
+{
+  "item": {
+    "name": "Q版初音未来表盘 第二弹",
+    "description": "这是我在Astrobox上发布的第一个表盘资源，欢迎试用！\n谁不想自己的手表上多出一个可爱的Miku呢嘿嘿嘿\n息屏显示很简略，就不展示了，自己下载瞅瞅呗~\n\n因为是赶工完成的，有一些没有优化好的地方，后续会发布更新！欢迎找我提建议！你可以在米坛社区QQ群（1,6群）找到我~\n版权声明：素材来自哔哩哔哩@miratsu，欢迎去支持画师~\n该资源为Astrobox独占。\n本人发布的资源均是免费的，请不要用于商业用途。",
+    "preview": [
+      "Q版初音未来表盘 for 小米手环9 Pro/preview.png"
+    ],
+    "icon": "Q版初音未来表盘 for 小米手环9 Pro/icon.png",
+    "cover": "Q版初音未来表盘 for 小米手环9 Pro/cover.png",
+    "source_url": "https://github.com/Orange0w0/Chibi-style-Miku-Watchface-for-Xiaomi-Smart-Band-9-Pro_AstroBox_Release",
+    "author": [
+      {
+        "name": "橘子OwO"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.0.0",
+      "file_name": "Q版初音未来表盘 for 小米手环9 Pro/resource.bin"
+    }
+  }
+}

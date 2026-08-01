@@ -1,0 +1,27 @@
+{
+    "item": {
+      "name": "HyperSurf先行预览版",
+      "description": "VelaOS平台真正意义上的第一款浏览器，基于Tecko内核",
+      "preview": ["/preview.png", "/preview2.png"],
+      "icon": "logo.png",
+      "source_url": "https://github.com/AetherZeng1145/HyperSurf",
+      "author": [{
+        "name": "Aether空",
+        "author_url": "https://aetherzeng1145.github.io/Aether/"
+      }]
+    },
+    "downloads": {
+      "n62": {
+        "version": "0.2.2",
+        "file_name": "/HyperSurf_S.rpk"
+      },
+      "o62": {
+        "version": "0.2.2",
+        "file_name": "/HyperSurf_S.rpk"
+      },
+      "o62m": {
+        "version": "0.2.2",
+        "file_name": "/HyperSurf_S.rpk"
+      }
+    }
+  }

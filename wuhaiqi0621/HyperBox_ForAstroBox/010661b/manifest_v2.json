@@ -1,0 +1,96 @@
+{
+  "item": {
+    "id": "com.charlie.hyperbox",
+    "restype": "quick_app",
+    "name": "Hyper Box",
+    "description": "拥有20+功能的UI非常好的万用宝盒",
+    "preview": [
+      "head.png",
+      "pre/0.png",
+      "pre/1.png",
+      "pre/2.png",
+      "pre/3.png",
+      "pre/4.png",
+      "pre/5.png",
+      "pre/6.png",
+      "pre/7.png",
+      "pre/8.png",
+      "pre/9.png",
+      "pre/10.png",
+      "pre/11.png",
+      "pre/12.png"
+    ],
+    "icon": "icon.png",
+    "cover": "head_a.png",
+    "author": [
+      {
+        "name": "Charlie_Q",
+        "bindABAccount": true
+      },
+      {
+        "name": "Struggle",
+        "bindABAccount": false
+      },
+      {
+        "name": "lst",
+        "bindABAccount": true
+      },
+      {
+        "name": "aurysian",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "官方网站",
+      "url": "https://hb.himooo.top",
+      "icon": ""
+    },
+    {
+      "title": "激活教程",
+      "url": "https://www.yuque.com/charlie_q/nl7zx8/ogm0a392u7rvdz0t?singleDoc#",
+      "icon": ""
+    },
+    {
+      "title": "官方Q群",
+      "url": "https://qm.qq.com/q/O2qqjkciaa",
+      "icon": ""
+    }
+  ],
+  "downloads": {
+    "xmb10": {
+      "version": "v1.3.5",
+      "file_name": "downloads/o66_1.3.5.rpk"
+    },
+    "xmb10nfc": {
+      "version": "v1.3.4",
+      "file_name": "downloads/o66_1.3.5.rpk"
+    },
+    "xmb9p": {
+      "version": "v2.4.3",
+      "file_name": "rpk/n67_2.4.3.rpk"
+    },
+    "xmb9": {
+      "version": "v1.2.6",
+      "file_name": "rpk/n66_1.2.6.rpk"
+    },
+    "xmrw5": {
+      "version": "v3.3.0",
+      "file_name": "downloads/65_3.3.0.rpk"
+    },
+    "xmrw5xring": {
+      "version": "v3.3.0",
+      "file_name": "downloads/65_3.3.0.rpk"
+    },
+    "xmrw6": {
+      "version": "v3.3.0",
+      "file_name": "downloads/65_3.3.0.rpk"
+    },
+    "xmb10p": {
+      "version": "v3.0.0b2",
+      "file_name": "downloads/p67_3.0.0b5.rpk"
+    }
+  },
+  "ext": {}
+}

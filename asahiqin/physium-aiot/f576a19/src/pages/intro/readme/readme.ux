@@ -1,0 +1,68 @@
+<import name="button" src="../../../components/button"></import>
+<import name="appbar" src="../../../components/appbar"></import>
+<template>
+  <div class="page">
+    <scroll scroll-y="true" class="content-{{ device }}">
+      <div style="width: 100%; height: 10px"></div>
+      <text class="title">欢迎使用Physium(翻到底部是下一页)</text>
+      <text class="title">使用说明:</text>
+      <text class="title">1. 您可以在元素周期表的左上方或左下方(横向)齿轮处更改元素周期表设置</text>
+      <text class="title">2. 您也可以在详细信息中找到元素周期表设置</text>
+      <text class="title">3. 友情提示,元素周期表的返回按钮在左上角</text>
+      <button value="下一页" @touch="change_router('/pages/intro/feedback')"></button>
+      <div style="width:100%; height: 30px"></div>
+    </scroll>
+    <appbar can-not-back="{{true}}" title="介绍 1/2" ></appbar>
+  </div>
+</template>
+
+<script>
+import router from "@system.router"
+import git_info from "../../../git.json"
+import prompt from "@system.prompt"
+import storage from "@system.storage"
+export default {
+  private: {
+    screen: "",
+    device: "",
+    branch: git_info.branch,
+    last_commit: git_info.last_commit
+  },
+  back() {
+    router.back()
+  },
+  onInit() {
+    this.device = this.$app.$def.device.device
+  },
+  gotoGPL() {
+    router.push({
+      uri: "pages/gpl"
+    })
+  },
+  change_router(uri) {
+    router.replace({
+      uri: uri
+    })
+  }
+}
+</script>
+
+<style lang="scss">
+@use "../../../material/base.scss";
+@import "../../../material/divider.scss";
+@import "../../../material/base.scss";
+@import "../../../material/app_bar.scss";
+@import "../../../material/card.scss";
+.button {
+  background-color: base.$primary;
+  height: 60px;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  border: none;
+  font-size: 25px;
+  color: base.$on-primary;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+</style>

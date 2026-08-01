@@ -1,0 +1,27 @@
+{
+  "item": {
+    "id": "979833453977",
+    "restype": "watchface",
+    "name": "嘉光",
+    "description": "移植自 Xiaomi Watch 5，版权归小米所有，非商业用途，侵权请联系删除",
+    "preview": [
+      "画板 1.png"
+    ],
+    "icon": "logo.png",
+    "cover": "画板 1.png",
+    "author": [
+      {
+        "name": "chihuan",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [],
+  "downloads": {
+    "xmws5": {
+      "version": "1.0.1",
+      "file_name": "S5_嘉光.bin"
+    }
+  },
+  "ext": {}
+}

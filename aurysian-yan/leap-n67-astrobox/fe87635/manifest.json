@@ -1,0 +1,19 @@
+{
+  "item": {
+    "name": "跃界",
+    "description": "包含 6 张精美壁纸的景深表盘",
+    "preview": ["preview.png", "preview2.png", "preview3.png"],
+    "icon": "icon.png",
+    "source_url": "",
+    "author": [{
+      "name": "AurysianYan",
+      "author_url": "https://aurysian.top/"
+    }]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.2.4",
+      "file_name": "leapCN.o67.bin"
+    }
+  }
+}

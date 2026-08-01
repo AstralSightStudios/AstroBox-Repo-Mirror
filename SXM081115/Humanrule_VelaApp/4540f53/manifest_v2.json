@@ -1,0 +1,67 @@
+{
+  "item": {
+    "id": "com.sxm.humanrule",
+    "restype": "quick_app",
+    "name": "生物节律周期表",
+    "description": "掌握生物节律,提高学习效率.生物节律是自然进化赋予生命的基本特征之一,人类和一切生物都要受到生物节律的控制与影响。人体生物节律是指体力节律、情绪节律和智力节律。 每个人从他出生那天起一直到生命终结,都存在着体力23天、情绪28天、智力33天的周期性波动规律,称为人体生物节律。每一个周期中又存在着高潮期、低潮期和临界期。 由于它具有准确的时间性，因此，也称之为人体生物钟。在我们日常生活中，有人会觉得自己的体力、情绪或智力有时很好，有时很坏，人从他诞生之日起，直至生命终结，其自身的体力、情绪和智力都存在着由强至弱、由弱至强的周期性起伏变化。人们把这种现象称作生物节律，或生物节奏、生命节律等。产生这种现象的原因是生物体内存在着生物钟，它自动地调节和控制着人体的行为和活动。",
+    "preview": [
+      "preview0.png",
+      "device0.png",
+      "device1.png",
+      "device2.png",
+      "device3.png",
+      "device4.png"
+    ],
+    "icon": "icon.png",
+    "cover": "preview0.png",
+    "author": [
+      {
+        "name": "SXM",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "icon": "",
+      "title": "爱发电",
+      "url": "https://afdian.com/a/zptdfbilibili"
+    },
+    {
+      "icon": "",
+      "title": "我的B站",
+      "url": "https://space.bilibili.com/487041556"
+    }
+  ],
+  "downloads": {
+    "xmb9": {
+      "version": "1.0.5",
+      "file_name": "app.rpk"
+    },
+    "xmb9p": {
+      "version": "1.0.5",
+      "file_name": "app.rpk"
+    },
+    "xmb10": {
+      "version": "1.0.5",
+      "file_name": "app.rpk"
+    },
+    "xmb10nfc": {
+      "version": "1.0.5",
+      "file_name": "app.rpk"
+    },
+    "xmrw5": {
+      "version": "1.0.5",
+      "file_name": "app.rpk"
+    },
+    "xmrw5xring": {
+      "version": "1.0.5",
+      "file_name": "app.rpk"
+    },
+    "xmrw6": {
+      "version": "1.0.5",
+      "file_name": "app.rpk"
+    }
+  },
+  "ext": {}
+}

@@ -1,0 +1,54 @@
+{
+  "item": {
+    "name": "BandTwine",
+    "description": "一个开源 高效 用户/开发者友好 拓展性强的VelaOS通用文字游戏引擎",
+    "preview": [
+      "preview0.png",
+      "preview1.png",
+      "preview2.png",
+      "preview3.png",
+      "preview4.png",
+      "preview5.png",
+      "preview6.png",
+      "preview7.png",
+      "preview8.png",
+      "preview9.png",
+      "preview10.png",
+      "preview11.png"
+    ],
+    "icon": "icon.png",
+    "source_url": "https://github.com/OrPudding/VelaOS_BandTwine/",
+    "author": [
+      {
+        "name": "OrPudding",
+        "author_url": "https://github.com/OrPudding/"
+      }
+    ]
+  },
+  "downloads": {
+    "o66": {
+      "version": "v0.3.0-beta",
+      "file_name": "o66.rpk"
+    },
+    "o66nfc": {
+      "version": "v0.3.0-beta",
+      "file_name": "o66nfc.rpk"
+    },
+    "n67": {
+      "version": "v0.3.0-beta",
+      "file_name": "n67.rpk"
+    },
+    "n62": {
+      "version": "v0.3.0-beta",
+      "file_name": "n62.rpk"
+    },
+    "o62": {
+      "version": "v0.3.0-beta",
+      "file_name": "o62.rpk"
+    },
+    "n66": {
+      "version": "v0.3.0-beta",
+      "file_name": "n66.rpk"
+    }
+  }
+}

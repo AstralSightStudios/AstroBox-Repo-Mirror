@@ -1,0 +1,65 @@
+{
+  "item": {
+    "id": "com.lladlam.bandpet",
+    "restype": "quick_app",
+    "name": "BandPet-Free",
+    "description": "tion": "一款点击类与集换类的游戏。当前为测试版，会有部分功能缺失以及少量Bug。现已支持Xiaomi Band 9 Pro,REDMI Watch 5&6,Xiaomi Watch S4",
+    "preview": [
+     "preview.png",
+	 "preview1.png",
+     "preview2.png",
+     "preview3.png",
+     "preview4.png",
+     "preview5.png",
+     "preview6.png",
+     "preview7.png"
+    ],
+    "icon": "icon.png",
+    "cover": "preview.png",
+    "author": [
+      {
+        "name": "lladlam",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "icon": "github-logo",
+      "title": "GitHub",
+      "url": "https://github.com/lladlam/AstroBox-BandPet-free"
+    },
+    {
+      "icon": "house-line",
+      "title": "个人主页",
+      "url": "https://lladlam..top"
+    }
+  ],
+  "downloads": {
+    "xmb9p": {
+      "version": "0.4.3",
+      "file_name": "com.lladlam.bandpet.9pro.rpk"
+    },
+    "xmrw5": {
+      "version": "0.4.3",
+      "file_name": "com.lladlam.bandpet.rw.rpk"
+    },
+    "xmrw5xring": {
+      "version": "0.4.3",
+      "file_name": "com.lladlam.bandpet.rw.rpk"
+    },
+    "xmrw6": {
+      "version": "0.4.3",
+      "file_name": "com.lladlam.bandpet.rw.rpk"
+    },
+	"xmws4": {
+      "version": "0.4.2",
+      "file_name": "com.lladlam.bandpet.xws.rpk"
+    },
+	"xmws4xring": {
+      "version": "0.4.2",
+      "file_name": "com.lladlam.bandpet.xws.rpk"
+    }
+  },
+  "ext": {}
+}

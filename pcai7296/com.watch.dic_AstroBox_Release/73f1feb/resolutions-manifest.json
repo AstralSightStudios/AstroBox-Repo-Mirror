@@ -1,0 +1,52 @@
+﻿[
+    {
+        "id":  "W192",
+        "width":  192,
+        "height":  490,
+        "file":  "com.watch.dic.release.2.3.1.w192.rpk",
+        "sha256":  "626097a44b0063ede1eced20c06ace87be7ddd551b68111ce7da56c1e341b941",
+        "package":  "com.watch.dic",
+        "version":  "2.3.1",
+        "mode":  "release"
+    },
+    {
+        "id":  "W212",
+        "width":  212,
+        "height":  520,
+        "file":  "com.watch.dic.release.2.3.1.w212.rpk",
+        "sha256":  "7fce9fe7117f021bfc239c95a100cc391d333f58de03c2a722b1d1677a6435c6",
+        "package":  "com.watch.dic",
+        "version":  "2.3.1",
+        "mode":  "release"
+    },
+    {
+        "id":  "W336",
+        "width":  336,
+        "height":  336,
+        "file":  "com.watch.dic.release.2.3.1.w336.rpk",
+        "sha256":  "c7c4380ba84a08e3a84675fc59a41d1a25b6668ca8a13d7e5ccd059ac5fd2a9e",
+        "package":  "com.watch.dic",
+        "version":  "2.3.1",
+        "mode":  "release"
+    },
+    {
+        "id":  "W432",
+        "width":  432,
+        "height":  432,
+        "file":  "com.watch.dic.release.2.3.1.w432.rpk",
+        "sha256":  "ad34734abfe00b27d8a48c897e558442770bdb506d7d16a8c346c44529750429",
+        "package":  "com.watch.dic",
+        "version":  "2.3.1",
+        "mode":  "release"
+    },
+    {
+        "id":  "W466",
+        "width":  466,
+        "height":  466,
+        "file":  "com.watch.dic.release.2.3.1.w466.rpk",
+        "sha256":  "21f4f997923ad5d9805d5a50800b237ad5e1d0cf63166bcff51f9ba6421d819b",
+        "package":  "com.watch.dic",
+        "version":  "2.3.1",
+        "mode":  "release"
+    }
+]

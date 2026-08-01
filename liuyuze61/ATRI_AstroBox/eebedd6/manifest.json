@@ -1,0 +1,39 @@
+{
+  "item": {
+    "name": "ATRI",
+    "description": "视觉小说游戏《ATRI -My Dear Moments-》移植，原作百科：https://zh.moegirl.org.cn/ATRI_-My_Dear_Moments-#",
+    "preview": [
+      "preview.png",
+      "preview_9.png",
+      "preview_9P.png",
+      "preview_9P1.png",
+      "ATRI_Teaser.png"
+    ],
+    "icon": "logo.png",
+    "source_url": "https://github.com/liuyuze61/ATRI-miband",
+    "author": [
+      {
+        "name": "liuyuze61",
+        "author_url": "https://github.com/liuyuze61"
+      }
+    ]
+  },
+  "downloads": {
+    "n66": {
+      "version": "1.5.1",
+      "file_name": "9_ATRI_1.5.1.rpk"
+    },
+    "n67": {
+      "version": "1.5.1",
+      "file_name": "9P_ATRI_1.5.1.rpk"
+    },
+    "o66": {
+      "version": "1.5.1",
+      "file_name": "10_ATRI_1.5.1F.rpk"
+    },
+    "o66nfc": {
+      "version": "1.5.1",
+      "file_name": "10_ATRI_1.5.1F.rpk"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "item": {
+    "name": "简明天气",
+    "description": "更好看好用的米环米表天气应用（QQ交流群947038648）",
+    "preview": [
+      "preview.png",
+      "preview2.png",
+      "preview3.png",
+      "preview4.png",
+      "preview5.png"
+    ],
+    "icon": "icon.png",
+    "source_url": "https://weather.zaona.top/",
+    "author": [
+      {
+        "name": "Zaona",
+        "author_url": "https://github.com/zaona"
+      }
+    ]
+  },
+  "downloads": {
+    "n66": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "n67": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "o66": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "o66nfc": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "n62": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "o62": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "o62m": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "o65": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "o65m": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "p65": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "p62": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    },
+    "p67": {
+      "version": "2.10.0",
+      "file_name": "com.application.zaona.weather.release.2.10.0.rpk"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "item": {
+    "name": "Q版初音未来表盘 第三弹",
+    "description": "窝趣，初音未来！",
+    "preview": [
+      "预览1.png",
+      "预览2.png",
+      "预览3.png"
+    ],
+    "icon": "Icon.png",
+    "cover": "封面.png",
+    "source_url": "https://github.com/Orange0w0/MikuWatchface_AstroBox_Release",
+    "author": [
+      {
+        "name": "Orange0w0",
+        "author_url": "https://www.bandbbs.cn/members/74852/"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.0.0",
+      "file_name": "resource.bin"
+    }
+  }
+}

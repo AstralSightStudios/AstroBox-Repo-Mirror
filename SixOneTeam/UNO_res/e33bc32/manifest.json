@@ -1,0 +1,30 @@
+{
+    "item": {
+      "name": "UNO",
+      "description": "桌游变腕上游戏，经典UNO随时开玩！",
+      "preview": ["/preview.png"],
+      "icon": "/icon.png",
+      "author": [{
+        "name": "SixOneTeam",
+        "author_url": "https://sixoneteam.top"
+      }]
+    },
+    "downloads": {
+      "n66": {
+        "version": "1.0.0",
+        "file_name": "/9.bin"
+      },
+      "n67": {
+        "version": "1.0.0",
+        "file_name": "/9P.bin"
+      },
+      "o66": {
+        "version": "1.0.0",
+        "file_name": "/10.bin"
+      },
+      "o66nfc": {
+        "version": "1.0.0",
+        "file_name": "/10.bin"
+      }
+    }
+  }

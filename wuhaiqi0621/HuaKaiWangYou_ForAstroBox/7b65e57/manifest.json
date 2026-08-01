@@ -1,0 +1,18 @@
+{
+  "item": {
+    "name": "花开忘忧",
+    "description": "花开忘忧，愿你无忧",
+    "preview": ["head.png","pre0.png","code.png"],
+    "icon": "icon.png",
+    "author": [{
+      "name": "Charlie_Q",
+      "author_url": "https://bandbbs.cn/members/114920"
+    }]
+  },
+  "downloads": {
+    "n67": {
+      "version": "v9.2.9",
+      "file_name": "huakaiwangyou.bin"
+    }
+  }
+}

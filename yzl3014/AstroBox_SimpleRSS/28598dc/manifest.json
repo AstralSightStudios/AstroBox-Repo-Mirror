@@ -1,0 +1,39 @@
+{
+  "item": {
+    "name": "SimpleRSS 简读",
+    "description": "SimpleRSS 是一个简单的RSS阅读器，它可以从网上下载特定格式文件，经过处理后供您阅读，无论是博客、社交媒体、论坛还是新闻网站，只要是有受支持的RSS源，都可以用本应用来阅读。\n本应用包含一键收藏到本地、自动保存RSS地址、快捷网址输入等功能。\nB站视频【https://b23.tv/T2xJCDv】。\n注意：本应用对RW5或RW5 esim的支持尚不完善。\n如果您有兴趣，可以加入QQ群：813266746",
+    "preview": [
+      "preview/index.png",
+      "preview/detail1.png",
+      "preview/detail2.png",
+      "preview/settings.png",
+      "preview/favorites.png",
+      "preview/rss_list.png",
+      "preview/set_rss.png",
+      "preview/textStyle.png",
+      "preview/about.png"
+    ],
+    "icon": "logo.png",
+    "source_url": "https://github.com/yzl3014/SimpleRSS",
+    "author": [
+      {
+        "name": "yzl3014",
+        "author_url": "https://github.com/yzl3014"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.0.3",
+      "file_name": "com.yzl3014.simplerss.release.1.0.3.rpk"
+    },
+    "o65": {
+      "version": "1.0.3",
+      "file_name": "com.yzl3014.simplerss.release.1.0.3.rpk"
+    },
+    "o65m": {
+      "version": "1.0.3",
+      "file_name": "com.yzl3014.simplerss.release.1.0.3.rpk"
+    }
+  }
+}

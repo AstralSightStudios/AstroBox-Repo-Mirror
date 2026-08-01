@@ -1,0 +1,33 @@
+{
+  "item": {
+    "id": "com.afdian.matrixfive",
+    "name": "爱发电数据仓",
+    "description": "运行在Vela设备上的第三方爱发电销售信息预览软件",
+    "preview": [
+      "preview.png"
+    ],
+    "icon": "icon.png",
+    "cover": "preview1.png",
+    "source_url": "https://github.com/jinmohan/Afdian-ShuJuCang-AstroBox_AstroBox_Release",
+    "author": [
+      {
+        "name": "MatrixFive",
+        "author_url": "https://mfoa.top/"
+      }
+    ]
+  },
+  "downloads": {
+    "p65": {
+      "version": "1.0.0",
+      "file_name": "ShuJuCang_For_RW.rpk"
+    },
+    "p62": {
+      "version": "1.0.0",
+      "file_name": "ShuJuCang_For_S5.rpk"
+    },
+    "o65": {
+      "version": "1.0.0",
+      "file_name": "ShuJuCang_For_RW.rpk"
+    }
+  }
+}

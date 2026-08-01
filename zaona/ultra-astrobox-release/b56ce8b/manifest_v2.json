@@ -1,0 +1,31 @@
+{
+  "item": {
+    "id": "979890780101",
+    "restype": "watchface",
+    "name": "Ultra",
+    "description": "小米手环10 SU7 Ultra 表盘",
+    "preview": [
+      "preview.png"
+    ],
+    "icon": "icon.png",
+    "cover": "preview.png",
+    "author": [
+      {
+        "name": "zaona",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [],
+  "downloads": {
+    "xmb10": {
+      "version": "1.0.1",
+      "file_name": "dot.bin"
+    },
+    "xmb10nfc": {
+      "version": "1.0.1",
+      "file_name": "dot.bin"
+    }
+  },
+  "ext": {}
+}

@@ -1,0 +1,46 @@
+{
+  "item": {
+    "id": "com.dino.runner",
+    "restype": "quick_app",
+    "name": "恐龙快跑",
+    "description": "《恐龙快跑》是一款移植自 Chrome 浏览器离线彩蛋的跑酷游戏。\n操作方式:\n点击屏幕 恐龙跳跃\n点击恐龙 下蹲（1.1 秒后自动站起）\n空中再点恐龙 快速落地 \n点击重启按钮 重新开始 \n黑夜模式：每 100 分切换一次，背景渐暗，月亮随机月相 + 星星出现\n基于小米 Vela 快应用框架移植，快应用设计为60fps，但实际游戏根本达不到，甚至低于30fps。",
+    "preview": [
+      "preview.png",
+      "preview2.png",
+      "preview3.png",
+      "preview4.png",
+      "preview5.png",
+      "preview6.png"
+    ],
+    "icon": "icon.png",
+    "cover": "cover.png",
+    "author": [
+      {
+        "name": "YuanRongesh",
+        "bindABAccount": false
+      }
+    ]
+  },
+  "links": [
+    {
+      "icon": "house",
+      "title": "个人网站",
+      "url": "https://51733074.xyz"
+    }
+  ],
+  "downloads": {
+    "xmb9p": {
+      "version": "1.0.5",
+      "file_name": "com.dino.runner.debug.1.0.5.rpk"
+    },
+    "xmb10": {
+      "version": "1.0.0",
+      "file_name": "com.dino.runner.miband10.release.1.0.0.rpk"
+    },
+    "xmb10nfc": {
+      "version": "1.0.0",
+      "file_name": "com.dino.runner.miband10.release.1.0.0.rpk"
+    }
+  },
+  "ext": {}
+}

@@ -1,0 +1,46 @@
+{
+  "item": {
+    "id": "smart.box",
+    "restype": "quick_app",
+    "name": "Smart Box",
+    "description": "一款\"真正实用\"的万能工具箱",
+    "preview": [
+      "media/MiBand9-2026-06-29-18-34-28.png",
+      "media/MiBandPro-2026-06-29-19-07-08.png",
+      "media/MiBandPro-2026-06-29-19-08-24.png",
+      "media/MiBand9-2025-12-25-18-18-24.png",
+      "media/MiBand9-2026-02-21-16-13-29.png",
+      "media/MiBand9-2026-04-11-15-48-55.png",
+      "media/MiBand9-2026-06-29-19-08-42.png",
+      "media/MiBand10-2026-06-29-19-07-57.png",
+      "media/HeadImage.png"
+    ],
+    "icon": "media/logo.png",
+    "cover": "media/HeadImage.png",
+    "author": [
+      {
+        "name": "ttl",
+        "display_name":"淘汰郎",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "搭配Smart Home 食用更佳",
+      "url": "https://astrobox.online/open?source=resv2&id=979812002126&provider=OfficialV2",
+      "icon": "cursor-click"
+    }
+  ],
+  "downloads": {
+    "xmb9": {
+      "version": "2.8.8",
+      "file_name": "downloads/smart.box.release.2.8.8.rpk"
+    },
+    "xmb9p": {
+      "version": "2.8.8",
+      "file_name": "downloads/smart.box.release.2.8.8.rpk"
+    }
+  },
+  "ext": {}
+}

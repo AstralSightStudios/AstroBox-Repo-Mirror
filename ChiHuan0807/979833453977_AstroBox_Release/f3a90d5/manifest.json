@@ -1,0 +1,25 @@
+{
+  "item": {
+    "id": "979833453977",
+    "name": "嘉光",
+    "description": "移植自 Xiaomi Watch 5，版权归小米所有，非商业用途，侵权请联系删除",
+    "preview": [
+      "画板 1.png"
+    ],
+    "icon": "logo.png",
+    "cover": "画板 1.png",
+    "source_url": "https://github.com/ChiHuan0807/979833453977_AstroBox_Release",
+    "author": [
+      {
+        "name": "ChiHuan0807",
+        "author_url": "https://astrobooox-ng.waijade.cn/publish"
+      }
+    ]
+  },
+  "downloads": {
+    "p62": {
+      "version": "1.0.1",
+      "file_name": "S5_嘉光.bin"
+    }
+  }
+}

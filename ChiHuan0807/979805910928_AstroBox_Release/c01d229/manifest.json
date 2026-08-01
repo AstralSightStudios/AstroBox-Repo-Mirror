@@ -1,0 +1,25 @@
+{
+  "item": {
+    "name": "焕芯",
+    "description": "焕芯",
+    "preview": [
+      "HuanXin_AstroBox-main/画板 1.png",
+      "HuanXin_AstroBox-main/画板 6.png"
+    ],
+    "icon": "HuanXin_AstroBox-main/logo.png",
+    "cover": "HuanXin_AstroBox-main/画板 1.png",
+    "source_url": "https://github.com/ChiHuan0807/979805910928_AstroBox_Release",
+    "author": [
+      {
+        "name": "ChiHuan0807",
+        "author_url": "https://github.com/ChiHuan0807"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.0.0",
+      "file_name": "HuanXin_AstroBox-main/焕芯.bin"
+    }
+  }
+}

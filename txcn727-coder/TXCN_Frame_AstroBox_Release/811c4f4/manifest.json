@@ -1,0 +1,28 @@
+{
+  "item": {
+    "name": "TXCN FRAME",
+    "description": "FRAME 以工程化点线面结构构建界面秩序，强调清晰分区与信息效率，呈现理性、克制的工业风时间显示。",
+    "preview": [
+      "4.png",
+      "5.png",
+      "6.png",
+      "7.png",
+      "8.png"
+    ],
+    "icon": "3.png",
+    "cover": "FRAME.png",
+    "source_url": "https://github.com/txcn727-coder/TXCN_Frame_AstroBox_Release",
+    "author": [
+      {
+        "name": "TXCN",
+        "author_url": "https://github.com/txcn727-coder"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.1.0",
+      "file_name": "FRAME（9Prov1.1）.bin"
+    }
+  }
+}

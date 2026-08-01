@@ -1,0 +1,22 @@
+{
+  "item": {
+    "name": "realive 3 Classic F4",
+    "description": "仿小米手环4经典设计的一款realive3表盘.",
+    "preview": ["images/preview.png"],
+    "icon": "images/logo.png",
+    "author": [{
+      "name": "2minRain",
+      "author_url": "https://afdian.com/a/2minrain"
+    }]
+  },
+  "downloads": {
+    "o66": {
+      "version": "1.0.0",
+      "file_name": "dist/o66.bin"
+    },
+    "o66nfc": {
+      "version": "1.0.0",
+      "file_name": "dist/o66nfc.bin"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "item": {
+    "name": "女友模拟器",
+    "description": "这是一款免费的、养成类的小游戏\n由FATE X团队制作而成\n交流群：701592567\n里面可以：对话、赚钱、生育、送礼、互动、商店\n如果它太饿了或者很伤心就会红温，你必须快点哄好她！\n内涵7个女友，安装之后随便给你一个，不可修改，除非你卸载重装，有两个隐藏女友哦",
+    "preview": [
+      "容器 1@1x.webp",
+      "容器 2@1x.webp",
+      "容器 5@1x.webp",
+      "容器 6@1x.webp",
+      "容器 7@1x.webp",
+      "容器 8@1x.webp",
+      "容器 9@1x.webp",
+      "容器 11@1x (1).webp"
+    ],
+    "icon": "logg.png",
+    "cover": "xct.png",
+    "source_url": "https://github.com/Rubbishzzz/my_app-astrobox_AstroBox_Release",
+    "author": [
+      {
+        "name": "Rubbish_Z",
+        "author_url": "https://github.com/Rubbishzzz"
+      }
+    ]
+  },
+  "downloads": {
+    "n66": {
+      "version": "1.0.3",
+      "file_name": "com.nvyou.fatex.release.1.0.3.rpk"
+    },
+    "o66": {
+      "version": "1.0.3",
+      "file_name": "com.nvyou.fatex.release.1.0.3.rpk"
+    },
+    "o66nfc": {
+      "version": "1.0.3",
+      "file_name": "com.nvyou.fatex.release.1.0.3.rpk"
+    }
+  }
+}

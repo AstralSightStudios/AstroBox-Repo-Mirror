@@ -1,0 +1,23 @@
+{
+  "item": {
+    "name": "环间跳蛋",
+    "description": "灵感来源于米坛社区的作品,仅供娱（应）乐（急），实际振感远远无法令人兴奋",
+    "preview": ["preview.png","preview1.png", "preview2.png","preview3.png"],
+    "icon": "icon.png",
+    "source_url": "https://github.com/MapleMapleMa/SmartVibrator",
+    "author": [{
+      "name": "MapleMapleMa",
+      "author_url": "https://github.com/MapleMapleMa"
+    }]
+  },
+  "downloads": {
+    "o66": {
+      "version": "1.0.1",
+      "file_name": "环间跳蛋.rpk"
+    },
+    "o66nfc": {
+      "version": "1.0.1",
+      "file_name": "环间跳蛋.rpk"
+    }
+  }
+}

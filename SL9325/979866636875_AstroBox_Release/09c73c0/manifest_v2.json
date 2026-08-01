@@ -1,0 +1,30 @@
+{
+  "item": {
+    "id": "979866636875",
+    "restype": "watchface",
+    "name": "此刻",
+    "description": "「此刻」从未如此纯粹\n\n两年前，我在网上看到这样一面时钟：\n百余个黑体汉字整齐地铺满盘面，透着一种冷淡的无机感；但像“十点零五分”这样口语化的时间表达，又生出一丝温柔的人文味。这种微妙的张力让我深深着迷。\n\n中央的汉字标示着以五分钟为颗粒度的时间，四周的圆点则从左到右、自上而下亮起，每亮起一颗，便过去了一分钟。或者说，当前时间是中央盘面与四周亮起的圆点个数之和。\n\n如今，我将QLOCKTWO带上小米手环10Pro，把这份设计带给我的感动分享给大家。",
+    "preview": [
+      "亮.png",
+      "息.png",
+      "PSX_20260725_105012.jpg",
+      "SELEZIONE-ARREDAMENTI-OPINION-PENTA-CLOCKTWO-03.jpg"
+    ],
+    "icon": "图标.png",
+    "cover": "PSX_20260725_105012.jpg",
+    "author": [
+      {
+        "name": "SL9325",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [],
+  "downloads": {
+    "xmb10p": {
+      "version": "1.0.0",
+      "file_name": "此刻.bin"
+    }
+  },
+  "ext": {}
+}

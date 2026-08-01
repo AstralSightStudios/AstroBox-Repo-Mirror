@@ -1,0 +1,54 @@
+{
+  "item": {
+    "name": "NeoMusic",
+    "description": "NeoMusic 是一款专为小米 VelaOS 手表打造的第三方音乐客户端，底层重构，功能焕新，新增本地导入支持。\n支持在线流媒体、批量下载、离线缓存、存储管理、每日推荐、私人 FM、快捷手势、多语种歌词和云控更新等功能。\nLite 档 2.99 元可离线缓存 50 首，Plus 档 4.99 元可缓存 100 首，Pro 档 6.99 元可无限缓存。",
+    "preview": [
+      "vela5_rw-2026-01-01-02-33-32.png",
+      "vela5_rw-2026-01-01-02-35-08.png",
+      "vela5_rw-2026-01-01-02-35-32.png",
+      "vela5_rw-2026-01-01-02-38-00.png",
+      "vela5_s4-2026-01-01-03-00-59.png",
+      "vela5_s4-2026-01-01-03-01-10.png",
+      "vela5_s4-2026-01-01-03-01-19.png",
+      "vela5_s4-2026-01-01-03-01-33.png"
+    ],
+    "icon": "icon.png",
+    "source_url": "https://github.com/OrPudding/NeoMusic",
+    "author": [
+      {
+        "name": "OrPudding",
+        "author_url": "https://github.com/OrPudding"
+      }
+    ]
+  },
+  "downloads": {
+    "n62": {
+      "version": "26.6.23",
+      "file_name": "neomusic.rpk"
+    },
+    "o62": {
+      "version": "26.6.23",
+      "file_name": "neomusic.rpk"
+    },
+    "o62m": {
+      "version": "26.6.23",
+      "file_name": "neomusic.rpk"
+    },
+    "o65": {
+      "version": "26.6.23",
+      "file_name": "neomusic.rpk"
+    },
+    "o65m": {
+      "version": "26.6.23",
+      "file_name": "neomusic.rpk"
+    },
+    "p65": {
+      "version": "26.6.23",
+      "file_name": "neomusic.rpk"
+    },
+    "p62": {
+      "version": "26.6.23",
+      "file_name": "neomusic.rpk"
+    }
+  }
+}

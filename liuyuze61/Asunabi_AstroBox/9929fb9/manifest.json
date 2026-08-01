@@ -1,0 +1,33 @@
+{
+  "item": {
+    "name": "飞鸟会长不肯认输",
+    "description": "视觉小说游戏《アスカさんはなびかない》移植，已开源",
+    "preview": [
+      "9.png",
+      "9P.png",
+      "preview.png"
+    ],
+    "icon": "logo.png",
+    "source_url": "https://github.com/liuyuze61/Asunabi-miband",
+    "author": [
+      {
+        "name": "liuyuze61",
+        "author_url": "https://github.com/liuyuze61"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.1.1",
+      "file_name": "9P_v1.1.1.rpk"
+    },
+    "o66": {
+      "version": "1.1.1",
+      "file_name": "10_v1.1.1.rpk"
+    },
+    "o66nfc": {
+      "version": "1.1.1",
+      "file_name": "10_v1.1.1.rpk"
+    }
+  }
+}

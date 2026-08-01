@@ -1,0 +1,33 @@
+{
+  "item": {
+    "name": "Contrasting colors",
+    "description": "免费表盘，由sees，AzumaChiaki，池焕联合制作，AstroBox独占",
+    "preview": [
+      "pre0.png",
+      "pre1.png",
+      "pre2.png"
+    ],
+    "icon": "icon.png",
+    "source_url": "https://github.com/AzumaChiaki/ctls",
+    "author": [
+      {
+        "name": "AzumaChiaki",
+        "author_url": "https://www.bandbbs.cn/members/68749/"
+      },
+      {
+        "name": "Sees",
+        "author_url": "https://www.bandbbs.cn/members/1576847/"
+      },
+      {
+        "name": "池焕",
+        "author_url": "https://www.bandbbs.cn/members/466030/"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.0.0",
+      "file_name": "9p.bin"
+    }
+  }
+}

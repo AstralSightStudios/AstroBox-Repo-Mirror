@@ -1,0 +1,30 @@
+{
+  "item": {
+    "name": "番茄钟",
+    "description": "暂未实现完整番茄钟功能，目前有倒计时和显示当前时间功能（都为横屏）",
+    "preview": [
+      "pic4.png",
+      "pic1.png",
+      "pic2.png",
+      "pic3.png"
+    ],
+    "icon": "logo.png",
+    "source_url": "https://github.com/zyhsck/my_astrobox_tomatoclock",
+    "author": [
+      {
+        "name": "Mizuki",
+        "author_url": "https://github.com/zyhsck"
+      }
+    ]
+  },
+  "downloads": {
+    "o65": {
+      "version": "1.0.0",
+      "file_name": "tomatoclock.bin"
+    },
+    "o65m": {
+      "version": "1.0.0",
+      "file_name": "tomatoclock.bin"
+    }
+  }
+}

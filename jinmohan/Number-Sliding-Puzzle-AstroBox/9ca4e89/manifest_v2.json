@@ -1,0 +1,72 @@
+{
+  "item": {
+    "id": "Com.MatrixFive.NumberSlidingPuzzle",
+    "restype": "quick_app",
+    "name": "数字华容道",
+    "description": "数字华容道，经典的益智类型数字游戏。目的是用最少的步数，最短时间将棋盘上的数字方块，按照从左到右，从上到下的顺序重新排列整齐。\n\n华容道是古老的中国民间益智游戏，以其变化多端、百玩不厌的特点与魔方、独立钻石一起被智力专家并称为“智力游戏界的三个不可思议”。它与七巧板、九连环等中国传统益智玩具还有个代名词叫作“中国的难题”。\n\n特色\n挑战自己的大脑和手速；\n移动方块，让所有数字顺着数字次序排列；\n不同难度关卡，挑战自我；\n随时随地训练您的大脑！",
+    "preview": ["preview.png"],
+    "icon": "icon.png",
+    "cover": "preview.png",
+    "author": [
+      {
+        "name": "MatrixFive",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "icon": "",
+      "title": "开源网站",
+      "url": "https://github.com/jinmohan/Number-Sliding-Puzzle"
+    },
+    {
+      "icon": "",
+      "title": "交流群",
+      "url": "https://qm.qq.com/cgi-bin/qm/qr?k=ODzojo2c4ywhNbC8ZNykGqErnJExoEbG&jump_from=webapi&authKey=3MeurE4gAj0dDFLwHziZQhKbUREYGp/wWQv+loozcRzBeKfwoJCwa6nhh7qARUXO"
+    }
+  ],
+  "downloads": {
+    "xmws3": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    },
+    "xmws4": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    },
+    "xmws4xring": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    },
+    "xmb9": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    },
+    "xmb10": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    },
+    "xmb10nfc": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    },
+    "xmb9p": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    },
+    "xmrw5": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    },
+    "xmrw5xring": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    },
+    "xmrw6": {
+      "version": "3.0",
+      "file_name": "MatrixFive.NumberSlidingPuzzle.3.0-ALL-DEVICE.rpk"
+    }
+  },
+  "ext": {}
+}

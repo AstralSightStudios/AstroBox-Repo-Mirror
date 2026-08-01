@@ -1,0 +1,24 @@
+{
+  "item": {
+    "name": "「景深;缓亮」长崎素世 [MyGO!!!!!]",
+    "description": "支持：缓慢亮屏\n本内容之版权归原作者所有，仅作分享交流使用。如有侵权，请联系我以便立即处理或下架。\n个人B站账号：https://space.bilibili.com/577919254\n\nv2.0更新内容：\n优化表盘大小\n已裁切圆角\n修复缩略图显示异常",
+    "preview": [
+      "xmbnad9.png",
+      "cover2.png"
+    ],
+    "icon": "icon.jpg",
+    "source_url": "https://github.com/midi-HL/watchface-MyGO-",
+    "author": [
+      {
+        "name": "辰星-HL",
+        "author_url": "https://space.bilibili.com/577919254"
+      }
+    ]
+  },
+  "downloads": {
+    "n66": {
+      "version": "v2.0",
+      "file_name": "mygo-V14-202511181724.bin"
+    }
+  }
+}

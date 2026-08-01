@@ -1,0 +1,34 @@
+{
+  "item": {
+    "id": "979874220993",
+    "name": "Xiaomi Vision GT",
+    "description": "Xiaomi Vision GT",
+    "preview": [
+      "画板 1.png",
+      "画板 2.png"
+    ],
+    "icon": "logo.png",
+    "cover": "画板 1.png",
+    "source_url": "https://github.com/ChiHuan0807/VisionGT_AstroBox_Release",
+    "author": [
+      {
+        "name": "ChiHuan0807",
+        "author_url": "https://astrobooox-ng.waijade.cn/publish"
+      },
+      {
+        "name": "点击捐赠作者~",
+        "author_url": "https://www.ifdian.net/a/miband_chihuan"
+      }
+    ]
+  },
+  "downloads": {
+    "o66nfc": {
+      "version": "1.0.0",
+      "file_name": "Xiaomi Vision GT For 小米手环 10.bin"
+    },
+    "o66": {
+      "version": "1.0.0",
+      "file_name": "Xiaomi Vision GT For 小米手环 10.bin"
+    }
+  }
+}

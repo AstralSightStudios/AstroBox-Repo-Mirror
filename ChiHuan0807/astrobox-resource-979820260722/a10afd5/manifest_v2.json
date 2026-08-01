@@ -1,0 +1,66 @@
+{
+  "item": {
+    "id": "979820260722",
+    "restype": "watchface",
+    "name": "「Folio UI」- 相册表盘",
+    "description": "可自由编辑文字内容的电子吧唧风格相册表盘~",
+    "preview": [
+      "media/lui头图1.png",
+      "media/lui头图2.png",
+      "media/lui头图3.png"
+    ],
+    "icon": "media/容器 19.png",
+    "cover": "media/lui头图1.png",
+    "author": [
+      {
+        "name": "chihuan",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "底图处理工具（网页端）",
+      "url": "https://poolux.top/tools/watch-face/edit-template/10",
+      "icon": "images"
+    },
+    {
+      "title": "底图处理工具（安卓端）",
+      "url": "https://pan.quark.cn/s/ca4c9803b097",
+      "icon": "android-logo"
+    }
+  ],
+  "downloads": {
+    "xmb9p": {
+      "version": "1.0.0",
+      "file_name": "downloads/9P.bin"
+    },
+    "xmrw5": {
+      "version": "1.0.0",
+      "file_name": "downloads/RW5.bin"
+    },
+    "xmrw5xring": {
+      "version": "1.0.0",
+      "file_name": "downloads/RW5.bin"
+    },
+    "xmrw6": {
+      "version": "1.0.0",
+      "file_name": "downloads/RW6.bin"
+    },
+    "xmb10": {
+      "version": "1.0.0",
+      "file_name": "downloads/10.bin"
+    },
+    "xmb10nfc": {
+      "version": "1.0.0",
+      "file_name": "downloads/10.bin"
+    },
+    "xmb10p": {
+      "version": "1.0.0",
+      "file_name": "downloads/10P.bin"
+    }
+  },
+  "ext": {
+    "enableAstroBoxCreatorFeatures": true
+  }
+}

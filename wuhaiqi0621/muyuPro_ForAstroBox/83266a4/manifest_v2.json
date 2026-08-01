@@ -1,0 +1,44 @@
+{
+  "item": {
+    "id": "com.charlie.muyuPro",
+    "restype": "quick_app",
+    "cover":"head.png",
+    "name": "木鱼Pro",
+    "description": "高度自定义化的木鱼快应用",
+    "preview": ["pre/0.png", "pre/1.png", "pre/2.png", "pre/3.png", "pre/4.png", "pre/5.png", "pre/6.png", "pre/7.png", "pre/8.png", "pre/9.png", "pre/10.png", "pre/11.png", "pre/12.png", "pre/13.png", "pre/14.png", "pre/15.png"],
+    "icon": "icon.png",
+    "author": [{
+      "name": "Charlie_Q",
+      "bindABAccount": true
+    },{
+      "name": "lst",
+      "bindABAccount": true
+    }]
+  },
+  "links": [
+    {
+      "icon": "",
+      "title": "米坛链接",
+      "url": "https://www.bandbbs.cn/members/114920/#resources"
+    }
+  ],
+  "downloads": {
+    "xmb10": {
+      "version": "v1.1.0",
+      "file_name": "rpk/o66_1.1.0.rpk"
+    },
+    "xmb10nfc": {
+      "version": "v1.1.0",
+      "file_name": "rpk/o66_1.1.0.rpk"
+    },
+    "xmb9p": {
+      "version": "v1.4.3",
+      "file_name": "rpk/n67_1.4.3.rpk"
+    },
+    "xmb9": {
+      "version": "v2.0.2",
+      "file_name": "rpk/n66_2.0.2.rpk"
+    }
+  },
+  "ext": {}
+}

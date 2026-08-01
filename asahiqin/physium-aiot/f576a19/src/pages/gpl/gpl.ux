@@ -1,0 +1,36 @@
+<import name="appbar" src="../../components/appbar"></import>
+<template>
+  <div class="page">
+    <scroll scroll-y="true" class="content-{{ device }}">
+      <qrcode
+        value="https://ww.gnu.org/licenses/old-licenses/gpl-2.0.html"
+        style="color: #141218; background-color: #e6e0e9; margin: 10px 10px 10px 10px"
+      ></qrcode>
+      <text class="title">扫码查看</text>
+    </scroll>
+    <appbar title="GPL"></appbar>
+  </div>
+</template>
+
+<script>
+import router from "@system.router"
+const gpl = ``
+export default {
+  private: {
+    gpl: gpl,
+    device: ""
+  },
+  back() {
+    router.back()
+  },
+  onInit() {
+    this.device = this.$app.$def.device.device
+  }
+}
+</script>
+
+<style lang="scss">
+@import "../../material/divider.scss";
+@import "../../material/base.scss";
+@import "../../material/app_bar.scss";
+</style>

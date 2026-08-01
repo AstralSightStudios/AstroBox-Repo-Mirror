@@ -1,0 +1,25 @@
+{
+  "item": {
+    "name": "舒尔特方格",
+    "description": "舒尔特方格（Schulte Grid）是一种用来训练注意力、视觉感知和反应速度的心理训练工具。按照数字从小到大的顺序，尽快地点击16个数字，游戏结束后查看计时，就这么简单。\nQQ群号: 813266746",
+    "preview": [
+      "preview.jpg",
+      "chart.png",
+      "play.gif"
+    ],
+    "icon": "logo.png",
+    "source_url": "",
+    "author": [
+      {
+        "name": "yzl3014",
+        "author_url": "https://github.com/yzl3014"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.1.1",
+      "file_name": "com.yzl3014.schultegrid.release.1.1.1.rpk"
+    }
+  }
+}

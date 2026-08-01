@@ -1,0 +1,50 @@
+{
+  "item": {
+    "name": "扫雷",
+    "description": "扫雷 For Vela\n\n游戏说明：\n1.地图为8*8，这是权衡了可玩性、美观性和性能的最佳适配方案\n2.保留两种操作模式，分别是：触摸操作、按键操作 你可以混合使用保证精准点击\n3.分为3种难度模式——初级模式、高级模式、地狱模式\n4.顶栏显示当前地雷数量和已用时间\n5.界面可上下滑动，下方有游戏操作按钮和最佳时间记录，不同模式的记录互不干涉\n\n游戏玩法：\n原味扫雷玩法\n点击格子后当前格子会高亮显示，你可以对它进行选中或标记\n使用方向键可以精准智能地选中格子\n\n本软件需付款2元使用\n购买后自动发送卡密，请前往指定链接输入卡密获取资格，输入设备码并获取激活码\n\n爱发电购买链接：https://afdian.com/item/246249d6623711f0b4ca5254001e7c00\n爱发电主页：https://afdian.com/a/jifengvela\n\n本应用支持mb9/mb10/mb8p/mb9p/rw4/rw5六个型号\n但AstroBox不支持mb8p和rw4，请移步至米坛社区搜索下载",
+    "preview": [
+      "preview1.png",
+      "preview2.png",
+      "preview3.png",
+      "preview4.png"
+    ],
+    "icon": "logo.png",
+    "source_url": "",
+    "author": [
+      {
+        "name": "JIFENG",
+        "author_url": "https://www.bandbbs.cn/members/232075/"
+      }
+    ]
+  },
+  "downloads": {
+    "n66": {
+      "version": "1.0.0",
+      "file_name": "com.JIFENG.minesweeper.release.1.0.0-pill.rpk"
+    },
+    "o66": {
+      "version": "1.0.0",
+      "file_name": "com.JIFENG.minesweeper.release.1.0.0-pill.rpk"
+    },
+    "o66nfc": {
+      "version": "1.0.0",
+      "file_name": "com.JIFENG.minesweeper.release.1.0.0-pill.rpk"
+    },
+    "n67": {
+      "version": "1.0.0",
+      "file_name": "com.JIFENG.minesweeper.release.1.0.0.rpk"
+    },
+    "o65": {
+      "version": "1.0.0",
+      "file_name": "com.JIFENG.minesweeper.release.1.0.0.rpk"
+    },
+    "n62": {
+      "version": "1.0.0",
+      "file_name": "com.JIFENG.minesweeper.release.1.0.0.rpk"
+    },
+    "o62": {
+      "version": "1.0.0",
+      "file_name": "com.JIFENG.minesweeper.release.1.0.0.rpk"
+    }
+  }
+}

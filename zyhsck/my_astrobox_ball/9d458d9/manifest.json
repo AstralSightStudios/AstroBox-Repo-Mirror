@@ -1,0 +1,27 @@
+{
+  "item": {
+    "name": "playball",
+    "description": "一个滑动线段，接住物理小球的游戏，小球的不规则反弹，考验的玩家的反应（小球会在线段上方一部分实现判断反弹，游玩时需注意）",
+    "preview": [
+      "1000039456.png"
+    ],
+    "icon": "logo.png",
+    "source_url": "",
+    "author": [
+      {
+        "name": "mizuki",
+        "author_url": "https://github.com/zyhsck"
+      }
+    ]
+  },
+  "downloads": {
+    "o65": {
+      "version": "1.0.0",
+      "file_name": "com.zyh.playball.debug.1.0.0.rpk"
+    },
+    "o65m": {
+      "version": "1.0.0",
+      "file_name": "com.zyh.playball.debug.1.0.0.rpk"
+    }
+  }
+}

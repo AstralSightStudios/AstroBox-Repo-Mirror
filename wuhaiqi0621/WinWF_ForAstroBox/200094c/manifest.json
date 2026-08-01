@@ -1,0 +1,25 @@
+{
+  "item": {
+    "name": "WindowsWF",
+    "description": "让你所爱，离你更近。非常好Windows风格表盘。但是不完全Windows风格。好看就行了。",
+    "preview": ["pre0.png", "pre1.png"],
+    "icon": "icon.png",
+    "author": [{
+      "name": "Charlie_Q",
+      "author_url": "https://bandbbs.cn/members/114920"
+    },{
+      "name": "AurysianYan",
+      "author_url": "https://bandbbs.cn/members/418071"
+    }]
+  },
+  "downloads": {
+    "o66": {
+      "version": "v1.0.2",
+      "file_name": "o66_1.0.2.bin"
+    },
+    "o66nfc": {
+      "version": "v1.0.2",
+      "file_name": "o66_1.0.2.bin"
+    }
+  }
+}

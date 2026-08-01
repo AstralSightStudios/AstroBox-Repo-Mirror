@@ -1,0 +1,46 @@
+{
+  "item": {
+    "id": "com.afdian.matrixfive",
+    "restype": "quick_app",
+    "name": "爱发电数据仓",
+    "description": "运行在Vela设备上的第三方爱发电销售信息预览软件",
+    "preview": [
+      "preview.png"
+    ],
+    "icon": "icon.png",
+    "cover": "preview1.png",
+    "author": [
+      {
+        "name": "MatrixFive",
+        "bindABAccount": true
+      }
+    ]
+  },
+    "links": [
+    {
+      "icon": "",
+      "title": "开源网站",
+      "url": "https://github.com/jinmohan/afdian-shujucang-vela"
+    },
+    {
+      "icon": "",
+      "title": "交流群",
+      "url": "https://qm.qq.com/cgi-bin/qm/qr?k=ODzojo2c4ywhNbC8ZNykGqErnJExoEbG&jump_from=webapi&authKey=3MeurE4gAj0dDFLwHziZQhKbUREYGp/wWQv+loozcRzBeKfwoJCwa6nhh7qARUXO"
+    }
+  ],
+  "downloads": {
+    "xmrw6": {
+      "version": "1.0.0",
+      "file_name": "ShuJuCang_For_RW.rpk"
+    },
+    "xmws5": {
+      "version": "1.0.0",
+      "file_name": "ShuJuCang_For_S5.rpk"
+    },
+    "xmrw5": {
+      "version": "1.0.0",
+      "file_name": "ShuJuCang_For_RW.rpk"
+    }
+  },
+  "ext": {}
+}

@@ -1,0 +1,59 @@
+{
+    "item": {
+        "id": "com.yzl3014.simplerss",
+        "restype": "quick_app",
+        "name": "SimpleRSS",
+        "description": "简读 SimpleRSS 是一个简单的RSS阅读器，它可以从网上下载特定格式文件，经过处理后供您阅读，无论是博客、社交媒体、论坛还是新闻网站，只要是有受支持的RSS源，都可以用本应用来阅读。支持一键收藏到本地、自动保存RSS地址、快捷网址输入等功能。\n\n在Bilibili查看演示: https://b23.tv/T2xJCDv \n\n注意：本应用对Redmi Watch 5及其eSIM版的支持尚不完善。",
+        "preview": [
+            "preview/index.png",
+            "preview/detail1.png",
+            "preview/detail2.png",
+            "preview/settings.png",
+            "preview/favorites.png",
+            "preview/rss_list.png",
+            "preview/set_rss.png",
+            "preview/textStyle.png",
+            "preview/about.png"
+        ],
+        "icon": "logo.png",
+        "cover": "cover_v3.png",
+        "author": [
+            {
+                "name": "yzl3014",
+                "bindABAccount": true
+            }
+        ]
+    },
+    "links": [
+        {
+            "icon": "github-logo",
+            "title": "从 GitHub 获取源码",
+            "url": "https://github.com/yzl3014/SimpleRSS"
+        },
+        {
+            "icon": "monitor-play",
+            "title": "去 Bilibili 观看演示视频",
+            "url": "https://www.bilibili.com/video/BV168tJzrEVi/"
+        },
+        {
+            "icon": "chats",
+            "title": "加入 QQ 交流群",
+            "url": "https://qm.qq.com/q/zNXQChqipG"
+        }
+    ],
+    "downloads": {
+        "xmb9p": {
+            "version": "1.0.3",
+            "file_name": "com.yzl3014.simplerss.release.1.0.3.rpk"
+        },
+        "xmrw5": {
+            "version": "1.0.3",
+            "file_name": "com.yzl3014.simplerss.release.1.0.3.rpk"
+        },
+        "xmrw5xring": {
+            "version": "1.0.3",
+            "file_name": "com.yzl3014.simplerss.release.1.0.3.rpk"
+        }
+    },
+    "ext": {}
+}

@@ -1,0 +1,48 @@
+{
+    "item": {
+        "name": "会了吧",
+        "description": "会了吧小米手环版，可同步单词列表，和18万开发者一起背单词。关于会了吧：英语差等生必备的 vscode 插件，解决 单词不会读、单词不认识的痛点",
+        "preview": [
+            "preview.png",
+            "help.png"
+        ],
+        "icon": "icon.png",
+        "source_url": "https://github.com/mqycn/huile8-miband",
+        "author": [
+            {
+                "name": "Miao Qi Yuan",
+                "author_url": "https://huile8.myw3.cn"
+            }
+        ]
+    },
+    "downloads": {
+        "n62": {
+            "version": "1.0.1",
+            "file_name": "cn.myw3.huile8.miband.release.1.0.0.rpk"
+        },
+        "o62": {
+            "version": "1.0.1",
+            "file_name": "cn.myw3.huile8.miband.release.1.0.0.rpk"
+        },
+        "o62m": {
+            "version": "1.0.1",
+            "file_name": "cn.myw3.huile8.miband.release.1.0.0.rpk"
+        },
+        "o65": {
+            "version": "1.0.1",
+            "file_name": "cn.myw3.huile8.miband.release.1.0.0.rpk"
+        },
+        "o65m": {
+            "version": "1.0.1",
+            "file_name": "cn.myw3.huile8.miband.release.1.0.0.rpk"
+        },
+        "n66": {
+            "version": "1.0.1",
+            "file_name": "cn.myw3.huile8.miband.release.1.0.0.rpk"
+        },
+        "n67": {
+            "version": "1.0.1",
+            "file_name": "cn.myw3.huile8.miband.release.1.0.0.rpk"
+        }
+    }
+}

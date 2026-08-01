@@ -1,0 +1,38 @@
+{
+    "item": {
+        "name": "重圆2 体验版",
+        "description": "崭新设计、重新出发",
+        "preview": [
+            "preview4.png",
+            "preview1.png",
+            "preview2.png",
+            "preview3.png"
+        ],
+        "icon": "icon.png",
+        "source_url": "https://www.bandbbs.cn/resources/3368/",
+        "author": [
+            {
+                "name": "xinghengCN",
+                "author_url": "https://www.bandbbs.cn/members/74708/"
+            },
+            {
+                "name": "一個小果冻",
+                "author_url": "https://www.bandbbs.cn/members/83349/"
+            }
+        ]
+    },
+    "downloads": {
+        "o66": {
+            "version": "2.0",
+            "file_name": "recircle2-O66.bin"
+        },
+        "o66nfc": {
+            "version": "2.0",
+            "file_name": "recircle2-O66.bin"
+        },
+        "n66": {
+            "version": "2.0",
+            "file_name": "recircle2-N66.bin"
+        }
+    }
+}

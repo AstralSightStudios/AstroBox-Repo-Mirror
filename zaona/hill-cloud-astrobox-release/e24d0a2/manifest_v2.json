@@ -1,0 +1,41 @@
+{
+  "item": {
+    "id": "979890780301",
+    "restype": "watchface",
+    "name": "青丘云镜",
+    "description": "以清新的山野与流云为灵感，将时间融入自然的呼吸之中",
+    "preview": [
+      "preview.png",
+      "preview2.png",
+      "preview3.png"
+    ],
+    "icon": "icon.png",
+    "cover": "preview.png",
+    "author": [
+      {
+        "name": "zaona",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [],
+  "downloads": {
+    "xmb9p": {
+      "version": "1.0.0",
+      "file_name": "hill-cloud-9p.bin"
+    },
+    "xmrw5": {
+      "version": "1.0.0",
+      "file_name": "hill-cloud-rw.bin"
+    },
+    "xmrw5xring": {
+      "version": "1.0.0",
+      "file_name": "hill-cloud-rw.bin"
+    },
+    "xmrw6": {
+      "version": "1.0.0",
+      "file_name": "hill-cloud-rw.bin"
+    }
+  },
+  "ext": {}
+}

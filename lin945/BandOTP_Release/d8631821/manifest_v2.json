@@ -1,0 +1,54 @@
+{
+  "item": {
+    "id": "asia.bilibili.mfa",
+    "restype": "quick_app",
+    "name": "【腕码】BandOTP",
+    "description": "腕码 BandOTP 是一款为智能手环打造的两阶段验证码工具，适用于日常需要 2FA / MFA / OTP 验证码的登录场，支持GitHub、Google、Microsoft、GitLab、AWS、阿里云、腾讯云等绝大多数平台。你可以在手机端添加、编辑和管理账号密钥，并将配置同步到手环；同步完成后，手环无需联网即可本地离线计算验证码，抬腕即可查看，减少在手机和验证器之间来回切换的操作。\n 使用方法也很简单：\n1. 在需要开启双重验证的平台中获取密钥或 otpauth 二维码。\n2. 在手机端新增验证码配置，填写或导入对应信息。\n3. 将配置同步到手环。\n4. 后续在手环上即可实时查看不断刷新的动态验证码。\n\n已支持设备：小米手环9，小米手环9p,小米手环10,小米手环10p,watch s4 理论上其他小米手环系列也支持。\n腕码 BandOTP 采用手机端管理、手环端离线生成的方式，兼顾便捷性与可用性。手机负责配置维护，手环负责展示和本地计算，即使临时不方便操作手机，也能快速完成验证码查看，适合注重效率和便携体验的用户。\n注意：必须在安卓端进行配置，安卓端：https://wwbgu.lanzouu.com/ieLBp3t1ek8b 最新下载反馈请进群：157472968",
+    "preview": [
+      "cover.png",
+      "preview6.png",
+      "preview5.png",
+      "preview8.png",
+      "preview7.png",
+      "preview4.png"
+    ],
+    "icon": "icon.png",
+    "cover": "cover.png",
+    "author": [
+      {
+        "name": "bandbbs_1254954",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "icon": "",
+      "title": "官方群",
+      "url": "https://qm.qq.com/q/pV1bJvaP1S"
+    },{
+      "icon": "github-logo",
+      "title": "Github",
+      "url": "https://github.com/lin945/mi_band_mfa"
+    }
+  ],
+  "downloads": {
+    "xmb9": {
+      "version": "1.1.1",
+      "file_name": "asia.bilibili.mfa.release.1.1.1.rpk"
+    },
+    "xmb9p": {
+      "version": "1.1.1",
+      "file_name": "asia.bilibili.mfa.release.1.1.1.rpk"
+    },
+    "xmb10": {
+      "version": "1.1.1",
+      "file_name": "asia.bilibili.mfa.release.1.1.1.rpk"
+    },
+    "xmb10p": {
+      "version": "1.1.1",
+      "file_name": "asia.bilibili.mfa.release.1.1.1.rpk"
+    }
+  },
+  "ext": {}
+}

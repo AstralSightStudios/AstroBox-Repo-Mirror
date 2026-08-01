@@ -1,0 +1,31 @@
+{
+    "item": {
+      "name": "腕上三国",
+      "description": "风靡全球的三国杀，现在可以在手环上开玩啦！",
+      "preview": ["/preview.png"],
+      "icon": "/icon.png",
+      "author": [{
+        "name": "SixOneTeam",
+        "author_url": "https://sixoneteam.top"
+      }]
+    },
+    "downloads": {
+      "n66": {
+        "version": "2.0.0",
+        "file_name": "/9.rpk"
+      },
+      "o66": {
+        "version": "2.0.0",
+        "file_name": "/10.rpk"
+      },
+      "o66nfc": {
+        "version": "2.0.0",
+        "file_name": "/10.rpk"
+      },
+      "n67": {
+        "version": "2.0.0",
+        "file_name": "/9P.rpk"
+      }
+    }
+
+  }

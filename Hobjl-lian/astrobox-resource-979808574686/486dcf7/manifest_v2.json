@@ -1,0 +1,63 @@
+{
+  "item": {
+    "id": "979808574686",
+    "restype": "watchface",
+    "name": "【第二套】EdgeUI-照片表盘2",
+    "description": "一系列持续更新的照片表盘UI",
+    "preview": [
+      "media/ab封面图.jpg"
+    ],
+    "icon": "media/icons.png",
+    "cover": "media/ab封面图.jpg",
+    "author": [
+      {
+        "name": "Hobjl",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "点击在爱发电了解详情",
+      "url": "https://www.ifdian.net/item/849396a0826811f1b0c152540025c377?utm_source=copylink&utm_medium=link",
+      "icon": ""
+    }
+  ],
+  "downloads": {
+    "xmrw5": {
+      "version": "1.0",
+      "file_name": "downloads/EdgeUI-2-photos-RW5RW6.bin"
+    },
+    "xmrw6": {
+      "version": "1.0",
+      "file_name": "downloads/EdgeUI-2-photos-RW5RW6.bin"
+    },
+    "xmb10": {
+      "version": "1.0",
+      "file_name": "downloads/EdgeUI-2-photos-10.bin"
+    },
+    "xmb9": {
+      "version": "1.0",
+      "file_name": "downloads/EdgeUI-2-photos-9.bin"
+    },
+    "xmb9p": {
+      "version": "1.0",
+      "file_name": "downloads/EdgeUI-2-photos-9P-v2.bin"
+    },
+    "xmb10p": {
+      "version": "1.0",
+      "file_name": "downloads/EdgeUI-2-photos-9P-v2.bin"
+    },
+    "xmrw5xring": {
+      "version": "1.0",
+      "file_name": "downloads/EdgeUI-photos-56-v2.bin"
+    },
+    "xmb10nfc": {
+      "version": "1.0",
+      "file_name": "downloads/EdgeUI-photos-10-v2.bin"
+    }
+  },
+  "ext": {
+    "enableAstroBoxCreatorFeatures": true
+  }
+}

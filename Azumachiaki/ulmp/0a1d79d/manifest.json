@@ -1,0 +1,34 @@
+{
+  "item": {
+    "name": "Unlock mi Phone",
+    "description": "免费游戏，由AzumaChiaki，Sees联合制作，AstroBox独占\n玩法：开局你将会获得3000元和一部小米6，可以通过卖出手机获得更多货币，未解bl的手机售出价格为市场价格的90%，解了bl的手机售出价格为市场价格的110%\n更多里面连续点击6次AzumaChiaki可以删除数据并重开\nbug反馈/提出建议：QQ2731796844，验证消息填ulmp",
+    "preview": [
+      "pre0.png",
+      "pre1.png",
+      "pre2.png",
+      "pre3.png",
+      "pre4.png",
+      "pre5.png",
+      "pre6.png",
+      "pre7.png"
+    ],
+    "icon": "icon.png",
+    "source_url": "https://github.com/AzumaChiaki/ulmp",
+    "author": [
+      {
+        "name": "AzumaChiaki",
+        "author_url": "https://www.bandbbs.cn/members/68749/"
+      },
+      {
+        "name": "Sees",
+        "author_url": "https://www.bandbbs.cn/members/1576847/"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.0.0",
+      "file_name": "9p.rpk"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+    "item": {
+      "name": "羊了个羊",
+      "description": "告别手机，在手腕上体验国民级解压神作的终极形态！",
+      "preview": ["/preview.png"],
+      "icon": "/icon.png",
+      "author": [{
+        "name": "SixOneTeam",
+        "author_url": "https://sixoneteam.top"
+      }]
+    },
+    "downloads": {
+      "n66": {
+        "version": "1.0.0",
+        "file_name": "/9.bin"
+      },
+      "o66": {
+        "version": "1.0.0",
+        "file_name": "/10.rpk"
+      },
+      "o66nfc": {
+        "version": "1.0.0",
+        "file_name": "/10.rpk"
+      },
+      "n67": {
+        "version": "1.0.0",
+        "file_name": "/9P.bin"
+      }
+    }
+
+
+  }

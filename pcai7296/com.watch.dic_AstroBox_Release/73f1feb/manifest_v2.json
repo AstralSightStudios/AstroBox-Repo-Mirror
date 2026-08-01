@@ -1,0 +1,75 @@
+{
+  "item": {
+    "id": "com.watch.dic",
+    "restype": "quick_app",
+    "name": "腕上词典",
+    "description": "免费的小米手环上的离线英汉词典，支持模糊搜索、变形查词、收藏、搜索历史等功能。约15k英文词条 + 128k中文词组，全程离线。",
+    "preview": [
+      "preview/01_home.png",
+      "preview/02_search.png",
+      "preview/03_results_en.png",
+      "preview/04_results_zh.png",
+      "preview/05_redmi_watch.png",
+      "preview/06_band_10.png",
+      "preview/07_band_pro.png",
+      "preview/08_band_pro_2.png",
+      "preview/09_band_pro_3.png",
+      "preview/10_band.png",
+      "preview/11_watch.png"
+    ],
+    "icon": "icon.png",
+    "cover": "cover.png",
+    "author": [
+      {
+        "name": "bandbbs_2602757",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "icon": "github-logo",
+      "title": "开源地址",
+      "url": "https://github.com/pcai7296/wrist-dictionary"
+    }
+  ],
+  "downloads": {
+    "xmb10": {
+      "version": "2.3.1",
+      "file_name": "com.watch.dic.release.2.3.1.w212.rpk"
+    },
+    "xmb10nfc": {
+      "version": "2.3.1",
+      "file_name": "com.watch.dic.release.2.3.1.w212.rpk"
+    },
+    "xmb9": {
+      "version": "2.3.1",
+      "file_name": "com.watch.dic.release.2.3.1.w192.rpk"
+    },
+    "xmb9p": {
+      "version": "2.3.1",
+      "file_name": "com.watch.dic.release.2.3.1.w336.rpk"
+    },
+    "xmws4": {
+      "version": "2.3.1",
+      "file_name": "com.watch.dic.release.2.3.1.w466.rpk"
+    },
+    "xmrw5": {
+      "version": "2.3.1",
+      "file_name": "com.watch.dic.release.2.3.1.w432.rpk"
+    },
+    "xmrw5xring": {
+      "version": "2.3.1",
+      "file_name": "com.watch.dic.release.2.3.1.w432.rpk"
+    },
+    "xmrw6": {
+      "version": "2.3.1",
+      "file_name": "com.watch.dic.release.2.3.1.w432.rpk"
+    },
+    "xmb10p": {
+      "version": "2.3.1",
+      "file_name": "com.watch.dic.release.2.3.1.w336.rpk"
+    }
+  },
+  "ext": {}
+}

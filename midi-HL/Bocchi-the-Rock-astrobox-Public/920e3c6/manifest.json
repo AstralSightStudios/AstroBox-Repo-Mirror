@@ -1,0 +1,27 @@
+{
+  "item": {
+    "name": "StarsUI「景深」后藤一里",
+    "description": "本内容之版权归原作者所有，仅作分享交流使用。如有侵权，请联系我以便立即处理或下架。",
+    "preview": [
+      "xmbnad9-1.png",
+      "Slide2.png",
+      "Slide3.png",
+      "Slide4.png",
+      "Slide5.png"
+    ],
+    "icon": "logo.jpg",
+    "source_url": "https://github.com/midi-HL/Bocchi-the-Rock",
+    "author": [
+      {
+        "name": "HL辰星",
+        "author_url": "https://www.bandbbs.cn/members/1146291/"
+      }
+    ]
+  },
+  "downloads": {
+    "n66": {
+      "version": "1.0.2",
+      "file_name": "StarsUI「景深」后藤一里.bin"
+    }
+  }
+}

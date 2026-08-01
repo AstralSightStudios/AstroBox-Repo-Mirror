@@ -1,0 +1,31 @@
+{
+    "item": {
+        "name": "PymChat",
+        "description": "PymChat 3.0.0具体更新内容：流畅度大幅度提升，界面改成类似于QQ形式 增加群聊完整群聊功能 不等同于聊天室 类似于QQ群聊功能 旧版本将会在新版本发布时间24小时以内强制更新旧版本将不再受支持",
+        "preview": ["preview0.png","preview1.png","preview2.png"],
+        "icon": "icon.png",
+        "source_url": "https://github.com/sjjsjj8/PymChat",
+        "author": [{
+            "name": "宇新",
+            "author_url": "https://afdian.com/a/pym520"
+        }]
+    },
+    "downloads": {
+         "n67": {
+            "version": "3.0.0",
+            "file_name": "tongp.rpk"
+    },
+             "o65": {
+      "version": "3.0.0",
+      "file_name": "tongp.rpk"
+    },
+    "o65m": {
+      "version": "3.0.0",
+      "file_name": "tongp.rpk"
+    },
+    "o62": {
+      "version": "3.0.0",
+      "file_name": "S4.rpk"
+    }
+  }
+}

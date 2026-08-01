@@ -1,0 +1,85 @@
+{
+  "item": {
+    "id": "moe.mcns.Eternal",
+    "restype": "quick_app",
+    "name": "永昼天气",
+    "description": "Eternal永昼天气是一个可独立使用的适配小米Vela系统的天气快应用，支持多达20余种数据的获取，用户可自定义布局与数据，采取买断或免费体验等多种付费方式，由MCNS开发与制作",
+    "preview": [
+      "2.png",
+      "3.png",
+      "4.png",
+      "5.png",
+      "终了.png"
+    ],
+    "icon": "logo.png",
+    "cover": "1.png",
+    "author": [
+      {
+        "name": "GoldOrca",
+        "bindABAccount": true
+      },
+      {
+        "name": "B4QAQ",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "icon": "link-simple-horizontal",
+      "title": "购买链接",
+      "url": "https://www.ifdian.net/item/6b7b6e1af1fc11f081c352540025c377"
+    }
+  ],
+  "downloads": {
+    "xmws3": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmws4": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmws4xring": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmrw5": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmb10p": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmrw5xring": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmws5": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmrw6": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmb9p": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmb10nfc": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmb10": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    },
+    "xmws441": {
+      "version": "260718.5",
+      "file_name": "moe.mcns.Eternal.release.260718.5.rpk"
+    }
+  },
+  "ext": {}
+}

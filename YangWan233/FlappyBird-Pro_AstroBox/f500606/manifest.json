@@ -1,0 +1,28 @@
+{
+  "item": {
+    "name": "FlappyBird Pro",
+    "description": "更好（臃肿）的像素鸟，拥有昼夜切换、勋章系统（凑数）以及神必小彩蛋（？），最后特别感谢ChatGPT、Kimi对本项目的特别支持",
+    "preview": [
+      "preview1.png",
+      "preview2.png",
+      "preview3.png",
+      "preview4.png",
+      "preview5.png",
+      "preview6.png"
+    ],
+    "icon": "icon.png",
+    "source_url": "",
+    "author": [
+      {
+        "name": "YangWan233",
+        "author_url": "https://www.bandbbs.cn/members/302677/"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.0.0",
+      "file_name": "FlappyBird.rpk"
+    }
+  }
+}

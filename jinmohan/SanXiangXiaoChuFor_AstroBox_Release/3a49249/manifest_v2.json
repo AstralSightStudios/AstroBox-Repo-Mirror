@@ -1,0 +1,84 @@
+{
+  "item": {
+    "id": "com.matrixfive.online.ylgy",
+    "restype": "quick_app",
+    "name": "三相消除",
+    "description": "小米手环上的羊了个羊",
+    "preview": [
+      "preview.png",
+      "1.png",
+      "2.png",
+      "3.png",
+      "4.png",
+      "5.png",
+      "6.png"
+    ],
+    "icon": "logo.png",
+    "cover": "preview.png",
+    "author": [
+      {
+        "name": "MatrixFive",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "icon": "shopping-cart",
+      "title": "点击购买",
+      "url": "https://afdian.com/item/a22313a681bc11f0bd2952540025c377"
+    },
+    {
+      "icon": "link-simple",
+      "title": "产品体验官网",
+      "url": "https://sxxc.mfoa.top"
+    }
+  ],
+  "downloads": {
+    "xmb9": {
+      "version": "4.1.1",
+      "file_name": "V4.1.1/SX_ABFor9-V4.1.1.rpk"
+    },
+    "xmb9p": {
+      "version": "4.1.1",
+      "file_name": "V4.1.1/SX_ABFor9-10Pro-V4.1.1.rpk"
+    },
+    "xmb10": {
+      "version": "4.1.1",
+      "file_name": "V4.1.1/SX_ABFor10-V4.1.1.rpk"
+    },
+    "xmb10nfc": {
+      "version": "4.1.0",
+      "file_name": "V4.1.1/SX_ABFor10-V4.1.1.rpk"
+    },
+    "xmws3": {
+      "version": "4.1.1",
+      "file_name": "V4.1.1/SX_ABForWS3_4-V4.1.2EBLOQR.rpk"
+    },
+    "xmws4": {
+      "version": "4.1.0",
+      "file_name": "V4.1.1/SX_ABForWS3_4-V4.1.2EBLOQR.rpk"
+    },
+    "xmws4xring": {
+      "version": "4.1.1",
+      "file_name": "V4.1.1/SX_ABForWS3_4-V4.1.2EBLOQR.rpk"
+    },
+    "xmrw5": {
+      "version": "4.1.1",
+      "file_name": "V4.1.1/SX_ABForRW-V4.1.1.rpk"
+    },
+    "xmrw5xring": {
+      "version": "4.1.1",
+      "file_name": "V4.1.1/SX_ABForRW-V4.1.1.rpk"
+    },
+    "xmrw6": {
+      "version": "4.1.1",
+      "file_name": "V4.1.1/SX_ABForRW-V4.1.1.rpk"
+    },
+    "xmb10p": {
+      "version": "4.1.1",
+      "file_name": "V4.1.1/SX_ABFor9-10Pro-V4.1.1.rpk"
+    }
+  },
+  "ext": {}
+}

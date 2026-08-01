@@ -1,0 +1,39 @@
+{
+  "item": {
+    "name": "「矩」- 橘雪莉",
+    "description": "「矩」系列表盘 - 橘雪莉\n图片素材来源于网络，如有侵权请联系。",
+    "preview": [
+      "画板 1.png",
+      "画板 2.png",
+      "画板 3.png",
+      "画板 4.png"
+    ],
+    "icon": "LOGO.png",
+    "cover": "画板 1.png",
+    "source_url": "https://github.com/ChiHuan0807/979805910807_AstroBox_Release",
+    "author": [
+      {
+        "name": "ChiHuan0807",
+        "author_url": "https://github.com/ChiHuan0807"
+      }
+    ]
+  },
+  "downloads": {
+    "n67": {
+      "version": "1.0.0",
+      "file_name": "『矩』- 橘雪莉 - N67.bin"
+    },
+    "o66": {
+      "version": "1.0.0",
+      "file_name": "『矩』- 橘雪莉 - 10.bin"
+    },
+    "o66nfc": {
+      "version": "1.0.0",
+      "file_name": "『矩』- 橘雪莉 - 10.bin"
+    },
+    "p65": {
+      "version": "1.0.0",
+      "file_name": "『矩』- 橘雪莉 - P65.bin"
+    }
+  }
+}

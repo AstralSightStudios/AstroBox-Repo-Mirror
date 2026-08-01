@@ -1,0 +1,36 @@
+{
+  "item": {
+    "name": "方块生活",
+    "description": "1.1.2修复背包文字bug，修复金镐bug。1.1.1更新：修复地形生成bug。一款像素风格的开放世界游戏，放置，摧毁你说了算\n在有限屏幕与无限想象之间，创造触动人心的互动体验\n使用了大量线型动画，为您带来流畅的游玩体验\n尽可能的使用实时渲染，利用极少的存储占用\n云备份存档，使您不再有存档丢失的苦恼(仅9p可用)\n自定义头像绘制，您的操控的游戏实体就应该您说了算\n基本操作：点按上下左右按钮进行移动，点击红色按钮进入破坏模式，点击场景中的方块摧毁并获取方块，点击绿色按钮进入放置模式，点击场景中的位置即可放置方块，点击自己即可在脚下放置方块，在箱子旁边点击交互打开箱子，怪物旁边点击交互攻击怪物，建议时不时点击上方的存档按钮以防止游戏进度丢失，您可以点击睡觉度过夜晚\n更多的游戏内容等待您亲自探索和理解\n官方网站：https://azumastudio.top\n购买链接：https://afdian.com/item/5e14615e62dd11f0b4b352540025c377 点击上方@AzumaChiaki可快速跳转爱发电作者主页",
+    "preview": [
+      "pre0.png",
+      "pre1.png"
+    ],
+    "icon": "icon.png",
+    "source_url": "https://github.com/AzumaChiaki/block_life",
+    "author": [
+      {
+        "name": "AzumaChiaki",
+        "author_url": "https://afdian.com/a/somebody1369"
+      }
+    ]
+  },
+  "downloads": {
+    "n66": {
+      "version": "1.0.2",
+      "file_name": "9.rpk"
+    },
+    "n67": {
+      "version": "1.0.2",
+      "file_name": "9p.rpk"
+    },
+    "o66": {
+      "version": "1.0.2",
+      "file_name": "10.rpk"
+    },
+    "o66nfc": {
+      "version": "1.0.2",
+      "file_name": "10.rpk"
+    }
+  }
+}
