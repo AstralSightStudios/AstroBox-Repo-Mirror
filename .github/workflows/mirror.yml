@@ -23,6 +23,8 @@ jobs:
 
       - name: Run mirror sync
         run: python3 scripts/mirror.py
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Commit and push
         run: |
@@ -31,3 +33,5 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "chore: sync mirror $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
