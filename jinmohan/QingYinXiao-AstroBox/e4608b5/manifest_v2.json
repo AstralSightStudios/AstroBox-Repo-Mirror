@@ -1,0 +1,59 @@
+{
+  "item": {
+    "id": "com.matrixfive.airpistol",
+    "restype": "quick_app",
+    "name": "轻音效",
+    "description": "轻音效-适配小米设备上的挥拳发出音效软件，类似华为的螃蟹 Acto",
+    "preview": [
+      "media/q1-z.png",
+      "media/q2.png",
+      "media/q3.png"
+    ],
+    "icon": "media/logo.png",
+    "cover": "media/q1-z.png",
+    "author": [
+      {
+        "name": "MatrixFive",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "官网",
+      "url": "https://qyx.mfoa.top",
+      "icon": "globe"
+    }
+  ],
+  "downloads": {
+    "xmrw5": {
+      "version": "26.2.2",
+      "file_name": "downloads/QYXForRW-V26.2.2.rpk"
+    },
+    "xmrw5xring": {
+      "version": "26.2.2",
+      "file_name": "downloads/QYXForRW-V26.2.2.rpk"
+    },
+    "xmrw6": {
+      "version": "26.2.2",
+      "file_name": "downloads/QYXForRW-V26.2.2.rpk"
+    },
+    "xmws3": {
+      "version": "26.2.2",
+      "file_name": "downloads/QYXForWS-V26.2.2.rpk"
+    },
+    "xmws4xring": {
+      "version": "26.2.2",
+      "file_name": "downloads/QYXForWS-V26.2.2.rpk"
+    },
+    "xmws441": {
+      "version": "26.2.2",
+      "file_name": "downloads/QYXForWS-V26.2.2.rpk"
+    },
+    "xmws4": {
+      "version": "26.2.2",
+      "file_name": "downloads/QYXForWS-V26.2.2.rpk"
+    }
+  },
+  "ext": {}
+}
