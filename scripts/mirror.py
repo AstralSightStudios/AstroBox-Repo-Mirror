@@ -53,7 +53,7 @@ WIPE_CONTENT = os.environ.get("WIPE_CONTENT", "1") == "1"
 # Top-level entries inside WORK_DIR that belong to the mirror repo itself
 # and are preserved across wipes. Everything else is mirrored content
 # ({owner}/ trees) and gets removed before each sync.
-KEEP_TOP_LEVEL = {".git", ".github", "scripts"}
+KEEP_TOP_LEVEL = {".git", ".github", "scripts", "index.html"}
 
 GIT = os.environ.get("GIT_BIN", "git")
 API_BASE = "https://api.github.com"
@@ -96,14 +96,24 @@ def git(*args: str, cwd: str, check: bool = True) -> subprocess.CompletedProcess
     )
 
 
+def _rmtree_force(path: str) -> None:
+    """rmtree that also removes read-only files (chmod + retry)."""
+
+    def handle(func, p, exc):
+        os.chmod(p, 0o700)
+        func(p)
+
+    shutil.rmtree(path, onerror=handle)
+
+
 def wipe_mirror_content() -> int:
-    """Remove every mirrored content directory from the previous run.
+    """Remove every mirrored top-level entry from the previous run.
 
     The mirror layout maps 1:1 to raw.githubusercontent.com URL paths, so
     the content roots are the top-level {owner} directories. Wiping them
     guarantees a fresh run cannot leave stale or duplicated data behind
     (renamed resources, updated commits, rows removed from the index).
-    Repo-own files (.git/.github/scripts) are preserved.
+    Repo-own entries (.git/.github/scripts/index.html) are preserved.
     """
     removed = 0
     for name in sorted(os.listdir(WORK_DIR)):
@@ -111,8 +121,10 @@ def wipe_mirror_content() -> int:
             continue
         path = os.path.join(WORK_DIR, name)
         if os.path.isdir(path):
-            shutil.rmtree(path)
-            removed += 1
+            _rmtree_force(path)
+        else:
+            os.remove(path)
+        removed += 1
     return removed
 
 
