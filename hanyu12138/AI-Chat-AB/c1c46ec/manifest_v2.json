@@ -1,0 +1,48 @@
+{
+  "item": {
+    "id": "com.hanyu.ai",
+    "restype": "quick_app",
+    "name": "腕语",
+    "description": "腕语是一款面向小米 Vela 穿戴设备的腕上AI聊天应用，配合同步器APP使用。支持手表直连、同步器中继、联网搜索与来源引用、会话记录，以及自定义模型。当前支持 GLM、MiMo、DeepSeek、ChatGPT、Kimi、Qwen、MiniMax 模型。采用订阅制，订阅期内支持无限会话，但请勿滥用。定价：￥2.50/月，福建地区用户谨慎购买。",
+    "preview": [
+      "media/redmiwatch-2026-08-02-20-59-50.png",
+      "media/redmiwatch-2026-08-03-01-00-19.png",
+      "media/redmiwatch-2026-08-02-21-02-46.png",
+      "media/redmiwatch-2026-08-03-14-35-49.png",
+      "media/redmiwatch-2026-08-03-15-42-49.png",
+      "media/redmiwatch-2026-08-02-21-00-11.png",
+      "media/redmiwatch-2026-08-02-21-00-59.png",
+      "media/redmiwatch-2026-08-03-01-01-27.png"
+    ],
+    "icon": "media/logo.png",
+    "cover": "media/banner.png",
+    "author": [
+      {
+        "name": "寒语",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "手机端同步器下载",
+      "url": "https://vela.net.cn/releases/android-syncer-26.8.2.apk",
+      "icon": "package"
+    }
+  ],
+  "downloads": {
+    "xmrw5": {
+      "version": "26.8.2",
+      "file_name": "downloads/com.hanyu.ai.release.26.8.2.rpk"
+    },
+    "xmrw5xring": {
+      "version": "26.8.2",
+      "file_name": "downloads/com.hanyu.ai.release.26.8.2.rpk"
+    },
+    "xmrw6": {
+      "version": "26.8.2",
+      "file_name": "downloads/com.hanyu.ai.release.26.8.2.rpk"
+    }
+  },
+  "ext": {}
+}
