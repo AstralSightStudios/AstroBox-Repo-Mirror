@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Sync AstroBox mirror content.
 
-Directory layout produced inside the mirror repo working tree:
+The mirrored directory layout mirrors raw.githubusercontent.com URL paths
+exactly, so a plain static host / nginx alias can serve the mirror with
+zero rewrite:
 
-  AstralSightStudios/AstroBox-Repo/refs/heads/main/   <- upstream repo snapshot
-  {repo_owner}/{repo_name}/{repo_ref}/                <- full checkout of the
-      resource repo at its index commit (whole file tree, no .git)
+  AstralSightStudios/AstroBox-Repo/refs/heads/main/index_v2.csv
+  AstralSightStudios/AstroBox-Repo/refs/heads/main/devices_v2.json
+  AstralSightStudios/AstroBox-Repo/refs/heads/main/explore_v2p1.jsonc
+  {repo_owner}/{repo_name}/{repo_commit_hash}/manifest_v2.json
+  {repo_owner}/{repo_name}/{repo_commit_hash}/<any asset path>
 
 For every resource row the resource repo is shallow-fetched at the commit
 listed in index_v2.csv and the whole working tree is copied over, so the
@@ -13,7 +17,12 @@ client can resolve ANY asset path (manifest, icons, previews, rpk) against
 the mirror without us having to parse manifests. Short commit hashes are
 expanded to full SHAs through the GitHub API (git fetch needs full SHAs);
 40-char hashes are fetched directly. Rows without a commit hash mirror the
-repo's default branch tip.
+repo's default branch tip under refs/heads/main/.
+
+Before syncing, all previously mirrored content is wiped (see
+wipe_mirror_content) so stale files from an older index -- renamed
+resources, updated commits, removed rows -- can never survive into the new
+snapshot.
 """
 
 import csv
@@ -38,6 +47,13 @@ UPSTREAM_CLONE = os.environ.get("UPSTREAM_CLONE", "/tmp/astrobox-upstream")
 MAX_WORKERS = int(os.environ.get("MIRROR_WORKERS", "12"))
 # Set to "0" to re-fetch resources whose snapshot dir already exists.
 SKIP_EXISTING_DIRS = os.environ.get("SKIP_EXISTING_DIRS", "1") == "1"
+# Set to "0" to keep previous snapshot content (stale files may remain).
+WIPE_CONTENT = os.environ.get("WIPE_CONTENT", "1") == "1"
+
+# Top-level entries inside WORK_DIR that belong to the mirror repo itself
+# and are preserved across wipes. Everything else is mirrored content
+# ({owner}/ trees) and gets removed before each sync.
+KEEP_TOP_LEVEL = {".git", ".github", "scripts"}
 
 GIT = os.environ.get("GIT_BIN", "git")
 API_BASE = "https://api.github.com"
@@ -78,6 +94,26 @@ def git(*args: str, cwd: str, check: bool = True) -> subprocess.CompletedProcess
         text=True,
         timeout=GIT_TIMEOUT,
     )
+
+
+def wipe_mirror_content() -> int:
+    """Remove every mirrored content directory from the previous run.
+
+    The mirror layout maps 1:1 to raw.githubusercontent.com URL paths, so
+    the content roots are the top-level {owner} directories. Wiping them
+    guarantees a fresh run cannot leave stale or duplicated data behind
+    (renamed resources, updated commits, rows removed from the index).
+    Repo-own files (.git/.github/scripts) are preserved.
+    """
+    removed = 0
+    for name in sorted(os.listdir(WORK_DIR)):
+        if name in KEEP_TOP_LEVEL:
+            continue
+        path = os.path.join(WORK_DIR, name)
+        if os.path.isdir(path):
+            shutil.rmtree(path)
+            removed += 1
+    return removed
 
 
 def sync_upstream() -> str:
@@ -171,6 +207,11 @@ def sync_resource(row: dict) -> tuple[str, str, str, str]:
 
 def main() -> int:
     log(f"WORK_DIR={WORK_DIR}")
+    if WIPE_CONTENT:
+        wiped = wipe_mirror_content()
+        log(f"wiped {wiped} previous content dirs")
+    else:
+        log("WIPE_CONTENT=0: keeping previous content")
     log(f"snapshot upstream {UPSTREAM} -> {MAIN_DIR}")
     try:
         index_path = sync_upstream()
@@ -212,6 +253,8 @@ def main() -> int:
             f.write(f"## Mirror sync\n\n- resources: {len(rows)}\n- ok: {len(ok)}\n")
             f.write(f"- skipped (dir exists): {len(skipped)}\n- failed: {len(failed)}\n")
             f.write(f"- oversized files dropped (> {MAX_FILE_MB}MiB): {_oversized_count}\n")
+            if WIPE_CONTENT:
+                f.write(f"- previous content wiped: {wiped} top-level dirs\n")
             if failed:
                 f.write("\n<details><summary>failed rows</summary>\n\n")
                 for r in failed:
