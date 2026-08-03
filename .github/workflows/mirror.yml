@@ -2,8 +2,8 @@ name: Mirror AstroBox Repo
 
 on:
   schedule:
-    # every 6 hours, offset to avoid top-of-hour burst
-    - cron: "17 */6 * * *"
+    # twice daily at 09:00 and 21:00 Beijing time (UTC+8), i.e. 01:00 and 13:00 UTC
+    - cron: "0 1,13 * * *"
   workflow_dispatch:
 
 concurrency:
