@@ -1,0 +1,92 @@
+{
+  "item": {
+    "id": "com.uzens.calculator",
+    "restype": "quick_app",
+    "name": "矩阵计算器",
+    "description": "v5版本震撼发布\n这是一个为多设备设计的全能计算器软件，功能强大，内存占用小\n除了基本的计算之外，还支持函数图像，单位换算，BMI计算，货币换算，家族称谓计算，并且支持历史记录。\n注意：部分设备功能与UI可能还有不全无法使用的问题，部分设备可能出现应用图标过大问题。如发现bug请在米坛原帖下回复所出现的问题与设备，我们会进行逐一排查",
+    "preview": [
+      "media/23121.png",
+      "media/23101.png",
+      "media/22917.png",
+      "media/22951.png",
+      "media/23004.png",
+      "media/23000.png",
+      "media/22978.png"
+    ],
+    "icon": "media/22216.png",
+    "cover": "media/23121.png",
+    "author": [
+      {
+        "name": "Benjamin",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "官方网站",
+      "url": "http://calculator.uzens.cc.cd/",
+      "icon": ""
+    },
+    {
+      "title": "米坛链接",
+      "url": "https://www.bandbbs.cn/resources/7227/",
+      "icon": ""
+    }
+  ],
+  "downloads": {
+    "xmws4": {
+      "version": "v5.0.0",
+      "file_name": "downloads/矩阵计算器s系列V5.0.0.rpk"
+    },
+    "xmws4xring": {
+      "version": "v5.0.0",
+      "file_name": "downloads/矩阵计算器s系列V5.0.0.rpk"
+    },
+    "xmws3": {
+      "version": "v5.0.0",
+      "file_name": "downloads/矩阵计算器s系列V5.0.0.rpk"
+    },
+    "xmws441": {
+      "version": "v5.0.0",
+      "file_name": "downloads/矩阵计算器s系列V5.0.0.rpk"
+    },
+    "xmws5": {
+      "version": "v5.0.0",
+      "file_name": "downloads/矩阵计算器s系列V5.0.0.rpk"
+    },
+    "xmrw5": {
+      "version": "v5.0.0beta",
+      "file_name": "downloads/矩阵计算器V5.0.0红米手表.rpk"
+    },
+    "xmrw5xring": {
+      "version": "v5.0.0beta",
+      "file_name": "downloads/矩阵计算器V5.0.0红米手表.rpk"
+    },
+    "xmrw6": {
+      "version": "v5.0.0beta",
+      "file_name": "downloads/矩阵计算器V5.0.0红米手表.rpk"
+    },
+    "xmb10nfc": {
+      "version": "v5.0.0beta",
+      "file_name": "downloads/矩阵计算器_手环10_胶囊屏_v5.0.0.rpk"
+    },
+    "xmb10": {
+      "version": "v5.0.0beta",
+      "file_name": "downloads/矩阵计算器_手环10_胶囊屏_v5.0.0.rpk"
+    },
+    "xmb10p": {
+      "version": "v5.0.0beta",
+      "file_name": "downloads/手环Pro系列计算器.rpk"
+    },
+    "xmb9p": {
+      "version": "v5.0.0beta",
+      "file_name": "downloads/手环Pro系列计算器.rpk"
+    },
+    "xmb9": {
+      "version": "v5.0.0beta",
+      "file_name": "downloads/矩阵计算器_手环9_胶囊屏_v5.0.0.rpk"
+    }
+  },
+  "ext": {}
+}

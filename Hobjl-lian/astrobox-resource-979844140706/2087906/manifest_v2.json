@@ -1,11 +1,12 @@
 {
   "item": {
-    "id": "979808574686",
+    "id": "979844140706",
     "restype": "watchface",
-    "name": "【第二套】EdgeUI-照片表盘2",
+    "name": "【第一套】EdgeUI-照片表盘1",
     "description": "一系列持续更新的照片表盘UI",
     "preview": [
-      "media/ab封面图.jpg"
+      "media/ab封面图.jpg",
+      "media/Ab头图2（深色）.jpg"
     ],
     "icon": "media/icons.png",
     "cover": "media/ab封面图.jpg",
@@ -26,27 +27,27 @@
   "downloads": {
     "xmrw5": {
       "version": "1.0",
-      "file_name": "downloads/EdgeUI-2-photos-RW5RW6.bin"
+      "file_name": "downloads/EdgeUI-photos-56-v2.bin"
     },
     "xmrw6": {
       "version": "1.0",
-      "file_name": "downloads/EdgeUI-2-photos-RW5RW6.bin"
+      "file_name": "downloads/EdgeUI-photos-56-v2.bin"
     },
     "xmb10": {
       "version": "1.0",
-      "file_name": "downloads/EdgeUI-2-photos-10.bin"
+      "file_name": "downloads/EdgeUI-photos-10-v2.bin"
     },
     "xmb9": {
       "version": "1.0",
-      "file_name": "downloads/EdgeUI-2-photos-9.bin"
+      "file_name": "downloads/EdgeUI-photos-9-v2.bin"
     },
     "xmb9p": {
       "version": "1.0",
-      "file_name": "downloads/EdgeUI-2-photos-9P-v2.bin"
+      "file_name": "downloads/EdgeUI-photos-10P9P-v3.bin"
     },
     "xmb10p": {
       "version": "1.0",
-      "file_name": "downloads/EdgeUI-2-photos-9P-v2.bin"
+      "file_name": "downloads/EdgeUI-photos-10P9P-v3.bin"
     },
     "xmrw5xring": {
       "version": "1.0",
