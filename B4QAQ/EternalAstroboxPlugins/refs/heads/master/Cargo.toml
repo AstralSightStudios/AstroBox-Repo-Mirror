@@ -1,0 +1,23 @@
+[package]
+name = "simple_weather_astrobox_v2_plugin"
+version = "0.2.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wit-bindgen = { version = "0.47.0", features = ["async", "async-spawn"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+tracing-appender = "0.2"
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+waki = "0.3"
+url = "2"
+urlencoding = "2"
+flate2 = "1"
+sha2 = "0.10"
+rsa = "0.9"
+base64 = "0.22"
+regex = "1"

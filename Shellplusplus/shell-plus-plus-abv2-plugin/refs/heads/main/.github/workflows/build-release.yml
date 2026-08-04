@@ -1,0 +1,31 @@
+name: Build and release ABV2 plugin
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-wasip2
+      - run: python3 scripts/build_dist.py --release --package --target wasm32-wasip2
+      - name: Publish private repository Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: plugin-build-${{ github.run_number }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/*.abp \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Shell++ ABV2 plugin build ${GITHUB_RUN_NUMBER}" \
+            --notes "Automated build from ${GITHUB_SHA}."

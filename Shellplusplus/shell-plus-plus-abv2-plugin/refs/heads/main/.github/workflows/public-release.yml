@@ -1,0 +1,42 @@
+name: Public release artifact
+run-name: Public release ${{ inputs.task_id }} from ${{ inputs.source_ref }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_ref:
+        description: Tag, branch, or commit to build
+        required: true
+        type: string
+      task_id:
+        description: Release Center task ID
+        required: true
+        type: string
+      public_release_title:
+        description: Unified public Release title
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.source_ref }}
+          fetch-depth: 0
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-wasip2
+      - name: Build ABV2 package
+        run: python3 scripts/build_dist.py --release --package --target wasm32-wasip2
+      - name: Upload Release Center artifact
+        uses: actions/upload-artifact@v6
+        with:
+          name: shellpp-plugin-${{ inputs.task_id }}
+          path: dist/*.abp
+          if-no-files-found: error
+          retention-days: 7

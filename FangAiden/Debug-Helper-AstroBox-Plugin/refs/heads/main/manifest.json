@@ -1,0 +1,20 @@
+{
+    "name": "\u8c03\u8bd5\u52a9\u624b",
+    "icon": "icon.png",
+    "version": "1.0.0",
+    "description": "\u7528\u4e8e AstroBox \u8fde\u63a5\u4e0e\u4ea4\u4e92\u8c03\u8bd5\u7684\u63d2\u4ef6",
+    "author": "极客之爱",
+    "website": "https://github.com/FangAiden/Debug-Helper-AstroBox-Plugin",
+    "entry": "debug_helper_astrobox_v2_plugin.wasm",
+    "wasi_version": 2,
+    "api_level": 2,
+    "permissions": [
+        "interconnect",
+        "device",
+        "thirdpartyapp",
+        "transport",
+        "register_interconnect_recv",
+        "register_transport_recv"
+    ],
+    "additional_files": []
+}
