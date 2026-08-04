@@ -25,6 +25,8 @@ resources, updated commits, removed rows -- can never survive into the new
 snapshot.
 """
 
+from __future__ import annotations
+
 import csv
 import io
 import json
@@ -43,6 +45,13 @@ UPSTREAM_REF = "refs/heads/main"
 
 WORK_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MAIN_DIR = os.path.join(WORK_DIR, UPSTREAM, UPSTREAM_REF)
+PLUGIN_INDEX_UPSTREAM = "AstralSightStudios/AstroBox-NG-Plugin-Repo"
+PLUGIN_INDEX_REF = "refs/heads/main"
+PLUGIN_INDEX_DIR = os.path.join(WORK_DIR, *PLUGIN_INDEX_UPSTREAM.split("/"), PLUGIN_INDEX_REF)
+PLUGIN_INDEX_CLONE = os.environ.get("PLUGIN_INDEX_CLONE", "/tmp/astrobox-plugin-index")
+# Plugin repos in the aggregated index are referenced as raw.githubusercontent.com
+# URLs that already carry the branch: "https://raw.githubusercontent.com/{owner}/{repo}/refs/heads/{branch}/"
+RAW_PREFIX = "https://raw.githubusercontent.com/"
 UPSTREAM_CLONE = os.environ.get("UPSTREAM_CLONE", "/tmp/astrobox-upstream")
 MAX_WORKERS = int(os.environ.get("MIRROR_WORKERS", "12"))
 # Set to "0" to re-fetch resources whose snapshot dir already exists.
@@ -145,6 +154,89 @@ def sync_upstream() -> str:
     return os.path.join(MAIN_DIR, "index_v2.csv")
 
 
+def sync_plugin_index() -> str:
+    """Snapshot the plugin market index repo into PLUGIN_INDEX_DIR.
+
+    The plugin list is dynamic: clients first fetch this repo's index.json,
+    whose plugins[].repo entries point at the actual plugin repos, so the
+    index repo itself must be mirrored before any plugin repo can be synced.
+    Returns the path of the mirrored index.json.
+    """
+    if os.path.isdir(os.path.join(PLUGIN_INDEX_CLONE, ".git")):
+        git("pull", "--ff-only", "--quiet", cwd=PLUGIN_INDEX_CLONE, check=False)
+    else:
+        subprocess.run(
+            ["git", "clone", "--depth", "1", "-b", "main",
+             f"https://github.com/{PLUGIN_INDEX_UPSTREAM}.git", PLUGIN_INDEX_CLONE],
+            check=True,
+            capture_output=True,
+            timeout=GIT_TIMEOUT,
+        )
+    if os.path.isdir(PLUGIN_INDEX_DIR):
+        shutil.rmtree(PLUGIN_INDEX_DIR)
+    shutil.copytree(PLUGIN_INDEX_CLONE, PLUGIN_INDEX_DIR, ignore=_copy_ignore)
+    return os.path.join(PLUGIN_INDEX_DIR, "index.json")
+
+
+def parse_plugin_repo(url: str) -> tuple[str, str, str] | None:
+    """Split a raw.githubusercontent.com plugin URL into (owner, repo, branch)."""
+    url = (url or "").strip().rstrip("/")
+    if not url.startswith(RAW_PREFIX):
+        return None
+    parts = url[len(RAW_PREFIX):].split("/")
+    if len(parts) < 5 or parts[2] != "refs" or parts[3] != "heads":
+        return None
+    owner, repo, branch = parts[0], parts[1], "/".join(parts[4:])
+    if not (owner and repo and branch):
+        return None
+    if any(seg in ("", ".", "..") for seg in (owner, repo) + tuple(branch.split("/"))):
+        return None
+    return owner, repo, branch
+
+
+def sync_plugin(plugin: dict) -> tuple[str, str, str, str]:
+    """Mirror one index.json plugin repo into {owner}/{repo}/refs/heads/{branch}/.
+
+    The branch comes from the plugin's raw URL (main, master, v2, ...), NOT a
+    hardcoded name -- several plugins live on non-main branches and would 404
+    otherwise. Shallow-fetches the branch and copies the whole working tree
+    (minus .git, minus oversized files) so the client can resolve the plugin's
+    {folder}/manifest.json + icon + entry + additional_files against the mirror.
+    """
+    url = (plugin.get("repo") or "").strip()
+    folder = plugin.get("folder", "")
+    parsed = parse_plugin_repo(url)
+    if not parsed:
+        return url, folder, "-", "skip:bad-repo-url"
+    owner, repo, branch = parsed
+    ref = f"refs/heads/{branch}"
+    dest = os.path.join(WORK_DIR, owner, repo, ref)
+    if SKIP_EXISTING_DIRS and os.path.isdir(dest):
+        return url, folder, branch, "skip:exists"
+
+    tmp = tempfile.mkdtemp(prefix="mirror-plugin-")
+    try:
+        git("init", "-q", cwd=tmp)
+        git("remote", "add", "origin", f"https://github.com/{owner}/{repo}.git", cwd=tmp)
+        # Use the full ref so a tag named like the branch can never shadow it,
+        # and a branch starting with "-" is not parsed as a git option.
+        git("fetch", "--depth", "1", "origin", ref, cwd=tmp)
+        git("checkout", "-q", "--detach", "FETCH_HEAD", cwd=tmp)
+
+        if os.path.isdir(dest):
+            shutil.rmtree(dest)
+        os.makedirs(dest, exist_ok=True)
+        shutil.copytree(tmp, dest, ignore=_copy_ignore, dirs_exist_ok=True)
+        return url, folder, branch, "ok:checkout"
+    except subprocess.CalledProcessError as e:
+        detail = (e.stderr or "").strip().splitlines()
+        return url, folder, branch, f"checkout: {(detail[-1] if detail else e)[:200]}"
+    except Exception as e:
+        return url, folder, branch, f"checkout: {e}"
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def resolve_sha(owner: str, repo: str, commit: str) -> str:
     """Expand a short commit hash to a full SHA via the GitHub API.
 
@@ -235,23 +327,45 @@ def main() -> int:
         rows = list(csv.DictReader(io.StringIO(f.read())))
     log(f"index_v2.csv: {len(rows)} resources")
 
+    log(f"snapshot plugin index {PLUGIN_INDEX_UPSTREAM} -> {PLUGIN_INDEX_DIR}")
+    try:
+        plugin_index_path = sync_plugin_index()
+    except Exception as e:
+        log(f"FATAL plugin index sync failed: {e}")
+        return 1
+    try:
+        with open(plugin_index_path, encoding="utf-8") as f:
+            plugin_index = json.load(f)
+    except Exception as e:
+        log(f"FATAL plugin index read failed: {e}")
+        return 1
+    plugins = plugin_index.get("plugins", [])
+    log(f"plugin index.json: {len(plugins)} plugins")
+
     results: list[tuple[str, str, str, str]] = []
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
         futures = [pool.submit(sync_resource, row) for row in rows]
+        futures += [pool.submit(sync_plugin, p) for p in plugins]
         for fut in as_completed(futures):
             try:
                 results.append(fut.result())
             except Exception as e:
-                log(f"  [warn] resource sync crashed: {e}")
-                results.append(("<row>", "", "", "crash"))
+                log(f"  [warn] sync task crashed: {e}")
+                results.append(("<task>", "", "", "crash"))
 
-    ok = [r for r in results if r[3].startswith("ok")]
-    skipped = [r for r in results if r[3].startswith("skip")]
-    failed = [r for r in results if not r[3].startswith(("ok", "skip"))]
-    log(f"done: {len(ok)} ok, {len(skipped)} skipped, {len(failed)} failed")
+    ok = [r for r in results if r[-1].startswith("ok")]
+    skipped_exists = [r for r in results if r[-1] == "skip:exists"]
+    skipped_bad = [r for r in results if r[-1] == "skip:bad-repo-url"]
+    skipped_empty = [r for r in results if r[-1] == "skip:empty-owner-repo"]
+    failed = [r for r in results if not r[-1].startswith(("ok", "skip"))]
+    log(
+        f"done: {len(ok)} ok, {len(skipped_exists)} skipped(exists), "
+        f"{len(skipped_bad)} skipped(bad-url), {len(skipped_empty)} skipped(empty), "
+        f"{len(failed)} failed"
+    )
     log(f"oversized files skipped: {_oversized_count} (limit {MAX_FILE_MB}MiB)")
     for r in failed[:20]:
-        log(f"  FAIL {r[0]} {r[1]}/{r[2]} {r[3]}")
+        log(f"  FAIL {r[0]} {(r[1] or '-')}/{r[2]} -> {r[-1]}")
 
     # Dead upstream entries (deleted/renamed repos) must not block the whole
     # sync forever; only a larger failure count signals a real problem.
@@ -262,15 +376,18 @@ def main() -> int:
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
         with open(summary, "a", encoding="utf-8") as f:
-            f.write(f"## Mirror sync\n\n- resources: {len(rows)}\n- ok: {len(ok)}\n")
-            f.write(f"- skipped (dir exists): {len(skipped)}\n- failed: {len(failed)}\n")
+            f.write(f"## Mirror sync\n\n- resources: {len(rows)}\n- plugins: {len(plugins)}\n")
+            f.write(f"- ok: {len(ok)}\n")
+            f.write(f"- skipped (dir exists): {len(skipped_exists)}\n")
+            f.write(f"- skipped (bad repo url): {len(skipped_bad)}\n")
+            f.write(f"- skipped (empty owner/repo): {len(skipped_empty)}\n- failed: {len(failed)}\n")
             f.write(f"- oversized files dropped (> {MAX_FILE_MB}MiB): {_oversized_count}\n")
             if WIPE_CONTENT:
                 f.write(f"- previous content wiped: {wiped} top-level dirs\n")
             if failed:
                 f.write("\n<details><summary>failed rows</summary>\n\n")
                 for r in failed:
-                    f.write(f"- `{r[0]}` {r[1]}/{r[2]} {r[3]}\n")
+                    f.write(f"- `{r[0]}` {(r[1] or '-')}/{r[2]} -> {r[-1]}\n")
                 f.write("\n</details>\n")
 
     return 0 if len(failed) <= allow_failed else 1
