@@ -15,7 +15,7 @@
     "cover": "media/容器 3 (1).png",
     "author": [
       {
-        "name": "TXCN",
+        "name": "txcn",
         "bindABAccount": true
       }
     ]
@@ -24,6 +24,11 @@
     {
       "title": "云端同步",
       "url": "https://txcn.top/checklist",
+      "icon": ""
+    },
+    {
+      "title": "捐赠我们",
+      "url": "https://www.ifdian.net/a/txcnbyxiaomi",
       "icon": ""
     }
   ],
