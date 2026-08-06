@@ -1,0 +1,84 @@
+{
+  "item": {
+    "id": "com.whistleo.otp",
+    "restype": "quick_app",
+    "name": "动态口令（OTP/TOTP/HOTP)",
+    "description": "动态口令（OTP/TOTP/HOTP)是一款专为智能手表打造的独立双因素认证应用，无需依赖手机即可完成全部操作。\n1. 手表端完整自助管理：无需借助手机，在手表上即可完成账户的手动输入、保存、编辑、删除等全部操作，真正做到腕上独立使用。\n2. 双协议兼容：同时支持 TOTP（基于时间）和 HOTP（基于计数器）两种主流标准，适配绝大多数在线服务的二次验证需求。\n3. 快速查看动态口令：首页即开即看，自动刷新，抬腕即可获取当前有效验证码，操作路径极简。\n4. Astrobox 插件手机端管理：支持通过 Astrobox 插件「动态口令助手」在手机上快速管理账号，实现列表查看、批量新增、删除、增量同步，大屏操作更高效。\n5. 多种账户添加方式：支持手动手表输入或手机插件管理，灵活应对不同场景。",
+    "preview": [
+      "media/cover.png",
+      "media/redmi_watch-2026-08-06-15-32-10.png",
+      "media/redmi_watch-2026-08-06-15-39-12.png",
+      "media/redmi_watch-2026-08-06-15-39-24.png",
+      "media/redmi_watch-2026-08-06-15-39-49.png",
+      "media/xiaomi_s4-2026-08-06-15-39-58.png",
+      "media/xiaomi_s4-2026-08-06-15-40-25.png",
+      "media/xiaomi_s4-2026-08-06-15-32-05.png",
+      "media/xiaomi_s4-2026-08-06-15-40-05.png",
+      "media/xiaomi_s4-2026-08-06-15-40-10.png",
+      "media/xiaomi_band_pro-2026-08-06-15-47-17.png",
+      "media/xiaomi_band_pro-2026-08-06-15-47-23.png",
+      "media/xiaomi_band_pro-2026-08-06-15-47-29.png",
+      "media/xiaomi_band_pro-2026-08-06-15-47-33.png",
+      "media/xiaomi_band_pro-2026-08-06-15-47-40.png"
+    ],
+    "icon": "media/icon.png",
+    "cover": "media/cover.png",
+    "author": [
+      {
+        "name": "bandbbs_4705033",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "开源应用",
+      "url": "https://github.com/WhistleO/otp-watch-vela",
+      "icon": ""
+    },
+    {
+      "title": "开源插件",
+      "url": "https://github.com/WhistleO/otp-helper-astrobox-plugin",
+      "icon": ""
+    }
+  ],
+  "downloads": {
+    "xmrw5": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whistleo.otp.release.1.0.0.rpk"
+    },
+    "xmrw5xring": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whistleo.otp.release.1.0.0.rpk"
+    },
+    "xmrw6": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whistleo.otp.release.1.0.0.rpk"
+    },
+    "xmws441": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whistleo.otp.release.1.0.0.rpk"
+    },
+    "xmws4xring": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whistleo.otp.release.1.0.0.rpk"
+    },
+    "xmws4": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whistleo.otp.release.1.0.0.rpk"
+    },
+    "xmws5": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whistleo.otp.release.1.0.0.rpk"
+    },
+    "xmb9p": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whistleo.otp.release.1.0.0.rpk"
+    },
+    "xmb10p": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whistleo.otp.release.1.0.0.rpk"
+    }
+  },
+  "ext": {}
+}
