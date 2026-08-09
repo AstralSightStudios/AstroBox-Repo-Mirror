@@ -1,0 +1,57 @@
+{
+  "item": {
+    "id": "com.whyy.snapnotes",
+    "restype": "quick_app",
+    "name": "闪念小抄",
+    "description": "闪念小抄是一套「手机 + 手环」配合的小工具：在手机上整理你的知识小抄，一键推到手环；之后无需掏手机，抬腕即可离线翻阅。背单词、记考点、备台词、放备忘——凡是「想随时瞄一眼」的内容，都可以搬上手腕。欢迎加群了解：1018886448",
+    "preview": [
+      "media/官网介绍图.png",
+      "media/xiaomi_band_pro-2026-08-03-17-01-36.png",
+      "media/xiaomi_band_pro-2026-08-08-21-25-45.png",
+      "media/xiaomi_band_pro-2026-08-08-21-27-12.png"
+    ],
+    "icon": "media/图标.png",
+    "cover": "media/官网介绍图.png",
+    "author": [
+      {
+        "name": "WenHuaYI",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "安卓同步器下载",
+      "url": "https://snapnotes.dpdns.org",
+      "icon": ""
+    },
+    {
+      "title": "爱发电",
+      "url": "https://ifdian.net/a/snapnotes",
+      "icon": ""
+    }
+  ],
+  "downloads": {
+    "xmrw5": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whyy.snapnotes.release.1.0.1_watch.rpk"
+    },
+    "xmrw5xring": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whyy.snapnotes.release.1.0.1_watch.rpk"
+    },
+    "xmrw6": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whyy.snapnotes.release.1.0.1_watch.rpk"
+    },
+    "xmb9p": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whyy.snapnotes.release.1.0.1_band_pro.rpk"
+    },
+    "xmb10p": {
+      "version": "1.0.0",
+      "file_name": "downloads/com.whyy.snapnotes.release.1.0.1_band_pro.rpk"
+    }
+  },
+  "ext": {}
+}

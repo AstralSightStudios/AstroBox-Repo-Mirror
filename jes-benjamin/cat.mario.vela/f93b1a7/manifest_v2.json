@@ -1,0 +1,44 @@
+{
+  "item": {
+    "id": "cat.mario.vela",
+    "restype": "quick_app",
+    "name": "喵哩奥",
+    "description": "基于经典小游戏《猫里奥》制作的快应用游戏！制作了总共近100关不重复，不怕一口气就玩完了。中间有自动存档点，超好玩，超有趣！仅适配了小米手表S系列，其他设备运行情况未知。",
+    "preview": [
+      "media/26294.jpg",
+      "media/26154.jpg"
+    ],
+    "icon": "media/26108.png",
+    "cover": "media/26294.jpg",
+    "author": [
+      {
+        "name": "Benjimin2020",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [],
+  "downloads": {
+    "xmws3": {
+      "version": "1.0.0",
+      "file_name": "downloads/cat.mario.vela.release.1.0.0.rpk"
+    },
+    "xmws4xring": {
+      "version": "1.0.0",
+      "file_name": "downloads/cat.mario.vela.release.1.0.0.rpk"
+    },
+    "xmws441": {
+      "version": "1.0.0",
+      "file_name": "downloads/cat.mario.vela.release.1.0.0.rpk"
+    },
+    "xmws4": {
+      "version": "1.0.0",
+      "file_name": "downloads/cat.mario.vela.release.1.0.0.rpk"
+    },
+    "xmws5": {
+      "version": "1.0.0",
+      "file_name": "downloads/cat.mario.vela.release.1.0.0.rpk"
+    }
+  },
+  "ext": {}
+}
