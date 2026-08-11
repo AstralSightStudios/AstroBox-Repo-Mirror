@@ -141,7 +141,7 @@ fn build_units() -> (Vec<TransferUnit>, usize, usize) {
             kind: "audio".to_string(),
             file: f.name.clone(),
             duration: f.duration,
-            cooldown: f.duration + 600, // 单个音频冷却 = 时长(ms) + 600ms
+            cooldown: f.duration + 400, // 单个音频冷却 = 时长(ms) + 400ms
             size: f.bytes.len(),
             chunks,
             sent: 0,
@@ -201,7 +201,7 @@ pub fn start_sync(custom_name: Option<String>) {
     }
     // 2. 100ms 后发送页面跳转指令（任意页面可接收，跳到同步页）
     let _ = wit_bindgen::block_on(
-        timer::set_timeout(100, &format!("{NAV_PAYLOAD_PREFIX}pages/custom")).into_future(),
+        timer::set_timeout(100, &format!("{NAV_PAYLOAD_PREFIX}pages/menu/custom")).into_future(),
     );
     // 3. 150ms 后请求快应用上报最新清单（刷新插件侧已同步列表）
     let _ = wit_bindgen::block_on(timer::set_timeout(150, REQUEST_MANIFEST_PAYLOAD).into_future());
@@ -233,7 +233,7 @@ fn do_start_sync() {
         };
         let image_name = st.image.as_ref().map(|i| i.name.clone()).unwrap_or_default();
         let duration = st.pending_files[0].duration;
-        let cooldown = duration + 600; // 单个音频冷却 = 时长(ms) + 600ms
+        let cooldown = duration + 400; // 单个音频冷却 = 时长(ms) + 400ms
         (addr, mode, name, image_name, duration, cooldown)
     };
 
@@ -532,7 +532,7 @@ pub fn launch_app(open_sync_page: bool) {
     if open_sync_page {
         // 100ms 后通过通信指令跳转同步页（任意页面可接收）
         let _ = wit_bindgen::block_on(
-            timer::set_timeout(100, &format!("{NAV_PAYLOAD_PREFIX}pages/custom")).into_future(),
+            timer::set_timeout(100, &format!("{NAV_PAYLOAD_PREFIX}pages/menu/custom")).into_future(),
         );
         state::set_notice("已打开应用，正在跳转同步页…".to_string());
     } else {

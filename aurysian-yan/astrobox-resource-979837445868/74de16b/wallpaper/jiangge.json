@@ -1,0 +1,266 @@
+[
+  {
+    "id": "jiangge-o67",
+    "watchface": {
+      "name": "匠格",
+      "previewKey": "jiangge"
+    },
+    "deviceKey": "o67",
+    "canvas": {
+      "width": 336,
+      "height": 480,
+      "background": "#000000"
+    },
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "width": 336,
+      "height": 480,
+      "radius": 0
+    },
+    "preview": {
+      "radius": 56
+    },
+    "composition": {
+      "glassSrc": "assets/jiangge/10p9p-glass.png",
+      "borderSrc": "assets/jiangge/10p9p-border.png",
+      "maskSrc": "assets/jiangge/10p9p-mask.png"
+    },
+    "layers": [
+      {
+        "id": "photo-clear",
+        "source": {
+          "type": "input",
+          "key": "photo"
+        },
+        "clip": "frame"
+      },
+      {
+        "id": "photo-blur",
+        "source": {
+          "type": "input",
+          "key": "photo"
+        },
+        "clip": "frame",
+        "effects": {
+          "blur": {
+            "min": 0,
+            "max": 24,
+            "default": 0,
+            "step": 1
+          }
+        }
+      },
+      {
+        "id": "glass",
+        "source": {
+          "type": "asset",
+          "src": "assets/jiangge/10p9p-glass.png"
+        },
+        "clip": "canvas",
+        "blendMode": "darken"
+      },
+      {
+        "id": "border",
+        "source": {
+          "type": "asset",
+          "src": "assets/jiangge/10p9p-border.png"
+        },
+        "clip": "canvas",
+        "blendMode": "color-burn"
+      },
+      {
+        "id": "mask",
+        "source": {
+          "type": "asset",
+          "src": "assets/jiangge/10p9p-mask.png"
+        },
+        "clip": "canvas",
+        "blendMode": "destination-in"
+      }
+    ]
+  },
+  {
+    "id": "jiangge-n67",
+    "watchface": {
+      "name": "匠格",
+      "previewKey": "jiangge"
+    },
+    "deviceKey": "n67",
+    "canvas": {
+      "width": 336,
+      "height": 480,
+      "background": "#000000"
+    },
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "width": 336,
+      "height": 480,
+      "radius": 0
+    },
+    "preview": {
+      "radius": 56
+    },
+    "composition": {
+      "glassSrc": "assets/jiangge/10p9p-glass.png",
+      "borderSrc": "assets/jiangge/10p9p-border.png",
+      "maskSrc": "assets/jiangge/10p9p-mask.png"
+    },
+    "layers": [
+      {
+        "id": "photo-clear",
+        "source": { "type": "input", "key": "photo" },
+        "clip": "frame"
+      },
+      {
+        "id": "photo-blur",
+        "source": { "type": "input", "key": "photo" },
+        "clip": "frame",
+        "effects": {
+          "blur": { "min": 0, "max": 24, "default": 0, "step": 1 }
+        }
+      },
+      {
+        "id": "glass",
+        "source": { "type": "asset", "src": "assets/jiangge/10p9p-glass.png" },
+        "clip": "canvas",
+        "blendMode": "darken"
+      },
+      {
+        "id": "border",
+        "source": { "type": "asset", "src": "assets/jiangge/10p9p-border.png" },
+        "clip": "canvas",
+        "blendMode": "color-burn"
+      },
+      {
+        "id": "mask",
+        "source": { "type": "asset", "src": "assets/jiangge/10p9p-mask.png" },
+        "clip": "canvas",
+        "blendMode": "destination-in"
+      }
+    ]
+  },
+  {
+    "id": "jiangge-o65",
+    "watchface": {
+      "name": "匠格",
+      "previewKey": "jiangge"
+    },
+    "deviceKey": "o65",
+    "canvas": {
+      "width": 432,
+      "height": 514,
+      "background": "#000000"
+    },
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "width": 432,
+      "height": 514,
+      "radius": 0
+    },
+    "preview": {
+      "radius": 72
+    },
+    "composition": {
+      "glassSrc": "assets/jiangge/rw-glass.png",
+      "borderSrc": "assets/jiangge/rw-border.png",
+      "maskSrc": "assets/jiangge/rw-mask.png"
+    },
+    "layers": [
+      {
+        "id": "photo-clear",
+        "source": { "type": "input", "key": "photo" },
+        "clip": "frame"
+      },
+      {
+        "id": "photo-blur",
+        "source": { "type": "input", "key": "photo" },
+        "clip": "frame",
+        "effects": {
+          "blur": { "min": 0, "max": 24, "default": 0, "step": 1 }
+        }
+      },
+      {
+        "id": "glass",
+        "source": { "type": "asset", "src": "assets/jiangge/rw-glass.png" },
+        "clip": "canvas",
+        "blendMode": "darken"
+      },
+      {
+        "id": "border",
+        "source": { "type": "asset", "src": "assets/jiangge/rw-border.png" },
+        "clip": "canvas",
+        "blendMode": "color-burn"
+      },
+      {
+        "id": "mask",
+        "source": { "type": "asset", "src": "assets/jiangge/rw-mask.png" },
+        "clip": "canvas",
+        "blendMode": "destination-in"
+      }
+    ]
+  },
+  {
+    "id": "jiangge-p65",
+    "watchface": {
+      "name": "匠格",
+      "previewKey": "jiangge"
+    },
+    "deviceKey": "p65",
+    "canvas": {
+      "width": 432,
+      "height": 514,
+      "background": "#000000"
+    },
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "width": 432,
+      "height": 514,
+      "radius": 0
+    },
+    "preview": {
+      "radius": 72
+    },
+    "composition": {
+      "glassSrc": "assets/jiangge/rw-glass.png",
+      "borderSrc": "assets/jiangge/rw-border.png",
+      "maskSrc": "assets/jiangge/rw-mask.png"
+    },
+    "layers": [
+      {
+        "id": "photo-clear",
+        "source": { "type": "input", "key": "photo" },
+        "clip": "frame"
+      },
+      {
+        "id": "photo-blur",
+        "source": { "type": "input", "key": "photo" },
+        "clip": "frame",
+        "effects": {
+          "blur": { "min": 0, "max": 24, "default": 0, "step": 1 }
+        }
+      },
+      {
+        "id": "glass",
+        "source": { "type": "asset", "src": "assets/jiangge/rw-glass.png" },
+        "clip": "canvas",
+        "blendMode": "darken"
+      },
+      {
+        "id": "border",
+        "source": { "type": "asset", "src": "assets/jiangge/rw-border.png" },
+        "clip": "canvas",
+        "blendMode": "color-burn"
+      },
+      {
+        "id": "mask",
+        "source": { "type": "asset", "src": "assets/jiangge/rw-mask.png" },
+        "clip": "canvas",
+        "blendMode": "destination-in"
+      }
+    ]
+  }
+]

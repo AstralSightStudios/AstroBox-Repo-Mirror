@@ -74,3 +74,18 @@ pub fn refresh_svg() -> String {
 pub fn notice_svg() -> String {
     r#"<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><path d="M224,120V72a8,8,0,0,0-10.27-7.67L39.73,111.06A16,16,0,0,0,24,126.81v10.38a16,16,0,0,0,15.73,15.75L80,153.28V184a24,24,0,0,0,24,24h0a24,24,0,0,0,24-24V161.44l85.73,22.23A8,8,0,0,0,224,176V128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M152,183.68V192a24,24,0,0,1-24,24h0a24,24,0,0,1-24-24V184" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>"#.to_string()
 }
+
+/// 背景图/图片图标
+pub fn bg_svg() -> String {
+    r#"<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M1024 910.22V113.78C1024 51.2 972.8 0 910.22 0H113.78C51.2 0 0 51.2 0 113.78v796.44C0 972.8 51.2 1024 113.78 1024h796.44C972.8 1024 1024 972.8 1024 910.22zM312.89 597.33l142.22 170.67 199.11-256L910.22 853.33H113.78l199.11-256z" fill="currentColor"/></svg>"#.to_string()
+}
+
+/// 网格布局图标
+pub fn grid_layout_svg() -> String {
+    r#"<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><rect x="40" y="40" width="76" height="76" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="140" y="40" width="76" height="76" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="40" y="140" width="76" height="76" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="140" y="140" width="76" height="76" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>"#.to_string()
+}
+
+/// 列表布局图标
+pub fn list_layout_svg() -> String {
+    r#"<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><line x1="40" y1="68" x2="216" y2="68" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="40" y1="128" x2="216" y2="128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><line x1="40" y1="188" x2="216" y2="188" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>"#.to_string()
+}

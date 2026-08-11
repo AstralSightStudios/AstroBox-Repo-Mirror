@@ -38,6 +38,25 @@ pub const TOGGLE_SEARCH_RESULTS_EVENT: &str = "toggle_search_results";
 pub const REFRESH_NOTICE_EVENT: &str = "refresh_notice";
 pub const OPEN_NOTICE_LINK_PREFIX: &str = "open_notice_link:";
 
+pub const TAB_BG_EVENT: &str = "tab_bg";
+pub const REFRESH_BG_EVENT: &str = "refresh_bg";
+pub const TOGGLE_BG_LAYOUT_EVENT: &str = "toggle_bg_layout";
+pub const UPLOAD_BG_PREFIX: &str = "upload_bg:";
+pub const DELETE_BG_PREFIX: &str = "delete_bg:";
+pub const DELETE_ALL_BG_EVENT: &str = "delete_all_bg";
+pub const CANCEL_BG_UPLOAD_EVENT: &str = "cancel_bg_upload";
+pub const BG_CHUNK_SIZE_EVENT: &str = "bg_chunk_size";
+
+// 背景上传分块与超时配置
+// 与 image-base64-watch-transfer 文档一致：先整体 base64，再按 base64 字符切片，
+// 片长为 4 的倍数。可选 4K/8K/16K（设置项），默认 16K。
+const BG_DEFAULT_CHUNK_SIZE: usize = 16 * 1024;
+const BG_LARGE_FILE_THRESHOLD: usize = 20 * 1024; // 大于20KB（原始字节）给予二次确认
+const BG_UPLOAD_TIMEOUT_MS: u64 = 20_000; // 单块上传超时 20 秒
+const BG_REFRESH_TIMEOUT_MS: u64 = 20_000; // 刷新/删除超时 20 秒
+const BG_TIMEOUT_PAYLOAD: &str = "bg_upload_timeout";
+const BG_REFRESH_TIMEOUT_PAYLOAD: &str = "bg_refresh_timeout";
+
 pub const DELETE_LOCAL_AUTH_EVENT: &str = "delete_local_auth";
 
 // ========== Interconnect消息处理 ==========
@@ -124,6 +143,64 @@ pub fn handle_interconnect_message(payload: &str) {
                     request_citylist_from_device();
                 }
             }
+            "GET_BG_INFO_DONE" => {
+                if status == "OK" {
+                    handle_bg_info_received(data);
+                } else {
+                    tracing::error!("获取背景信息失败: {}", status);
+                    set_bg_loading(false);
+                    show_alert("失败", &format!("获取背景信息失败: {}", status));
+                }
+            }
+            "UPLOAD_FILE_DONE" => {
+                // 统一走分块上传完成处理（继续下一块或刷新）
+                on_upload_file_done(status == "OK");
+                if status != "OK" {
+                    show_alert("失败", &format!("背景上传失败: {}", status));
+                }
+            }
+            "DEL_FILE_DONE" => {
+                let deleting_all = {
+                    let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+                    state.bg_deleting_all
+                };
+                if status == "OK" {
+                    tracing::info!("文件删除成功");
+                    // 批量删除时由批量流程统一刷新，单个删除才在这里刷新
+                    if !deleting_all {
+                        request_refresh_bg();
+                    }
+                } else {
+                    set_bg_loading(false);
+                    show_alert("失败", &format!("背景删除失败: {}", status));
+                }
+            }
+            "REFRESH_BG_DONE" => {
+                if status == "OK" {
+                    // 用返回的list更新已安装列表
+                    let installed = data
+                        .and_then(|d| d.get("list"))
+                        .and_then(|v| v.as_array())
+                        .map(|arr| {
+                            arr.iter()
+                                .filter_map(|v| v.as_str().map(|s| s.to_string()))
+                                .collect::<Vec<_>>()
+                        })
+                        .unwrap_or_default();
+                    {
+                        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                        state.bg_installed = installed;
+                        state.bg_uploading = None;
+                        state.bg_loading = false;
+                        state.bg_deleting_all = false;
+                    }
+                    crate::ui::build::rerender_main_ui();
+                } else {
+                    set_bg_uploading(None);
+                    set_bg_loading(false);
+                    show_alert("失败", &format!("背景刷新失败: {}", status));
+                }
+            }
             _ => {
                 tracing::info!("未处理的消息类型: {}", msg_type);
             }
@@ -133,6 +210,11 @@ pub fn handle_interconnect_message(payload: &str) {
 
 pub fn handle_timer_payload(payload: &str) {
     tracing::info!("timer payload: {}", payload);
+    match payload {
+        BG_TIMEOUT_PAYLOAD => handle_bg_upload_timeout(),
+        BG_REFRESH_TIMEOUT_PAYLOAD => handle_bg_refresh_timeout(),
+        _ => {}
+    }
 }
 
 pub fn ui_event_processor(
@@ -146,12 +228,48 @@ pub fn ui_event_processor(
         SEND_BUTTON_EVENT => send_weather_data(),
         TAB_SYNC_EVENT => switch_tab(MainTab::SyncData),
         TAB_CITY_EVENT => switch_tab(MainTab::CityManage),
+        TAB_BG_EVENT => {
+            switch_tab(MainTab::Background);
+            // 首次进入背景图Tab时自动加载
+            let need_load = {
+                let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+                state.bg_supported.is_empty() && !state.bg_loading
+            };
+            if need_load {
+                request_bg_info();
+            }
+        }
         TAB_NOTICE_EVENT => switch_tab(MainTab::Notice),
         TAB_SETTINGS_EVENT => switch_tab(MainTab::Settings),
         OPEN_HELP_DOC_EVENT => open_help_doc_page(),
         OPEN_QQ_GROUP_EVENT => open_qq_group_page(),
         ALERTS_SYNC_TOGGLE_EVENT => toggle_alerts_sync(),
         REFRESH_NOTICE_EVENT => fetch_notice_list(),
+        REFRESH_BG_EVENT => request_bg_info(),
+        DELETE_ALL_BG_EVENT => delete_all_backgrounds(),
+        CANCEL_BG_UPLOAD_EVENT => cancel_background_upload(),
+        BG_CHUNK_SIZE_EVENT => {
+            let value = parse_event_value(event_payload);
+            // value 为 "4096"/"8192"/"16384" 或 "4K"/"8K"/"16K"
+            let size = match value.as_str() {
+                "4096" | "4K" => 4096,
+                "8192" | "8K" => 8192,
+                "16384" | "16K" => 16384,
+                _ => BG_DEFAULT_CHUNK_SIZE,
+            };
+            {
+                let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                state.bg_chunk_size = size;
+            }
+            let _ = crate::ui::state::save_all_settings();
+            crate::ui::build::rerender_main_ui();
+        }
+        TOGGLE_BG_LAYOUT_EVENT => {
+            let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+            state.bg_layout_grid = !state.bg_layout_grid;
+            drop(state);
+            crate::ui::build::rerender_main_ui();
+        }
         DAYS_DROPDOWN_EVENT => {
             let parsed_value = parse_event_value(event_payload);
             if let Some(day_str) = parsed_value.strip_suffix('天') {
@@ -259,6 +377,20 @@ pub fn ui_event_processor(
             if let Ok(idx) = idx_str.parse::<usize>() {
                 add_city_to_device(idx);
             }
+        }
+    }
+
+    // 上传背景图
+    if event_id.starts_with(UPLOAD_BG_PREFIX) {
+        if let Some(name) = event_id.strip_prefix(UPLOAD_BG_PREFIX) {
+            upload_background(name.to_string());
+        }
+    }
+
+    // 删除背景图
+    if event_id.starts_with(DELETE_BG_PREFIX) {
+        if let Some(name) = event_id.strip_prefix(DELETE_BG_PREFIX) {
+            delete_background(name.to_string());
         }
     }
 
@@ -397,29 +529,6 @@ fn select_city_by_name(name: &str) {
     }
 }
 
-fn select_sync_city(idx: usize) {
-    let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
-    if idx < state.city_list.len() {
-        let city = &state.city_list[idx];
-        let name = city.name.clone();
-        let adm1 = city.adm1.clone();
-        let adm2 = city.adm2.clone();
-        let lat = city.lat.clone();
-        let lon = city.lon.clone();
-
-        state.selected_city_index = Some(idx);
-        state.selected_location_id = name.clone();
-        state.selected_location_name = name;
-        state.selected_location_adm1 = adm1;
-        state.selected_location_adm2 = adm2;
-        state.selected_location_lat = lat;
-        state.selected_location_lon = lon;
-    }
-    drop(state);
-    let _ = crate::ui::state::save_all_settings();
-    crate::ui::build::rerender_main_ui();
-}
-
 // ========== 验证流程 ==========
 
 fn handle_apikey_received(api_key: &str) {
@@ -523,28 +632,6 @@ fn open_verify_url_from_state() {
     } else {
         show_alert("错误", "设备信息缺失");
     }
-}
-
-fn open_verification_url(device_info: &DeviceInfo) {
-    let timestamp = now_ms() / 1000;
-    // 拼接格式: product.deviceId.serial.timestamp
-    let verify_data = format!(
-        "{}.{}.{}.{}",
-        device_info.product,
-        device_info.deviceId,
-        device_info.serial,
-        timestamp
-    );
-
-    let encoded_data = encode(&verify_data);
-    let verify_url = format!(
-        "{}/api/v2/verify/Eternal?data={}",
-        server_api_base(),
-        encoded_data
-    );
-
-    tracing::info!("打开验证页面: {}", verify_url);
-    dialog::open_url(&verify_url);
 }
 
 /// 免费版验证
@@ -912,15 +999,17 @@ fn send_weather_data() {
         return;
     }
 
-    let city = match selected_idx {
-        Some(idx) if idx < city_list.len() => &city_list[idx],
-        _ => {
-            show_alert("提示", "请先选择城市");
-            return;
-        }
+    // 确定使用的城市：优先用选中的，没选中则用第一个
+    let (city, city_index) = if city_list.is_empty() {
+        show_alert("提示", "请先添加城市");
+        return;
+    } else {
+        let idx = selected_idx
+            .filter(|&i| i < city_list.len())
+            .unwrap_or(0);
+        (&city_list[idx], idx)
     };
 
-    let city_index = selected_idx.unwrap_or(0);
     let city_clone = city.clone();
     let api_key_clone = api_key.clone();
     let sync_alerts_clone = sync_alerts;
@@ -1101,25 +1190,20 @@ async fn send_interconnect_message(device_addr: &str, payload: &str) -> bool {
         return false;
     }
 
+    send_interconnect_raw(device_addr, payload).await
+}
+
+/// 直接发送 interconnect 消息（不重新启动应用），用于分块上传等连续发送场景
+async fn send_interconnect_raw(device_addr: &str, payload: &str) -> bool {
     let _ = register::register_interconnect_recv(device_addr, QA_PKG_NAME).await;
 
     match interconnect::send_qaic_message(device_addr, QA_PKG_NAME, payload).await {
-        Ok(_) => {
-            tracing::info!("消息发送成功");
-            true
-        }
+        Ok(_) => true,
         Err(e) => {
             tracing::error!("消息发送失败: {:?}", e);
             false
         }
     }
-}
-
-async fn send_weather_to_device(payload: &str) -> Result<(), String> {
-    let device_addr = get_device_addr().await.ok_or("没有连接的设备")?;
-    send_interconnect_message(&device_addr, payload).await;
-    std::thread::sleep(Duration::from_secs(2));
-    Ok(())
 }
 
 async fn ensure_app_launched(device_addr: &str) -> bool {
@@ -1197,6 +1281,26 @@ fn handle_citylist_received(cities: &[serde_json::Value]) {
         let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
         state.city_list = city_list;
         state.city_list_loading = false; // 重置加载状态
+
+        // 选中索引越界时重置为None
+        if let Some(idx) = state.selected_city_index {
+            if idx >= state.city_list.len() {
+                state.selected_city_index = None;
+            }
+        }
+
+        // 如果没有选中城市但列表不为空，自动选中第一个
+        if state.selected_city_index.is_none() && !state.city_list.is_empty() {
+            // 先克隆城市数据避免借用冲突
+            let city = state.city_list[0].clone();
+            state.selected_city_index = Some(0);
+            state.selected_location_id = city.name.clone();
+            state.selected_location_name = city.name;
+            state.selected_location_adm1 = city.adm1;
+            state.selected_location_adm2 = city.adm2;
+            state.selected_location_lat = city.lat;
+            state.selected_location_lon = city.lon;
+        }
     }
 
     let _ = crate::ui::state::save_all_settings();
@@ -1381,6 +1485,36 @@ fn show_alert(title: &str, message: &str) {
     });
 }
 
+/// 显示确认对话框，返回用户是否点击"确定"
+fn show_confirm(title: &str, message: &str) -> bool {
+    let title_str = title.to_string();
+    let message_str = message.to_string();
+
+    wit_bindgen::block_on(async move {
+        let result = dialog::show_dialog(
+            dialog::DialogType::Alert,
+            dialog::DialogStyle::Website,
+            &dialog::DialogInfo {
+                title: title_str,
+                content: message_str,
+                buttons: vec![
+                    dialog::DialogButton {
+                        id: "cancel".to_string(),
+                        primary: false,
+                        content: "取消".to_string(),
+                    },
+                    dialog::DialogButton {
+                        id: "ok".to_string(),
+                        primary: true,
+                        content: "确定".to_string(),
+                    },
+                ],
+            },
+        ).await;
+        result.clicked_btn_id == "ok"
+    })
+}
+
 /// 打开支付页面（升级为付费版）
 fn open_pay_url() {
     tracing::info!("打开支付页面");
@@ -1517,4 +1651,485 @@ fn fetch_notice_list() {
         }
         crate::ui::build::rerender_main_ui();
     });
+}
+
+// ========== 背景图管理 ==========
+
+/// 向第一个已连接设备发送 interconnect 消息（辅助函数）
+async fn send_message_to_first_device(payload: &str) -> bool {
+    match get_device_addr().await {
+        Some(addr) => send_interconnect_message(&addr, payload).await,
+        None => {
+            tracing::error!("没有连接的设备");
+            show_alert("提示", "没有连接的设备");
+            false
+        }
+    }
+}
+
+/// 请求背景信息（GET_BG_INFO）
+fn request_bg_info() {
+    {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        if state.bg_loading {
+            tracing::info!("背景信息正在加载中，忽略重复请求");
+            return;
+        }
+        state.bg_loading = true;
+    }
+    crate::ui::build::rerender_main_ui();
+
+    wit_bindgen::block_on(async move {
+        let payload = serde_json::json!({ "type": "GET_BG_INFO" }).to_string();
+        send_message_to_first_device(&payload).await;
+    });
+}
+
+/// 处理背景信息响应
+fn handle_bg_info_received(data: Option<&serde_json::Value>) {
+    let supported = data
+        .and_then(|d| d.get("supported"))
+        .and_then(|v| v.as_array())
+        .map(|arr| {
+            arr.iter()
+                .filter_map(|v| v.as_str().map(|s| s.to_string()))
+                .collect::<Vec<_>>()
+        })
+        .unwrap_or_default();
+
+    let installed = data
+        .and_then(|d| d.get("installed"))
+        .and_then(|v| v.as_array())
+        .map(|arr| {
+            arr.iter()
+                .filter_map(|v| v.as_str().map(|s| s.to_string()))
+                .collect::<Vec<_>>()
+        })
+        .unwrap_or_default();
+
+    tracing::info!("背景信息: supported={:?}, installed={:?}", supported, installed);
+
+    {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        state.bg_supported = supported;
+        state.bg_installed = installed;
+        state.bg_loading = false;
+    }
+    crate::ui::build::rerender_main_ui();
+}
+
+/// 请求刷新背景缓存（REFRESH_BG），带超时
+fn request_refresh_bg() {
+    set_bg_loading(true);
+    wit_bindgen::block_on(async move {
+        let payload = serde_json::json!({ "type": "REFRESH_BG" }).to_string();
+        let ok = send_message_to_first_device(&payload).await;
+        if ok {
+            // 启动一次性超时定时器；回调里会检查 bg_loading 是否仍为 true
+            let _ = psys_host::timer::set_timeout(BG_REFRESH_TIMEOUT_MS, BG_REFRESH_TIMEOUT_PAYLOAD).await;
+        } else {
+            set_bg_loading(false);
+        }
+    });
+}
+
+/// 上传背景图：选文件 -> 分块 -> 逐块发送
+fn upload_background(name: String) {
+    tracing::info!("上传背景图: {}", name);
+
+    wit_bindgen::block_on(async move {
+        // 已有任务在进行则忽略
+        {
+            let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+            if state.bg_upload.is_some() {
+                tracing::info!("已有上传任务进行中，忽略");
+                return;
+            }
+        }
+
+        // 弹出文件选择器，只允许 PNG
+        let config = psys_host::dialog::PickConfig {
+            read: true,
+            copy_to: None,
+        };
+        let filter = psys_host::dialog::FilterConfig {
+            multiple: false,
+            extensions: vec!["png".to_string()],
+            default_directory: String::new(),
+            default_file_name: String::new(),
+        };
+
+        let picked = dialog::pick_file(&config, &filter).await;
+
+        if picked.data.is_empty() {
+            tracing::info!("未选择文件");
+            return;
+        }
+
+        tracing::info!("选中文件: {}, 大小: {} 字节", picked.name, picked.data.len());
+
+        // 先整体 base64 编码（NO_WRAP，无换行、无 MIME 前缀）
+        use base64::{Engine as _, engine::general_purpose::STANDARD};
+        let base64 = STANDARD.encode(&picked.data);
+
+        // 读取用户设置的分片大小（默认 16K）
+        let chunk_size = {
+            let s = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+            if matches!(s.bg_chunk_size, 4096 | 8192 | 16384) {
+                s.bg_chunk_size
+            } else {
+                BG_DEFAULT_CHUNK_SIZE
+            }
+        };
+
+        // 按 4 字符对齐切片（非末片长度均为4的倍数）
+        let chunks = split_base64_aligned(&base64, chunk_size);
+
+        // 大于 20KB（原始字节）给予二次确认
+        if picked.data.len() > BG_LARGE_FILE_THRESHOLD {
+            let size_kb = picked.data.len() as f64 / 1024.0;
+            let msg = format!(
+                "图片较大（{:.1} KB），将分为 {} 块逐块上传，可能需要一些时间，并且可能无法正常显示，是否继续？",
+                size_kb, chunks.len()
+            );
+            if !show_confirm("文件较大", &msg) {
+                return;
+            }
+        }
+
+        // 计算分块
+        let total = chunks.len().max(1);
+        let task = BgUploadTask {
+            name: name.clone(),
+            chunks,
+            total,
+            current: 0,
+            timer_id: None,
+        };
+
+        {
+            let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+            state.bg_uploading = Some(name.clone());
+            state.bg_upload = Some(task);
+        }
+        crate::ui::build::rerender_main_ui();
+
+        // 开始发送第一块
+        send_next_bg_chunk(name);
+    });
+}
+
+/// 将完整 base64 字符串按 4 字符对齐切片。
+/// 除最后一片外，每片长度都是 4 的倍数，保证 Vela 端逐片 atob 解码可直接 append。
+fn split_base64_aligned(base64: &str, max_len: usize) -> Vec<String> {
+    if base64.is_empty() {
+        return Vec::new();
+    }
+    // 向下对齐到 4 的倍数
+    let slice_len = (max_len / 4) * 4;
+    let slice_len = slice_len.max(4);
+    let bytes = base64.as_bytes();
+    let mut chunks = Vec::new();
+    let mut start = 0;
+    while start < bytes.len() {
+        let end = (start + slice_len).min(bytes.len());
+        // SAFETY: base64 字符都是 ASCII，按字节切不会破坏 UTF-8
+        chunks.push(unsafe { String::from_utf8_unchecked(bytes[start..end].to_vec()) });
+        start = end;
+    }
+    chunks
+}
+
+/// 发送下一个分块（或完成上传后刷新）
+fn send_next_bg_chunk(name: String) {
+    // 取出当前分片（直接使用已编码好的 base64 分片，不再逐块编码）
+    let (chunk_b64, is_first, has_task) = {
+        let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+        match state.bg_upload.as_ref() {
+            Some(task) if task.name == name && task.current < task.chunks.len() => {
+                (task.chunks[task.current].clone(), task.current == 0, true)
+            }
+            _ => (String::new(), false, false),
+        }
+    };
+
+    if !has_task {
+        return;
+    }
+
+    wit_bindgen::block_on(async move {
+        // 先检查设备是否仍连接（断连逻辑）
+        let device_addr = match get_device_addr().await {
+            Some(addr) => addr,
+            None => {
+                tracing::error!("上传时设备断连");
+                cancel_bg_upload("设备已断开连接");
+                return;
+            }
+        };
+
+        let uri = format!("internal://files/bg/{}.png", name);
+        let payload = serde_json::json!({
+            "type": "UPLOAD_FILE",
+            "data": {
+                "uri": uri,
+                "data": chunk_b64,
+                "append": !is_first
+            }
+        }).to_string();
+
+        // 设置超时定时器（set_timeout 直接返回 timer_id: u64）
+        let timer_id = psys_host::timer::set_timeout(BG_UPLOAD_TIMEOUT_MS, BG_TIMEOUT_PAYLOAD).await;
+
+        {
+            let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+            if let Some(task) = state.bg_upload.as_mut() {
+                task.timer_id = Some(timer_id);
+            }
+        }
+
+        // 首块用 send_interconnect_message（会启动应用一次）；
+        // 后续块用 send_interconnect_raw，避免每块都重启快应用导致追加写入失败
+        let ok = if is_first {
+            send_interconnect_message(&device_addr, &payload).await
+        } else {
+            send_interconnect_raw(&device_addr, &payload).await
+        };
+
+        if !ok {
+            cancel_bg_upload("发送失败，请检查设备连接");
+        }
+        // 成功发送后等待 UPLOAD_FILE_DONE 再递增 current 并发送下一块
+    });
+}
+
+/// 处理 UPLOAD_FILE_DONE：成功则继续下一块或刷新
+pub fn on_upload_file_done(status_ok: bool) {
+    let (name, timer_id) = {
+        let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+        match state.bg_upload.as_ref() {
+            Some(task) => (task.name.clone(), task.timer_id),
+            None => return,
+        }
+    };
+
+    // 清除超时定时器
+    if let Some(tid) = timer_id {
+        wit_bindgen::block_on(async move {
+            psys_host::timer::clear_timer(tid).await;
+        });
+    }
+
+    if !status_ok {
+        cancel_bg_upload("背景上传失败");
+        return;
+    }
+
+    // 递增已完成块数，并判断是否全部完成
+    let is_finished = {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        if let Some(task) = state.bg_upload.as_mut() {
+            task.current += 1;
+            task.timer_id = None;
+            task.current >= task.total
+        } else {
+            false
+        }
+    };
+
+    if is_finished {
+        tracing::info!("背景 {} 上传完成，刷新缓存", name);
+        finish_bg_upload();
+        request_refresh_bg();
+    } else {
+        crate::ui::build::rerender_main_ui();
+        send_next_bg_chunk(name);
+    }
+}
+
+/// 上传超时处理
+fn handle_bg_upload_timeout() {
+    let has_task = {
+        let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+        state.bg_upload.is_some()
+    };
+    if has_task {
+        cancel_bg_upload("上传超时，请重试");
+    }
+}
+
+/// 刷新超时处理
+fn handle_bg_refresh_timeout() {
+    let loading = {
+        let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+        state.bg_loading
+    };
+    if loading {
+        set_bg_loading(false);
+        show_alert("失败", "背景刷新超时");
+    }
+}
+
+/// 取消上传任务并提示
+fn cancel_bg_upload(reason: &str) {
+    // 清除定时器
+    let timer_id = {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let tid = state.bg_upload.as_ref().and_then(|t| t.timer_id);
+        state.bg_upload = None;
+        state.bg_uploading = None;
+        state.bg_loading = false;
+        tid
+    };
+    if let Some(tid) = timer_id {
+        wit_bindgen::block_on(async move {
+            psys_host::timer::clear_timer(tid).await;
+        });
+    }
+    crate::ui::build::rerender_main_ui();
+    show_alert("失败", reason);
+}
+
+/// 完成上传（清除任务，保留 uploading 状态直到 REFRESH_BG_DONE）
+fn finish_bg_upload() {
+    let timer_id = {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let tid = state.bg_upload.as_ref().and_then(|t| t.timer_id);
+        state.bg_upload = None;
+        state.bg_loading = true;
+        tid
+    };
+    if let Some(tid) = timer_id {
+        wit_bindgen::block_on(async move {
+            psys_host::timer::clear_timer(tid).await;
+        });
+    }
+    crate::ui::build::rerender_main_ui();
+}
+
+/// 用户主动取消上传：停止任务 + 删除已上传的部分文件
+fn cancel_background_upload() {
+    // 取出任务信息并清除定时器
+    let (name, timer_id) = {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        let task = state.bg_upload.take();
+        state.bg_uploading = None;
+        state.bg_loading = false;
+        match task {
+            Some(t) => (t.name, t.timer_id),
+            None => return,
+        }
+    };
+
+    if let Some(tid) = timer_id {
+        wit_bindgen::block_on(async move {
+            psys_host::timer::clear_timer(tid).await;
+        });
+    }
+    crate::ui::build::rerender_main_ui();
+
+    // 删除已上传的部分文件，避免残留
+    tracing::info!("用户取消上传，删除部分文件: {}", name);
+    wit_bindgen::block_on(async move {
+        if get_device_addr().await.is_some() {
+            let uri = format!("internal://files/bg/{}.png", name);
+            let payload = serde_json::json!({
+                "type": "DEL_FILE",
+                "data": { "uri": uri }
+            }).to_string();
+            send_message_to_first_device(&payload).await;
+        }
+    });
+
+    show_alert("提示", "已取消上传");
+}
+
+/// 删除单个背景图
+fn delete_background(name: String) {
+    tracing::info!("删除背景图: {}", name);
+
+    set_bg_loading(true);
+    wit_bindgen::block_on(async move {
+        if get_device_addr().await.is_none() {
+            set_bg_loading(false);
+            show_alert("提示", "没有连接的设备");
+            return;
+        }
+        let uri = format!("internal://files/bg/{}.png", name);
+        let payload = serde_json::json!({
+            "type": "DEL_FILE",
+            "data": { "uri": uri }
+        }).to_string();
+        send_message_to_first_device(&payload).await;
+    });
+}
+
+/// 删除所有已安装的背景图
+fn delete_all_backgrounds() {
+    let installed = {
+        let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+        state.bg_installed.clone()
+    };
+
+    if installed.is_empty() {
+        show_alert("提示", "没有已安装的背景图");
+        return;
+    }
+
+    tracing::info!("删除所有背景图: {:?}", installed);
+
+    {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        state.bg_deleting_all = true;
+        state.bg_loading = true;
+    }
+    crate::ui::build::rerender_main_ui();
+
+    wit_bindgen::block_on(async move {
+        let device_addr = match get_device_addr().await {
+            Some(addr) => addr,
+            None => {
+                let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                state.bg_deleting_all = false;
+                state.bg_loading = false;
+                drop(state);
+                crate::ui::build::rerender_main_ui();
+                show_alert("提示", "没有连接的设备");
+                return;
+            }
+        };
+
+        // 逐个删除
+        for name in &installed {
+            let uri = format!("internal://files/bg/{}.png", name);
+            let payload = serde_json::json!({
+                "type": "DEL_FILE",
+                "data": { "uri": uri }
+            }).to_string();
+            send_interconnect_message(&device_addr, &payload).await;
+        }
+
+        // 全部删除后刷新
+        let payload = serde_json::json!({ "type": "REFRESH_BG" }).to_string();
+        send_interconnect_message(&device_addr, &payload).await;
+    });
+}
+
+/// 设置背景加载状态
+fn set_bg_loading(loading: bool) {
+    let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+    state.bg_loading = loading;
+    if !loading {
+        state.bg_deleting_all = false;
+    }
+    drop(state);
+    crate::ui::build::rerender_main_ui();
+}
+
+/// 设置正在上传的背景名
+fn set_bg_uploading(name: Option<String>) {
+    let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+    state.bg_uploading = name;
+    drop(state);
+    crate::ui::build::rerender_main_ui();
 }

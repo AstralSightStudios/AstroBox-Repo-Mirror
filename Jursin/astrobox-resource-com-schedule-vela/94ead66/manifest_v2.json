@@ -1,0 +1,50 @@
+{
+  "item": {
+    "id": "com.schedule.vela",
+    "restype": "quick_app",
+    "name": "腕上课程表",
+    "description": "一款支持导入拾光课程表、WakeUp课程表和 CSES 配置文件的课程表快应用，让每一次查看课表都抬腕即得",
+    "preview": [
+      "media/banner.png",
+      "media/1.png",
+      "media/2.png",
+      "media/3.png",
+      "media/4.png",
+      "media/5.png",
+      "media/6.png",
+      "media/7.png"
+    ],
+    "icon": "media/logo.png",
+    "cover": "media/banner.png",
+    "author": [
+      {
+        "name": "Jursin",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "文档",
+      "url": "https://blog.jursin.top/blog/tutorials/schedule-vela.html",
+      "icon": "https://blog.jursin.top/avatar.png"
+    },
+    {
+      "title": "GitHub 仓库",
+      "url": "https://github.com/Jursin/Schedule-Vela",
+      "icon": "https://github.githubassets.com/favicons/favicon.png"
+    },
+    {
+      "title": "爱发电",
+      "url": "https://ifdian.net/a/jursin",
+      "icon": "https://static.afdiancdn.com/static/img/logo/logo.png"
+    }
+  ],
+  "downloads": {
+    "xmb9": {
+      "version": "v1.3.0",
+      "file_name": "downloads/com.schedule.vela.release.1.3.0.rpk"
+    }
+  },
+  "ext": {}
+}

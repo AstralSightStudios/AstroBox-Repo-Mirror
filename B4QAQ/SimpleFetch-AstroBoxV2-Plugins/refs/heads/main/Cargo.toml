@@ -1,0 +1,19 @@
+[package]
+name = "simplefetch_astrobox_v2_plugin"
+version = "1.2.2"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wit-bindgen = { version = "0.47.0", features = ["async", "async-spawn"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+tracing-appender = "0.2"
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+waki = "0.3"
+url = "2"
+flate2 = "1"
+base64 = "0.22"

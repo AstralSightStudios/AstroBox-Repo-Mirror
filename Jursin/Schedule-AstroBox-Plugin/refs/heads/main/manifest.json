@@ -1,0 +1,13 @@
+{
+    "name": "腕上课程表同步器",
+    "icon": "icon.png",
+    "version": "1.0.0",
+    "description": "腕上课程表同步器插件",
+    "author": "Jursin",
+    "website": "https://github.com/Jursin/Schedule-AstroBox-Plugin",
+    "entry": "schedule_plugin_rust.wasm",
+    "wasi_version": 2,
+    "api_level": 3,
+    "permissions": ["device", "interconnect", "thirdpartyapp", "clipboard.write"],
+    "additional_files": []
+}

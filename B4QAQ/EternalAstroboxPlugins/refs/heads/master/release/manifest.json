@@ -1,7 +1,7 @@
 {
     "name": "永昼天气同步器",
     "icon": "icon.png",
-    "version": "3.3.18",
+    "version": "3.3.19",
     "description": "在AstroBox中同步天气数据到永昼天气",
     "author": "B4QAQ",
     "website": "https://docs.b4qaq.cn/docs/eternal",

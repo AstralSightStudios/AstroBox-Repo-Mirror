@@ -24,6 +24,7 @@ fn default_bool_true() -> bool {
 pub enum MainTab {
     SyncData,
     CityManage,
+    Background,
     Notice,
     Settings,
 }
@@ -49,8 +50,9 @@ pub enum NoticeSegment {
     QrCode { url: String, alt: String },
 }
 
-/// 设备信息结构（只保留验证和显示需要的字段）
+/// 设备信息结构（字段名匹配设备API返回，允许非snake_case）
 #[derive(Clone, serde::Serialize, serde::Deserialize, Default)]
+#[allow(non_snake_case)]
 pub struct DeviceInfo {
     // 验证需要的字段
     pub product: String,
@@ -130,6 +132,26 @@ pub struct UiState {
     // 公告
     pub notice_list: Vec<NoticeInfo>,
     pub notice_loading: bool,
+
+    // 背景图管理
+    pub bg_supported: Vec<String>, // 支持自定义的全部天气背景名
+    pub bg_installed: Vec<String>, // 当前已安装的背景名
+    pub bg_loading: bool, // 是否正在加载背景信息
+    pub bg_uploading: Option<String>, // 正在上传的背景名（None表示空闲）
+    pub bg_layout_grid: bool, // 背景列表布局：true=网格，false=列表
+    pub bg_upload: Option<BgUploadTask>, // 当前分块上传任务
+    pub bg_deleting_all: bool, // 是否正在删除所有背景
+    pub bg_chunk_size: usize, // 背景上传分片大小（base64字符数，4的倍数）：4096/8192/16384
+}
+
+/// 背景图分块上传任务
+#[derive(Clone, Default)]
+pub struct BgUploadTask {
+    pub name: String,          // 天气背景名
+    pub chunks: Vec<String>,   // base64 分片；非末片长度均为4的倍数
+    pub total: usize,          // 总块数
+    pub current: usize,      // 已发送块数（0-based，等于下一块索引）
+    pub timer_id: Option<u64>, // 超时定时器ID
 }
 
 /// 同步进度状态
@@ -197,6 +219,15 @@ pub fn ui_state() -> &'static RwLock<UiState> {
 
             notice_list: Vec::new(),
             notice_loading: false,
+
+            bg_supported: Vec::new(),
+            bg_installed: Vec::new(),
+            bg_loading: false,
+            bg_uploading: None,
+            bg_layout_grid: true,
+            bg_upload: None,
+            bg_deleting_all: false,
+            bg_chunk_size: 16 * 1024, // 默认 16K
         };
         RwLock::new(state)
     })
@@ -245,10 +276,16 @@ struct StoredApiSettings {
     city_search_range: String,
     #[serde(default = "default_search_number")]
     city_search_number: u32,
+    #[serde(default = "default_chunk_size")]
+    bg_chunk_size: usize,
 }
 
 fn default_search_number() -> u32 {
     10
+}
+
+fn default_chunk_size() -> usize {
+    16 * 1024
 }
 
 pub fn load_api_settings_once() {
@@ -290,6 +327,10 @@ pub fn load_api_settings_once() {
                 }
                 if stored.city_search_number > 0 {
                     state.city_search_number = stored.city_search_number;
+                }
+                // 加载背景分片大小（只允许 4K/8K/16K）
+                if matches!(stored.bg_chunk_size, 4096 | 8192 | 16384) {
+                    state.bg_chunk_size = stored.bg_chunk_size;
                 }
 
                 // 如果有APIKey，标记为已验证
@@ -337,6 +378,7 @@ pub fn save_all_settings() -> Result<(), String> {
         city_list: state.city_list.clone(),
         city_search_range: state.city_search_range.clone(),
         city_search_number: state.city_search_number,
+        bg_chunk_size: state.bg_chunk_size,
     };
 
     let content = serde_json::to_string_pretty(&stored).map_err(|e| e.to_string())?;
