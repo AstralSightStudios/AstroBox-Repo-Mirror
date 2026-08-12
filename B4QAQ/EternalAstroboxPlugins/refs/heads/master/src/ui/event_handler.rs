@@ -51,11 +51,16 @@ pub const BG_CHUNK_SIZE_EVENT: &str = "bg_chunk_size";
 // 与 image-base64-watch-transfer 文档一致：先整体 base64，再按 base64 字符切片，
 // 片长为 4 的倍数。可选 4K/8K/16K（设置项），默认 16K。
 const BG_DEFAULT_CHUNK_SIZE: usize = 16 * 1024;
-const BG_LARGE_FILE_THRESHOLD: usize = 20 * 1024; // 大于20KB（原始字节）给予二次确认
 const BG_UPLOAD_TIMEOUT_MS: u64 = 20_000; // 单块上传超时 20 秒
-const BG_REFRESH_TIMEOUT_MS: u64 = 20_000; // 刷新/删除超时 20 秒
+const BG_OP_TIMEOUT_MS: u64 = 20_000; // 其他背景操作（查询/删除/刷新）超时 20 秒
 const BG_TIMEOUT_PAYLOAD: &str = "bg_upload_timeout";
-const BG_REFRESH_TIMEOUT_PAYLOAD: &str = "bg_refresh_timeout";
+const BG_OP_TIMEOUT_PAYLOAD: &str = "bg_op_timeout";
+
+// 等待设备响应的操作类型
+const BG_OP_GET_INFO: &str = "get_info";
+const BG_OP_REFRESH: &str = "refresh";
+const BG_OP_DELETE: &str = "delete";
+const BG_OP_DELETE_ALL: &str = "delete_all";
 
 pub const DELETE_LOCAL_AUTH_EVENT: &str = "delete_local_auth";
 
@@ -148,6 +153,7 @@ pub fn handle_interconnect_message(payload: &str) {
                     handle_bg_info_received(data);
                 } else {
                     tracing::error!("获取背景信息失败: {}", status);
+                    finish_bg_op();
                     set_bg_loading(false);
                     show_alert("失败", &format!("获取背景信息失败: {}", status));
                 }
@@ -166,11 +172,14 @@ pub fn handle_interconnect_message(payload: &str) {
                 };
                 if status == "OK" {
                     tracing::info!("文件删除成功");
-                    // 批量删除时由批量流程统一刷新，单个删除才在这里刷新
+                    // 批量删除时由批量流程统一刷新；单个删除则刷新（刷新会重启超时定时器）
                     if !deleting_all {
                         request_refresh_bg();
+                    } else {
+                        // 批量删除中的单块确认，不结束操作，等全部发完由批量流程发 REFRESH_BG
                     }
                 } else {
+                    finish_bg_op();
                     set_bg_loading(false);
                     show_alert("失败", &format!("背景删除失败: {}", status));
                 }
@@ -194,8 +203,10 @@ pub fn handle_interconnect_message(payload: &str) {
                         state.bg_loading = false;
                         state.bg_deleting_all = false;
                     }
+                    finish_bg_op();
                     crate::ui::build::rerender_main_ui();
                 } else {
+                    finish_bg_op();
                     set_bg_uploading(None);
                     set_bg_loading(false);
                     show_alert("失败", &format!("背景刷新失败: {}", status));
@@ -212,7 +223,7 @@ pub fn handle_timer_payload(payload: &str) {
     tracing::info!("timer payload: {}", payload);
     match payload {
         BG_TIMEOUT_PAYLOAD => handle_bg_upload_timeout(),
-        BG_REFRESH_TIMEOUT_PAYLOAD => handle_bg_refresh_timeout(),
+        BG_OP_TIMEOUT_PAYLOAD => handle_bg_op_timeout(),
         _ => {}
     }
 }
@@ -532,34 +543,104 @@ fn select_city_by_name(name: &str) {
 // ========== 验证流程 ==========
 
 fn handle_apikey_received(api_key: &str) {
-    tracing::info!("收到APIKey: {}", api_key);
+    tracing::info!("收到设备APIKey");
 
     if api_key.trim().is_empty() {
         handle_apikey_invalid();
         return;
     }
 
-    {
-        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
-        state.api_key = api_key.to_string();
-        state.api_key_verified = true;
-        state.verification_status = VerificationStatus::Verified;
-    }
+    // 激活时检测到设备已有 Key，先询问用户是否使用，避免无效 Key 导致无限循环
+    let device_key = api_key.trim().to_string();
+    let masked = mask_api_key(&device_key);
+    let msg = format!("设备上已存在授权 Key：\n{}\n\n是否使用该 Key？", masked);
 
-    let _ = crate::ui::state::save_all_settings();
-    show_alert("成功", "APIKey验证成功");
-    crate::ui::build::rerender_main_ui();
-
-    // 获取设备信息（请求用量等）
     wit_bindgen::block_on(async move {
-        if get_device_addr().await.is_some() {
-            fetch_device_info_from_server();
+        let use_key = show_confirm_async("检测到设备Key", &msg).await;
+        if use_key {
+            tracing::info!("用户选择使用设备 Key");
+            {
+                let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                state.api_key = device_key;
+                state.api_key_verified = true;
+                state.verification_status = VerificationStatus::Verified;
+            }
+            let _ = crate::ui::state::save_all_settings();
+            crate::ui::build::rerender_main_ui();
+            if get_device_addr().await.is_some() {
+                fetch_device_info_from_server();
+            }
+        } else {
+            tracing::info!("用户选择不使用设备 Key，进入重新验证流程");
+            // 清空本地可能的 Key，走设备信息+支付验证流程
+            {
+                let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                state.api_key = String::new();
+                state.api_key_verified = false;
+                state.verification_status = VerificationStatus::GettingDeviceInfo;
+            }
+            crate::ui::build::rerender_main_ui();
+            if let Some(device_addr) = get_device_addr().await {
+                get_device_info_and_verify(&device_addr, false);
+            }
         }
     });
 }
 
+/// 脱敏显示 APIKey：前4位 + *** + 后4位
+fn mask_api_key(key: &str) -> String {
+    let chars: Vec<char> = key.chars().collect();
+    if chars.len() <= 12 {
+        return key.to_string();
+    }
+    let prefix: String = chars[..4].iter().collect();
+    let suffix: String = chars[chars.len() - 4..].iter().collect();
+    format!("{}****{}", prefix, suffix)
+}
+
+/// 异步确认对话框，返回是否点击确定
+async fn show_confirm_async(title: &str, message: &str) -> bool {
+    let result = psys_host::dialog::show_dialog(
+        psys_host::dialog::DialogType::Alert,
+        psys_host::dialog::DialogStyle::Website,
+        &psys_host::dialog::DialogInfo {
+            title: title.to_string(),
+            content: message.to_string(),
+            buttons: vec![
+                psys_host::dialog::DialogButton {
+                    id: "cancel".to_string(),
+                    primary: false,
+                    content: "重新验证".to_string(),
+                },
+                psys_host::dialog::DialogButton {
+                    id: "ok".to_string(),
+                    primary: true,
+                    content: "使用".to_string(),
+                },
+            ],
+        },
+    )
+    .await;
+    result.clicked_btn_id == "ok"
+}
+
 fn handle_apikey_invalid() {
     tracing::info!("APIKey无效，需要验证");
+
+    // 防止无限循环：检查是否已经在设备验证流程中
+    let already_verifying = {
+        let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+        matches!(
+            state.verification_status,
+            VerificationStatus::GettingDeviceInfo | VerificationStatus::WaitingPayment
+        )
+    };
+
+    if already_verifying {
+        tracing::info!("已在验证流程中，避免无限循环");
+        return;
+    }
+
     wit_bindgen::block_on(async move {
         if let Some(device_addr) = get_device_addr().await {
             get_device_info_and_verify(&device_addr, false);
@@ -1677,11 +1758,15 @@ fn request_bg_info() {
         }
         state.bg_loading = true;
     }
-    crate::ui::build::rerender_main_ui();
+    // 启动带超时的操作
+    start_bg_op(BG_OP_GET_INFO, BG_OP_TIMEOUT_MS);
 
     wit_bindgen::block_on(async move {
         let payload = serde_json::json!({ "type": "GET_BG_INFO" }).to_string();
-        send_message_to_first_device(&payload).await;
+        if !send_message_to_first_device(&payload).await {
+            finish_bg_op();
+            set_bg_loading(false);
+        }
     });
 }
 
@@ -1715,19 +1800,18 @@ fn handle_bg_info_received(data: Option<&serde_json::Value>) {
         state.bg_installed = installed;
         state.bg_loading = false;
     }
+    finish_bg_op();
     crate::ui::build::rerender_main_ui();
 }
 
 /// 请求刷新背景缓存（REFRESH_BG），带超时
 fn request_refresh_bg() {
     set_bg_loading(true);
+    start_bg_op(BG_OP_REFRESH, BG_OP_TIMEOUT_MS);
     wit_bindgen::block_on(async move {
         let payload = serde_json::json!({ "type": "REFRESH_BG" }).to_string();
-        let ok = send_message_to_first_device(&payload).await;
-        if ok {
-            // 启动一次性超时定时器；回调里会检查 bg_loading 是否仍为 true
-            let _ = psys_host::timer::set_timeout(BG_REFRESH_TIMEOUT_MS, BG_REFRESH_TIMEOUT_PAYLOAD).await;
-        } else {
+        if !send_message_to_first_device(&payload).await {
+            finish_bg_op();
             set_bg_loading(false);
         }
     });
@@ -1785,14 +1869,15 @@ fn upload_background(name: String) {
         // 按 4 字符对齐切片（非末片长度均为4的倍数）
         let chunks = split_base64_aligned(&base64, chunk_size);
 
-        // 大于 20KB（原始字节）给予二次确认
-        if picked.data.len() > BG_LARGE_FILE_THRESHOLD {
+        // 只要需要分片传输（超过1块），就给予提示
+        if chunks.len() > 1 {
             let size_kb = picked.data.len() as f64 / 1024.0;
+            let chunk_kb = chunk_size / 1024;
             let msg = format!(
-                "图片较大（{:.1} KB），将分为 {} 块逐块上传，可能需要一些时间，并且可能无法正常显示，是否继续？",
-                size_kb, chunks.len()
+                "图片较大（{:.1} KB），将以 {}K 为单位分为 {} 块逐块上传，可能需要一些时间，是否继续？",
+                size_kb, chunk_kb, chunks.len()
             );
-            if !show_confirm("文件较大", &msg) {
+            if !show_confirm("分片上传", &msg) {
                 return;
             }
         }
@@ -1958,15 +2043,63 @@ fn handle_bg_upload_timeout() {
     }
 }
 
-/// 刷新超时处理
-fn handle_bg_refresh_timeout() {
-    let loading = {
-        let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
-        state.bg_loading
+/// 启动一个背景操作的超时定时器（查询/删除/刷新等非上传操作）
+fn start_bg_op(op: &'static str, timeout_ms: u64) {
+    // 先清除上一个操作的定时器
+    finish_bg_op();
+    {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        state.bg_pending_op = Some(op.to_string());
+    }
+    wit_bindgen::block_on(async move {
+        let timer_id = psys_host::timer::set_timeout(timeout_ms, BG_OP_TIMEOUT_PAYLOAD).await;
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        state.bg_op_timer_id = Some(timer_id);
+    });
+}
+
+/// 结束背景操作，清除超时定时器
+fn finish_bg_op() {
+    let (timer_id, op) = {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        (state.bg_op_timer_id.take(), state.bg_pending_op.take())
     };
-    if loading {
-        set_bg_loading(false);
-        show_alert("失败", "背景刷新超时");
+    if let Some(tid) = timer_id {
+        wit_bindgen::block_on(async move {
+            psys_host::timer::clear_timer(tid).await;
+        });
+    }
+    if op.is_some() {
+        tracing::info!("背景操作完成: {:?}", op);
+    }
+}
+
+/// 背景操作超时处理
+fn handle_bg_op_timeout() {
+    let op = {
+        let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+        // 清除定时器ID（定时器本身已触发，无需再 clear）
+        state.bg_op_timer_id = None;
+        state.bg_pending_op.take()
+    };
+
+    if let Some(op) = op {
+        tracing::error!("背景操作超时: {}", op);
+        let msg = match op.as_str() {
+            BG_OP_GET_INFO => "获取背景信息超时",
+            BG_OP_REFRESH => "背景刷新超时",
+            BG_OP_DELETE => "背景删除超时",
+            BG_OP_DELETE_ALL => "批量删除背景超时",
+            _ => "操作超时",
+        };
+        // 重置加载状态
+        {
+            let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+            state.bg_loading = false;
+            state.bg_deleting_all = false;
+        }
+        crate::ui::build::rerender_main_ui();
+        show_alert("失败", msg);
     }
 }
 
@@ -2049,8 +2182,10 @@ fn delete_background(name: String) {
     tracing::info!("删除背景图: {}", name);
 
     set_bg_loading(true);
+    start_bg_op(BG_OP_DELETE, BG_OP_TIMEOUT_MS);
     wit_bindgen::block_on(async move {
         if get_device_addr().await.is_none() {
+            finish_bg_op();
             set_bg_loading(false);
             show_alert("提示", "没有连接的设备");
             return;
@@ -2060,7 +2195,11 @@ fn delete_background(name: String) {
             "type": "DEL_FILE",
             "data": { "uri": uri }
         }).to_string();
-        send_message_to_first_device(&payload).await;
+        if !send_message_to_first_device(&payload).await {
+            finish_bg_op();
+            set_bg_loading(false);
+        }
+        // DEL_FILE_DONE 回来后会触发 request_refresh_bg（刷新会重启超时定时器）
     });
 }
 
@@ -2093,25 +2232,30 @@ fn delete_all_backgrounds() {
                 state.bg_deleting_all = false;
                 state.bg_loading = false;
                 drop(state);
+                finish_bg_op();
                 crate::ui::build::rerender_main_ui();
                 show_alert("提示", "没有连接的设备");
                 return;
             }
         };
 
-        // 逐个删除
+        // 逐个删除（批量删除期间不逐块等ACK，但整体操作受超时保护）
         for name in &installed {
             let uri = format!("internal://files/bg/{}.png", name);
             let payload = serde_json::json!({
                 "type": "DEL_FILE",
                 "data": { "uri": uri }
             }).to_string();
-            send_interconnect_message(&device_addr, &payload).await;
+            send_interconnect_raw(&device_addr, &payload).await;
         }
 
-        // 全部删除后刷新
+        // 全部删除后刷新（启动超时定时器）
         let payload = serde_json::json!({ "type": "REFRESH_BG" }).to_string();
-        send_interconnect_message(&device_addr, &payload).await;
+        start_bg_op(BG_OP_DELETE_ALL, BG_OP_TIMEOUT_MS);
+        if !send_interconnect_raw(&device_addr, &payload).await {
+            finish_bg_op();
+            set_bg_loading(false);
+        }
     });
 }
 
@@ -2123,6 +2267,10 @@ fn set_bg_loading(loading: bool) {
         state.bg_deleting_all = false;
     }
     drop(state);
+    // 加载结束时确保操作超时定时器被清理（防止残留）
+    if !loading {
+        finish_bg_op();
+    }
     crate::ui::build::rerender_main_ui();
 }
 

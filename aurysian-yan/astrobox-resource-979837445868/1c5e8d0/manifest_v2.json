@@ -34,7 +34,7 @@
   "ext": {
     "enableAstroBoxCreatorFeatures": true,
     "wallpaperGenerator": {
-      "configUrl": "https://raw.githubusercontent.com/aurysian-yan/astrobox-resource-979837445868/codex/jiangge-wallpaper-config/wallpaper/jiangge.json"
+      "configUrl": "https://raw.githubusercontent.com/aurysian-yan/astrobox-resource-979837445868/main/wallpaper/jiangge.json"
     }
   }
 }

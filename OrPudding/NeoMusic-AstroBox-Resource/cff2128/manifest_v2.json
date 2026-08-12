@@ -1,0 +1,70 @@
+{
+  "downloads": {
+    "xmrw5": {
+      "file_name": "downloads/0-white_moe.orpu.neomusic.release.26.8.12.rpk",
+      "sha256": "755f3b2ca3c6051c765e32d12ec9ba164624a07261781a91307a632c1defa291",
+      "version": "26.8.12"
+    },
+    "xmrw5xring": {
+      "file_name": "downloads/0-white_moe.orpu.neomusic.release.26.8.12.rpk",
+      "sha256": "755f3b2ca3c6051c765e32d12ec9ba164624a07261781a91307a632c1defa291",
+      "version": "26.8.12"
+    },
+    "xmrw6": {
+      "file_name": "downloads/0-white_moe.orpu.neomusic.release.26.8.12.rpk",
+      "sha256": "755f3b2ca3c6051c765e32d12ec9ba164624a07261781a91307a632c1defa291",
+      "version": "26.8.12"
+    },
+    "xmws3": {
+      "file_name": "downloads/0-white_moe.orpu.neomusic.release.26.8.12.rpk",
+      "sha256": "755f3b2ca3c6051c765e32d12ec9ba164624a07261781a91307a632c1defa291",
+      "version": "26.8.12"
+    },
+    "xmws4": {
+      "file_name": "downloads/0-white_moe.orpu.neomusic.release.26.8.12.rpk",
+      "sha256": "755f3b2ca3c6051c765e32d12ec9ba164624a07261781a91307a632c1defa291",
+      "version": "26.8.12"
+    },
+    "xmws441": {
+      "file_name": "downloads/0-white_moe.orpu.neomusic.release.26.8.12.rpk",
+      "sha256": "755f3b2ca3c6051c765e32d12ec9ba164624a07261781a91307a632c1defa291",
+      "version": "26.8.12"
+    },
+    "xmws4xring": {
+      "file_name": "downloads/0-white_moe.orpu.neomusic.release.26.8.12.rpk",
+      "sha256": "755f3b2ca3c6051c765e32d12ec9ba164624a07261781a91307a632c1defa291",
+      "version": "26.8.12"
+    },
+    "xmws5": {
+      "file_name": "downloads/0-white_moe.orpu.neomusic.release.26.8.12.rpk",
+      "sha256": "755f3b2ca3c6051c765e32d12ec9ba164624a07261781a91307a632c1defa291",
+      "version": "26.8.12"
+    }
+  },
+  "ext": {},
+  "item": {
+    "author": [
+      {
+        "bindABAccount": true,
+        "name": "OrPudding"
+      }
+    ],
+    "cover": "media/cover.png",
+    "description": "NeoMusic 是一款专为小米 VelaOS 手表打造的第三方音乐客户端，底层重构，功能焕新，新增本地导入支持\n支持在线流媒体、批量下载、离线缓存、存储管理、每日推荐、私人 FM、快捷手势、多语种歌词和云控更新等功能\nLite 档 2.99 元可离线缓存 50 首，Plus 档 4.99 元可缓存 100 首，Pro 档 6.99 元可无限缓存",
+    "icon": "media/icon.png",
+    "id": "moe.orpu.neomusic",
+    "name": "NeoMusic",
+    "preview": [
+      "media/preview-2.png",
+      "media/preview-3.png",
+      "media/preview-4.png",
+      "media/preview-5.png",
+      "media/preview-6.png",
+      "media/preview-7.png",
+      "media/preview-8.png",
+      "media/preview-9.png"
+    ],
+    "restype": "quick_app"
+  },
+  "links": []
+}
