@@ -166,22 +166,59 @@ pub fn handle_interconnect_message(payload: &str) {
                 }
             }
             "DEL_FILE_DONE" => {
-                let deleting_all = {
+                let (deleting_all, is_uploading, pending_replace) = {
                     let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
-                    state.bg_deleting_all
+                    (state.bg_deleting_all, state.bg_uploading.is_some(), state.pending_replace.is_some())
                 };
                 if status == "OK" {
                     tracing::info!("文件删除成功");
-                    // 批量删除时由批量流程统一刷新；单个删除则刷新（刷新会重启超时定时器）
-                    if !deleting_all {
+                    // 替换场景：旧文件删除完成，现在真正开始上传新文件
+                    if pending_replace {
+                        let task = {
+                            let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                            state.pending_replace.take()
+                        };
+                        if let Some(task) = task {
+                            let name = task.name.clone();
+                            {
+                                let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                                state.bg_uploading = Some(name.clone());
+                                state.bg_upload = Some(task);
+                            }
+                            crate::ui::build::rerender_main_ui();
+                            send_next_bg_chunk(name);
+                        }
+                    } else if !deleting_all && !is_uploading {
+                        // 普通单个删除：刷新列表
                         request_refresh_bg();
-                    } else {
-                        // 批量删除中的单块确认，不结束操作，等全部发完由批量流程发 REFRESH_BG
                     }
                 } else {
-                    finish_bg_op();
-                    set_bg_loading(false);
-                    show_alert("失败", &format!("背景删除失败: {}", status));
+                    // 替换场景下删除失败：仍尝试上传（append:false 会覆盖），不阻塞
+                    let has_pending = {
+                        let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+                        state.pending_replace.is_some()
+                    };
+                    if has_pending {
+                        tracing::warn!("替换时删除旧文件失败，直接开始上传");
+                        let task = {
+                            let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                            state.pending_replace.take()
+                        };
+                        if let Some(task) = task {
+                            let name = task.name.clone();
+                            {
+                                let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                                state.bg_uploading = Some(name.clone());
+                                state.bg_upload = Some(task);
+                            }
+                            crate::ui::build::rerender_main_ui();
+                            send_next_bg_chunk(name);
+                        }
+                    } else if !is_uploading {
+                        finish_bg_op();
+                        set_bg_loading(false);
+                        show_alert("失败", &format!("背景删除失败: {}", status));
+                    }
                 }
             }
             "REFRESH_BG_DONE" => {
@@ -1892,6 +1929,36 @@ fn upload_background(name: String) {
             timer_id: None,
         };
 
+        // 替换已存在的背景：先发 DEL_FILE 删除旧文件，等 DEL_FILE_DONE 回复后再开始上传，
+        // 避免 append:false 不截断导致旧文件残留。
+        let already_installed = {
+            let state = ui_state().read().unwrap_or_else(|poisoned| poisoned.into_inner());
+            state.bg_installed.contains(&name)
+        };
+        if already_installed {
+            tracing::info!("替换背景，先删除旧文件: {}", name);
+            let device_addr = get_device_addr().await;
+            if let Some(device_addr) = device_addr {
+                let uri = format!("internal://files/bg/{}.png", name);
+                let del_payload = serde_json::json!({
+                    "type": "DEL_FILE",
+                    "data": { "uri": uri }
+                }).to_string();
+                // 暂存上传任务，标记 uploading（让 DEL_FILE_DONE 不要触发刷新）
+                {
+                    let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
+                    state.bg_uploading = Some(name.clone());
+                    state.pending_replace = Some(task);
+                }
+                crate::ui::build::rerender_main_ui();
+                send_interconnect_raw(&device_addr, &del_payload).await;
+            } else {
+                show_alert("提示", "没有连接的设备");
+            }
+            return;
+        }
+
+        // 全新背景：直接开始上传
         {
             let mut state = ui_state().write().unwrap_or_else(|poisoned| poisoned.into_inner());
             state.bg_uploading = Some(name.clone());

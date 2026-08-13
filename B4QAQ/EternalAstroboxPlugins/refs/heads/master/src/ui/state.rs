@@ -144,6 +144,7 @@ pub struct UiState {
     pub bg_chunk_size: usize, // 背景上传分片大小（base64字符数，4的倍数）：4096/8192/16384
     pub bg_pending_op: Option<String>, // 当前等待设备响应的操作类型（用于超时判断）
     pub bg_op_timer_id: Option<u64>, // 操作超时定时器ID
+    pub pending_replace: Option<BgUploadTask>, // 替换场景：等旧文件删除后再开始上传的任务
 }
 
 /// 背景图分块上传任务
@@ -232,6 +233,7 @@ pub fn ui_state() -> &'static RwLock<UiState> {
             bg_chunk_size: 16 * 1024, // 默认 16K
             bg_pending_op: None,
             bg_op_timer_id: None,
+            pending_replace: None,
         };
         RwLock::new(state)
     })
