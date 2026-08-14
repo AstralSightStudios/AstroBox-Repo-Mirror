@@ -5,8 +5,8 @@
   "owner_map": {
     "hrsthrt74": "mirror-01",
     "AstralSightStudios": "mirror-01",
-    "AL-1S-hash": "mirror-01",
     "Dreamqiucn": "mirror-01",
+    "AL-1S-hash": "mirror-01",
     "shantuskat": "mirror-01",
     "zzz78bc": "mirror-01",
     "ChiHuan0807": "mirror-01",
@@ -14,20 +14,20 @@
     "sf-yuzifu": "mirror-01",
     "aurysian-yan": "mirror-01",
     "CheongSzesuen": "mirror-01",
-    "YcFeller": "mirror-01",
-    "AzumaChiaki": "mirror-01",
-    "SmallK111407": "mirror-01",
     "wuhaiqi0621": "mirror-01",
+    "YcFeller": "mirror-01",
+    "SmallK111407": "mirror-01",
+    "AzumaChiaki": "mirror-01",
     "liuyuze61": "mirror-01",
     "Ziyimiao5054": "mirror-01",
-    "zaona": "mirror-01",
-    "waterflames-team": "mirror-01",
+    "zaona": "mirror-02",
+    "waterflames-team": "mirror-02",
     "MineBabyBlue": "mirror-02",
-    "Searchstars": "mirror-02",
-    "pcai7296": "mirror-02",
     "Hobjl-lian": "mirror-02",
+    "pcai7296": "mirror-02",
     "Solan-486": "mirror-02",
     "midi-HL": "mirror-02",
+    "searchstars": "mirror-02",
     "virelyx258": "mirror-02",
     "jinmohan": "mirror-02",
     "auberdominique23-hash": "mirror-02",
@@ -36,6 +36,7 @@
     "Hiqming": "mirror-02",
     "Eric-qiqi": "mirror-02",
     "SixOneTeam": "mirror-02",
+    "Azumachiaki": "mirror-02",
     "OnDriveLine": "mirror-02",
     "leset0ng": "mirror-02",
     "DDguan2010": "mirror-02",
@@ -43,15 +44,17 @@
     "Tellmeway0": "mirror-02",
     "IKUN-CXKPRO": "mirror-02",
     "SarmonFish": "mirror-02",
+    "XuebaoHachimi": "mirror-02",
     "easejun": "mirror-02",
     "CoraTech-Wear": "mirror-02",
     "Internet1235": "mirror-02",
+    "Searchstars": "mirror-02",
+    "WhistleO": "mirror-02",
     "NEORUAA": "mirror-02",
     "B4QAQ": "mirror-02",
+    "FelixFan-CN": "mirror-02",
     "apanzinc": "mirror-02",
     "FangAiden": "mirror-02",
-    "FelixFan-CN": "mirror-02",
-    "WhistleO": "mirror-02",
     "WenHuaYiYang": "mirror-02",
     "F7YM": "mirror-02",
     "jianding24": "mirror-02",
@@ -71,17 +74,17 @@
     "Jursin": "mirror-02",
     "SL9325": "mirror-02",
     "lladlam": "mirror-02",
+    "MinimumBubble11": "mirror-02",
     "YuanRong1026": "mirror-02",
     "lin945": "mirror-02",
     "Goge052215": "mirror-02",
     "SXM081115": "mirror-02",
     "jfgege": "mirror-02",
-    "MinimumBubble11": "mirror-02",
-    "mqycn": "mirror-02",
     "hanyu12138": "mirror-02",
+    "mqycn": "mirror-02",
+    "asahiqin": "mirror-02",
     "zyhsck": "mirror-02",
     "skdkzzx": "mirror-02",
-    "asahiqin": "mirror-02",
     "wanggantian": "mirror-02",
     "Clighten": "mirror-02",
     "AetherZeng1145": "mirror-02",
@@ -105,6 +108,10 @@
     "AzumaChiaki": {
       "repo": "mirror-01",
       "url": "https://mirror-01.abox.run/AzumaChiaki/"
+    },
+    "Azumachiaki": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Azumachiaki/"
     },
     "B4QAQ": {
       "repo": "mirror-02",
@@ -266,6 +273,10 @@
       "repo": "mirror-02",
       "url": "https://mirror-02.abox.run/WhistleO/"
     },
+    "XuebaoHachimi": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/XuebaoHachimi/"
+    },
     "YangWan233": {
       "repo": "mirror-02",
       "url": "https://mirror-02.abox.run/YangWan233/"
@@ -370,6 +381,10 @@
       "repo": "mirror-02",
       "url": "https://mirror-02.abox.run/pcai7296/"
     },
+    "searchstars": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/searchstars/"
+    },
     "sf-yuzifu": {
       "repo": "mirror-01",
       "url": "https://mirror-01.abox.run/sf-yuzifu/"
@@ -399,8 +414,8 @@
       "url": "https://mirror-02.abox.run/wanggantian/"
     },
     "waterflames-team": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/waterflames-team/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/waterflames-team/"
     },
     "wuhaiqi0621": {
       "repo": "mirror-01",
@@ -419,8 +434,8 @@
       "url": "https://mirror-02.abox.run/yzl3014/"
     },
     "zaona": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/zaona/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/zaona/"
     },
     "zyhsck": {
       "repo": "mirror-02",

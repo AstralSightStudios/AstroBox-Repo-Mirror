@@ -21,6 +21,11 @@
       "statusCode": 302
     },
     {
+      "source": "/Azumachiaki/*",
+      "destination": "https://mirror-02.abox.run/Azumachiaki/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/B4QAQ/*",
       "destination": "https://mirror-02.abox.run/B4QAQ/:splat",
       "statusCode": 302
@@ -221,6 +226,11 @@
       "statusCode": 302
     },
     {
+      "source": "/XuebaoHachimi/*",
+      "destination": "https://mirror-02.abox.run/XuebaoHachimi/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/YangWan233/*",
       "destination": "https://mirror-02.abox.run/YangWan233/:splat",
       "statusCode": 302
@@ -351,6 +361,11 @@
       "statusCode": 302
     },
     {
+      "source": "/searchstars/*",
+      "destination": "https://mirror-02.abox.run/searchstars/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/sf-yuzifu/*",
       "destination": "https://mirror-01.abox.run/sf-yuzifu/:splat",
       "statusCode": 302
@@ -387,7 +402,7 @@
     },
     {
       "source": "/waterflames-team/*",
-      "destination": "https://mirror-01.abox.run/waterflames-team/:splat",
+      "destination": "https://mirror-02.abox.run/waterflames-team/:splat",
       "statusCode": 302
     },
     {
@@ -412,7 +427,7 @@
     },
     {
       "source": "/zaona/*",
-      "destination": "https://mirror-01.abox.run/zaona/:splat",
+      "destination": "https://mirror-02.abox.run/zaona/:splat",
       "statusCode": 302
     },
     {
