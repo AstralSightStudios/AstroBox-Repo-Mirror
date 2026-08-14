@@ -1,0 +1,429 @@
+{
+  "redirects": [
+    {
+      "source": "/AL-1S-hash/*",
+      "destination": "https://mirror-01.abox.run/AL-1S-hash/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/AetherZeng1145/*",
+      "destination": "https://mirror-02.abox.run/AetherZeng1145/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/AstralSightStudios/*",
+      "destination": "https://mirror-01.abox.run/AstralSightStudios/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/AzumaChiaki/*",
+      "destination": "https://mirror-01.abox.run/AzumaChiaki/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/B4QAQ/*",
+      "destination": "https://mirror-02.abox.run/B4QAQ/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/CJackHwang/*",
+      "destination": "https://mirror-02.abox.run/CJackHwang/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Cannyworks29/*",
+      "destination": "https://mirror-01.abox.run/Cannyworks29/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/CheongSzesuen/*",
+      "destination": "https://mirror-01.abox.run/CheongSzesuen/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/ChiHuan0807/*",
+      "destination": "https://mirror-01.abox.run/ChiHuan0807/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Clighten/*",
+      "destination": "https://mirror-02.abox.run/Clighten/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/CoraTech-Wear/*",
+      "destination": "https://mirror-02.abox.run/CoraTech-Wear/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/DDguan2010/*",
+      "destination": "https://mirror-02.abox.run/DDguan2010/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Demon0H/*",
+      "destination": "https://mirror-02.abox.run/Demon0H/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Dreamqiucn/*",
+      "destination": "https://mirror-01.abox.run/Dreamqiucn/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Eric-qiqi/*",
+      "destination": "https://mirror-02.abox.run/Eric-qiqi/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/F7YM/*",
+      "destination": "https://mirror-02.abox.run/F7YM/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/FangAiden/*",
+      "destination": "https://mirror-02.abox.run/FangAiden/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/FelixFan-CN/*",
+      "destination": "https://mirror-02.abox.run/FelixFan-CN/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Goge052215/*",
+      "destination": "https://mirror-02.abox.run/Goge052215/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Hiqming/*",
+      "destination": "https://mirror-02.abox.run/Hiqming/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Hobjl-lian/*",
+      "destination": "https://mirror-02.abox.run/Hobjl-lian/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/IKUN-CXKPRO/*",
+      "destination": "https://mirror-02.abox.run/IKUN-CXKPRO/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Internet1235/*",
+      "destination": "https://mirror-02.abox.run/Internet1235/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Jursin/*",
+      "destination": "https://mirror-02.abox.run/Jursin/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/MapleMapleMa/*",
+      "destination": "https://mirror-02.abox.run/MapleMapleMa/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/MineBabyBlue/*",
+      "destination": "https://mirror-02.abox.run/MineBabyBlue/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/MinimumBubble11/*",
+      "destination": "https://mirror-02.abox.run/MinimumBubble11/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/NEORUAA/*",
+      "destination": "https://mirror-02.abox.run/NEORUAA/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/OnDriveLine/*",
+      "destination": "https://mirror-02.abox.run/OnDriveLine/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/OrPudding/*",
+      "destination": "https://mirror-02.abox.run/OrPudding/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Orange0w0/*",
+      "destination": "https://mirror-02.abox.run/Orange0w0/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/RX79XT/*",
+      "destination": "https://mirror-02.abox.run/RX79XT/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Rubbishzzz/*",
+      "destination": "https://mirror-02.abox.run/Rubbishzzz/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/SL9325/*",
+      "destination": "https://mirror-02.abox.run/SL9325/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/SXM081115/*",
+      "destination": "https://mirror-02.abox.run/SXM081115/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/SarmonFish/*",
+      "destination": "https://mirror-02.abox.run/SarmonFish/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Searchstars/*",
+      "destination": "https://mirror-02.abox.run/Searchstars/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Shellplusplus/*",
+      "destination": "https://mirror-02.abox.run/Shellplusplus/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/SixOneTeam/*",
+      "destination": "https://mirror-02.abox.run/SixOneTeam/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/SmallK111407/*",
+      "destination": "https://mirror-01.abox.run/SmallK111407/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Solan-486/*",
+      "destination": "https://mirror-02.abox.run/Solan-486/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Tellmeway0/*",
+      "destination": "https://mirror-02.abox.run/Tellmeway0/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/WenHuaYiYang/*",
+      "destination": "https://mirror-02.abox.run/WenHuaYiYang/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/WhistleO/*",
+      "destination": "https://mirror-02.abox.run/WhistleO/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/YangWan233/*",
+      "destination": "https://mirror-02.abox.run/YangWan233/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/YcFeller/*",
+      "destination": "https://mirror-01.abox.run/YcFeller/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/YuanRong1026/*",
+      "destination": "https://mirror-02.abox.run/YuanRong1026/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/Ziyimiao5054/*",
+      "destination": "https://mirror-01.abox.run/Ziyimiao5054/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/apanzinc/*",
+      "destination": "https://mirror-02.abox.run/apanzinc/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/asahiqin/*",
+      "destination": "https://mirror-02.abox.run/asahiqin/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/auberdominique23-hash/*",
+      "destination": "https://mirror-02.abox.run/auberdominique23-hash/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/aurysian-yan/*",
+      "destination": "https://mirror-01.abox.run/aurysian-yan/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/cciccicu/*",
+      "destination": "https://mirror-02.abox.run/cciccicu/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/dm1366631/*",
+      "destination": "https://mirror-02.abox.run/dm1366631/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/easejun/*",
+      "destination": "https://mirror-02.abox.run/easejun/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/hanyu12138/*",
+      "destination": "https://mirror-02.abox.run/hanyu12138/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/hrsthrt74/*",
+      "destination": "https://mirror-01.abox.run/hrsthrt74/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/jes-benjamin/*",
+      "destination": "https://mirror-02.abox.run/jes-benjamin/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/jfgege/*",
+      "destination": "https://mirror-02.abox.run/jfgege/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/jianding24/*",
+      "destination": "https://mirror-02.abox.run/jianding24/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/jinmohan/*",
+      "destination": "https://mirror-02.abox.run/jinmohan/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/leset0ng/*",
+      "destination": "https://mirror-02.abox.run/leset0ng/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/lin945/*",
+      "destination": "https://mirror-02.abox.run/lin945/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/liuyuze61/*",
+      "destination": "https://mirror-01.abox.run/liuyuze61/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/lladlam/*",
+      "destination": "https://mirror-02.abox.run/lladlam/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/mehtmls/*",
+      "destination": "https://mirror-02.abox.run/mehtmls/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/midi-HL/*",
+      "destination": "https://mirror-02.abox.run/midi-HL/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/mintsummer67/*",
+      "destination": "https://mirror-02.abox.run/mintsummer67/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/mqycn/*",
+      "destination": "https://mirror-02.abox.run/mqycn/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/pcai7296/*",
+      "destination": "https://mirror-02.abox.run/pcai7296/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/sf-yuzifu/*",
+      "destination": "https://mirror-01.abox.run/sf-yuzifu/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/shantuskat/*",
+      "destination": "https://mirror-01.abox.run/shantuskat/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/sjjsjj8/*",
+      "destination": "https://mirror-02.abox.run/sjjsjj8/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/skdkzzx/*",
+      "destination": "https://mirror-02.abox.run/skdkzzx/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/txcn727-coder/*",
+      "destination": "https://mirror-02.abox.run/txcn727-coder/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/virelyx258/*",
+      "destination": "https://mirror-02.abox.run/virelyx258/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/wanggantian/*",
+      "destination": "https://mirror-02.abox.run/wanggantian/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/waterflames-team/*",
+      "destination": "https://mirror-01.abox.run/waterflames-team/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/wuhaiqi0621/*",
+      "destination": "https://mirror-01.abox.run/wuhaiqi0621/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/yizigezi/*",
+      "destination": "https://mirror-02.abox.run/yizigezi/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/yxinstu/*",
+      "destination": "https://mirror-02.abox.run/yxinstu/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/yzl3014/*",
+      "destination": "https://mirror-02.abox.run/yzl3014/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/zaona/*",
+      "destination": "https://mirror-01.abox.run/zaona/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/zyhsck/*",
+      "destination": "https://mirror-02.abox.run/zyhsck/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/zzz78bc/*",
+      "destination": "https://mirror-01.abox.run/zzz78bc/:splat",
+      "statusCode": 302
+    }
+  ]
+}

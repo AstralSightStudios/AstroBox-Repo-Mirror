@@ -1,8 +1,0 @@
-/target/
-# /dist/
-/logs/
-.DS_Store
-# macOS custom folder icon metadata (the final character is a control byte).
-Icon?
-.SynologyWorkingDirectory
-AGENTS.md

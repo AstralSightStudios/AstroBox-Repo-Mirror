@@ -1,0 +1,434 @@
+{
+  "version": 1,
+  "org": "AstroBox-Repo-Mirror",
+  "base_domain": "abox.run",
+  "owner_map": {
+    "hrsthrt74": "mirror-01",
+    "AstralSightStudios": "mirror-01",
+    "AL-1S-hash": "mirror-01",
+    "Dreamqiucn": "mirror-01",
+    "shantuskat": "mirror-01",
+    "zzz78bc": "mirror-01",
+    "ChiHuan0807": "mirror-01",
+    "Cannyworks29": "mirror-01",
+    "sf-yuzifu": "mirror-01",
+    "aurysian-yan": "mirror-01",
+    "CheongSzesuen": "mirror-01",
+    "YcFeller": "mirror-01",
+    "AzumaChiaki": "mirror-01",
+    "SmallK111407": "mirror-01",
+    "wuhaiqi0621": "mirror-01",
+    "liuyuze61": "mirror-01",
+    "Ziyimiao5054": "mirror-01",
+    "zaona": "mirror-01",
+    "waterflames-team": "mirror-01",
+    "MineBabyBlue": "mirror-02",
+    "Searchstars": "mirror-02",
+    "pcai7296": "mirror-02",
+    "Hobjl-lian": "mirror-02",
+    "Solan-486": "mirror-02",
+    "midi-HL": "mirror-02",
+    "virelyx258": "mirror-02",
+    "jinmohan": "mirror-02",
+    "auberdominique23-hash": "mirror-02",
+    "cciccicu": "mirror-02",
+    "YangWan233": "mirror-02",
+    "Hiqming": "mirror-02",
+    "Eric-qiqi": "mirror-02",
+    "SixOneTeam": "mirror-02",
+    "OnDriveLine": "mirror-02",
+    "leset0ng": "mirror-02",
+    "DDguan2010": "mirror-02",
+    "mehtmls": "mirror-02",
+    "Tellmeway0": "mirror-02",
+    "IKUN-CXKPRO": "mirror-02",
+    "SarmonFish": "mirror-02",
+    "easejun": "mirror-02",
+    "CoraTech-Wear": "mirror-02",
+    "Internet1235": "mirror-02",
+    "NEORUAA": "mirror-02",
+    "B4QAQ": "mirror-02",
+    "apanzinc": "mirror-02",
+    "FangAiden": "mirror-02",
+    "FelixFan-CN": "mirror-02",
+    "WhistleO": "mirror-02",
+    "WenHuaYiYang": "mirror-02",
+    "F7YM": "mirror-02",
+    "jianding24": "mirror-02",
+    "OrPudding": "mirror-02",
+    "MapleMapleMa": "mirror-02",
+    "Demon0H": "mirror-02",
+    "yzl3014": "mirror-02",
+    "Orange0w0": "mirror-02",
+    "RX79XT": "mirror-02",
+    "txcn727-coder": "mirror-02",
+    "jes-benjamin": "mirror-02",
+    "mintsummer67": "mirror-02",
+    "sjjsjj8": "mirror-02",
+    "dm1366631": "mirror-02",
+    "Shellplusplus": "mirror-02",
+    "yxinstu": "mirror-02",
+    "Jursin": "mirror-02",
+    "SL9325": "mirror-02",
+    "lladlam": "mirror-02",
+    "YuanRong1026": "mirror-02",
+    "lin945": "mirror-02",
+    "Goge052215": "mirror-02",
+    "SXM081115": "mirror-02",
+    "jfgege": "mirror-02",
+    "MinimumBubble11": "mirror-02",
+    "mqycn": "mirror-02",
+    "hanyu12138": "mirror-02",
+    "zyhsck": "mirror-02",
+    "skdkzzx": "mirror-02",
+    "asahiqin": "mirror-02",
+    "wanggantian": "mirror-02",
+    "Clighten": "mirror-02",
+    "AetherZeng1145": "mirror-02",
+    "Rubbishzzz": "mirror-02",
+    "yizigezi": "mirror-02",
+    "CJackHwang": "mirror-02"
+  },
+  "owners": {
+    "AL-1S-hash": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/AL-1S-hash/"
+    },
+    "AetherZeng1145": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/AetherZeng1145/"
+    },
+    "AstralSightStudios": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/AstralSightStudios/"
+    },
+    "AzumaChiaki": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/AzumaChiaki/"
+    },
+    "B4QAQ": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/B4QAQ/"
+    },
+    "CJackHwang": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/CJackHwang/"
+    },
+    "Cannyworks29": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/Cannyworks29/"
+    },
+    "CheongSzesuen": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/CheongSzesuen/"
+    },
+    "ChiHuan0807": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/ChiHuan0807/"
+    },
+    "Clighten": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Clighten/"
+    },
+    "CoraTech-Wear": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/CoraTech-Wear/"
+    },
+    "DDguan2010": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/DDguan2010/"
+    },
+    "Demon0H": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Demon0H/"
+    },
+    "Dreamqiucn": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/Dreamqiucn/"
+    },
+    "Eric-qiqi": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Eric-qiqi/"
+    },
+    "F7YM": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/F7YM/"
+    },
+    "FangAiden": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/FangAiden/"
+    },
+    "FelixFan-CN": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/FelixFan-CN/"
+    },
+    "Goge052215": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Goge052215/"
+    },
+    "Hiqming": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Hiqming/"
+    },
+    "Hobjl-lian": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Hobjl-lian/"
+    },
+    "IKUN-CXKPRO": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/IKUN-CXKPRO/"
+    },
+    "Internet1235": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Internet1235/"
+    },
+    "Jursin": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Jursin/"
+    },
+    "MapleMapleMa": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/MapleMapleMa/"
+    },
+    "MineBabyBlue": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/MineBabyBlue/"
+    },
+    "MinimumBubble11": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/MinimumBubble11/"
+    },
+    "NEORUAA": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/NEORUAA/"
+    },
+    "OnDriveLine": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/OnDriveLine/"
+    },
+    "OrPudding": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/OrPudding/"
+    },
+    "Orange0w0": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Orange0w0/"
+    },
+    "RX79XT": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/RX79XT/"
+    },
+    "Rubbishzzz": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Rubbishzzz/"
+    },
+    "SL9325": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/SL9325/"
+    },
+    "SXM081115": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/SXM081115/"
+    },
+    "SarmonFish": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/SarmonFish/"
+    },
+    "Searchstars": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Searchstars/"
+    },
+    "Shellplusplus": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Shellplusplus/"
+    },
+    "SixOneTeam": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/SixOneTeam/"
+    },
+    "SmallK111407": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/SmallK111407/"
+    },
+    "Solan-486": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Solan-486/"
+    },
+    "Tellmeway0": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Tellmeway0/"
+    },
+    "WenHuaYiYang": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/WenHuaYiYang/"
+    },
+    "WhistleO": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/WhistleO/"
+    },
+    "YangWan233": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/YangWan233/"
+    },
+    "YcFeller": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/YcFeller/"
+    },
+    "YuanRong1026": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/YuanRong1026/"
+    },
+    "Ziyimiao5054": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/Ziyimiao5054/"
+    },
+    "apanzinc": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/apanzinc/"
+    },
+    "asahiqin": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/asahiqin/"
+    },
+    "auberdominique23-hash": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/auberdominique23-hash/"
+    },
+    "aurysian-yan": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/aurysian-yan/"
+    },
+    "cciccicu": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/cciccicu/"
+    },
+    "dm1366631": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/dm1366631/"
+    },
+    "easejun": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/easejun/"
+    },
+    "hanyu12138": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/hanyu12138/"
+    },
+    "hrsthrt74": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/hrsthrt74/"
+    },
+    "jes-benjamin": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/jes-benjamin/"
+    },
+    "jfgege": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/jfgege/"
+    },
+    "jianding24": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/jianding24/"
+    },
+    "jinmohan": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/jinmohan/"
+    },
+    "leset0ng": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/leset0ng/"
+    },
+    "lin945": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/lin945/"
+    },
+    "liuyuze61": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/liuyuze61/"
+    },
+    "lladlam": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/lladlam/"
+    },
+    "mehtmls": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/mehtmls/"
+    },
+    "midi-HL": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/midi-HL/"
+    },
+    "mintsummer67": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/mintsummer67/"
+    },
+    "mqycn": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/mqycn/"
+    },
+    "pcai7296": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/pcai7296/"
+    },
+    "sf-yuzifu": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/sf-yuzifu/"
+    },
+    "shantuskat": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/shantuskat/"
+    },
+    "sjjsjj8": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/sjjsjj8/"
+    },
+    "skdkzzx": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/skdkzzx/"
+    },
+    "txcn727-coder": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/txcn727-coder/"
+    },
+    "virelyx258": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/virelyx258/"
+    },
+    "wanggantian": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/wanggantian/"
+    },
+    "waterflames-team": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/waterflames-team/"
+    },
+    "wuhaiqi0621": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/wuhaiqi0621/"
+    },
+    "yizigezi": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/yizigezi/"
+    },
+    "yxinstu": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/yxinstu/"
+    },
+    "yzl3014": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/yzl3014/"
+    },
+    "zaona": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/zaona/"
+    },
+    "zyhsck": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/zyhsck/"
+    },
+    "zzz78bc": {
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/zzz78bc/"
+    }
+  }
+}

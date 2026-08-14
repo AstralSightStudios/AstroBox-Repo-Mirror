@@ -1,2 +1,0 @@
-# OKSchoolLife_AstroBox_Release
-爱死戳鲍克斯发布用仓库

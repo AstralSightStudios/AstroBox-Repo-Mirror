@@ -21,16 +21,18 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Run mirror sync
+      - name: Run mirror sync (push to org subrepos)
         run: python3 scripts/mirror.py
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          ORG_GH_TOKEN: ${{ secrets.ASTROBOX_ORG_TOKEN }}
+          MIRROR_ORG: AstroBox-Repo-Mirror
 
-      - name: Commit and push
+      - name: Commit and push bootstrap metadata
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add edgeone.json mapping.json index.html scripts
           git diff --cached --quiet || git commit -m "chore: sync mirror $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
         env:
