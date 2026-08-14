@@ -418,22 +418,30 @@ def render_index_cards(mapping: dict[str, str], owner_sizes: dict[str, int]) -> 
 
 
 def render_index_html(mapping: dict[str, str], owner_sizes: dict[str, int]) -> None:
-    """Inject subrepo cards into index.html (replaces the SUBREPO_CARDS comment)."""
+    """Inject subrepo cards into index.html.
+
+    The cards live between <!-- SUBREPO_CARDS_START --> and
+    <!-- SUBREPO_CARDS_END --> comments; the block is replaced in place so
+    the marker comments survive and re-rendering stays idempotent.
+    """
     path = os.path.join(WORK_DIR, "index.html")
     if not os.path.isfile(path):
         return
     with open(path, encoding="utf-8") as f:
         html = f.read()
-    marker = "<!-- SUBREPO_CARDS -->"
-    if marker not in html:
-        log("WARN: index.html missing SUBREPO_CARDS marker, cards not injected")
+    start = "<!-- SUBREPO_CARDS_START -->"
+    end = "<!-- SUBREPO_CARDS_END -->"
+    if start not in html or end not in html:
+        log("WARN: index.html missing SUBREPO_CARDS markers, cards not injected")
         return
     cards = (
         f'  <div class="cards">\n'
         f'{render_index_cards(mapping, owner_sizes)}\n'
         f'  </div>\n'
     )
-    html = html.replace(marker, cards)
+    head, _, rest = html.partition(start)
+    _, _, tail = rest.partition(end)
+    html = f"{head}{start}\n{cards}{end}{tail}"
     with open(path, "w", encoding="utf-8") as f:
         f.write(html)
 
@@ -507,7 +515,10 @@ def push_subrepo(repo: str, mapping: dict[str, str]) -> tuple[str, str]:
         git("init", "-q", cwd=clone)
         git("remote", "add", "origin", origin, cwd=clone)
         git("add", "-A", cwd=clone)
-        git("commit", "-q", "-m", f"sync mirror {repo}", cwd=clone, check=False)
+        # explicit identity: Actions runners have no git user config
+        git("-c", "user.name=AstroBox Mirror Bot",
+            "-c", "user.email=mirror@users.noreply.github.com",
+            "commit", "-q", "-m", f"sync mirror {repo}", cwd=clone, check=False)
         # single-commit repo: force-push keeps history at exactly one commit
         git("push", "-f", "-q", "origin", "HEAD:main", cwd=clone)
         return repo, f"ok:{len(owners)} owners"
