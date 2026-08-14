@@ -1,0 +1,16 @@
+[package]
+name = "smsforwarder-helper"
+version = "1.0.0"
+edition = "2021"
+
+[lib]
+name = "smsforwarder_helper"
+crate-type = ["cdylib"]
+
+[dependencies]
+wit-bindgen = { version = "0.47.0", features = ["async", "async-spawn"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+url = "2.5"

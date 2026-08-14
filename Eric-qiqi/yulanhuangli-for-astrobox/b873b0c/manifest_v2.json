@@ -1,0 +1,48 @@
+{
+  "item": {
+    "id": "",
+    "restype": "watchface",
+    "name": "玉兰黄鹂",
+    "description": "来自于非闇的工笔画《玉兰黄鹂》",
+    "preview": [
+      "media/awa.png",
+      "media/preview.png"
+    ],
+    "icon": "media/icon.png",
+    "cover": "media/awa.png",
+    "author": [
+      {
+        "name": "Ericqiqi",
+        "bindABAccount": true
+      }
+    ]
+  },
+  "links": [
+    {
+      "title": "联系我",
+      "url": "https://www.bandbbs.cn/members/130916/",
+      "icon": ""
+    },
+    {
+      "title": "投喂我",
+      "url": "https://afdian.com/a/3r1cqiqi",
+      "icon": ""
+    },
+    {
+      "title": "进群吹水",
+      "url": "https://qm.qq.com/q/rJm44wzwl2",
+      "icon": ""
+    }
+  ],
+  "downloads": {
+    "xmb10p": {
+      "version": "1.0.0",
+      "file_name": "downloads/yulanhuangli10p.bin"
+    },
+    "xmb9p": {
+      "version": "1.0.0",
+      "file_name": "downloads/yulanhuangli(1).bin"
+    }
+  },
+  "ext": {}
+}

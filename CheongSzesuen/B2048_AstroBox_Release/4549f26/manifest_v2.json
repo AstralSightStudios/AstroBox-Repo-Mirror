@@ -15,23 +15,23 @@
       "review/o66-about-yes-2.png"
     ],
     "icon": "logo.png",
-    "cover": "head/head.png",
+    "cover": "media/head (1).png",
     "author": [
       {
         "name": "WaiJade",
         "bindABAccount": true
       },
       {
-        "name": "乐色桶",
+        "name": "lst",
         "bindABAccount": true
       }
     ]
   },
   "links": [
     {
-      "icon": "",
       "title": "开源地址",
-      "url": "https://github.com/CheongSzesuen/B2048"
+      "url": "https://github.com/CheongSzesuen/B2048",
+      "icon": "GithubLogo"
     }
   ],
   "downloads": {
