@@ -17,13 +17,13 @@
     "wuhaiqi0621": "mirror-01",
     "YcFeller": "mirror-01",
     "SmallK111407": "mirror-01",
+    "Hobjl-lian": "mirror-01",
     "AzumaChiaki": "mirror-01",
     "liuyuze61": "mirror-01",
-    "Ziyimiao5054": "mirror-01",
+    "Ziyimiao5054": "mirror-02",
     "zaona": "mirror-02",
     "waterflames-team": "mirror-02",
     "MineBabyBlue": "mirror-02",
-    "Hobjl-lian": "mirror-02",
     "pcai7296": "mirror-02",
     "Solan-486": "mirror-02",
     "midi-HL": "mirror-02",
@@ -178,8 +178,8 @@
       "url": "https://mirror-02.abox.run/Hiqming/"
     },
     "Hobjl-lian": {
-      "repo": "mirror-02",
-      "url": "https://mirror-02.abox.run/Hobjl-lian/"
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/Hobjl-lian/"
     },
     "IKUN-CXKPRO": {
       "repo": "mirror-02",
@@ -290,8 +290,8 @@
       "url": "https://mirror-02.abox.run/YuanRong1026/"
     },
     "Ziyimiao5054": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/Ziyimiao5054/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Ziyimiao5054/"
     },
     "apanzinc": {
       "repo": "mirror-02",
