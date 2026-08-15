@@ -40,6 +40,7 @@ import tempfile
 import threading
 import urllib.error
 import urllib.request
+import zipfile
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 UPSTREAM = "AstralSightStudios/AstroBox-Repo"
@@ -66,6 +67,18 @@ REPO_CAP_KIB = int(os.environ.get("REPO_CAP_GIB", "1")) * 1024 * 1024
 BASE_DOMAIN = os.environ.get("BASE_DOMAIN", "abox.run")
 # Token with org repo scope; without it git falls back to local credentials.
 ORG_GH_TOKEN = os.environ.get("ORG_GH_TOKEN", "")
+
+# EdgeOne Makers direct-upload deployment (bypasses EdgeOne-side git clone).
+# The Actions runner has fast GitHub access, so it packages each subrepo and
+# uploads the ZIP directly to EdgeOne via the CLI. Requires an API token.
+EDGEONE_TOKEN = os.environ.get("EDGEONE_API_TOKEN", "")
+EDGEONE_CLI = os.environ.get("EDGEONE_CLI", "edgeone")
+EDGEONE_AREA = os.environ.get("EDGEONE_AREA", "global")
+# Name of the main (bootstrap) Makers project on mirror.abox.run.
+EDGEONE_MAIN_PROJECT = os.environ.get("EDGEONE_MAIN_PROJECT", "astrobox-bootstrap")
+# Direct-upload artifacts root: per-subrepo zips + bootstrap zip.
+DEPLOY_ROOT = os.environ.get("DEPLOY_ROOT", "/tmp/astrobox-deploy")
+EDGEONE_DEPLOY_TIMEOUT = int(os.environ.get("EDGEONE_DEPLOY_TIMEOUT", "3600"))
 
 # Working roots (always outside the bootstrap repo tree)
 STAGING_ROOT = os.environ.get("STAGING_ROOT", "/tmp/astrobox-staging")
@@ -529,6 +542,80 @@ def push_subrepo(repo: str, mapping: dict[str, str]) -> tuple[str, str]:
         return repo, f"push: {e}"
 
 
+def make_zip(src: str, dst: str, extra_file: tuple[str, str] | None = None) -> None:
+    """Zip a directory tree (excluding .git) into dst.
+
+    EdgeOne Direct Upload takes a single ZIP. .git is excluded so the upload
+    only carries the mirrored content (mirror-XX.abox.run only serves files).
+    extra_file optionally adds a root-level file (e.g. an index.html for the
+    subrepo project so the deploy isn't rejected for missing an entry page).
+    """
+    with zipfile.ZipFile(dst, "w", zipfile.ZIP_DEFLATED) as zf:
+        for root, dirs, files in os.walk(src):
+            dirs[:] = [d for d in dirs if d != ".git"]
+            for name in files:
+                full = os.path.join(root, name)
+                arc = os.path.relpath(full, src)
+                zf.write(full, arc)
+        if extra_file:
+            zf.writestr(extra_file[0], extra_file[1])
+
+
+def subrepo_index_html(repo: str) -> str:
+    """Minimal entry page for a subrepo project (mirror-XX.abox.run)."""
+    return (
+        "<!doctype html><html lang=\"zh-CN\"><head><meta charset=\"utf-8\">"
+        "<title>AstroBox {repo}</title></head><body>"
+        "<h1>AstroBox 资源镜像子站</h1>"
+        "<p>此子站由上游镜像自动同步而来，内容按作者分仓存储。"
+        f"主页：<a href=\"https://{BASE_DOMAIN}\">https://{BASE_DOMAIN}</a></p>"
+        "</body></html>"
+    ).format(repo=repo)
+
+
+def deploy_zip(zip_path: str, project: str) -> str:
+    """Upload one ZIP to an EdgeOne Makers project via the CLI.
+
+    Returns a status string. The CLI must be installed and EDGEONE_TOKEN set.
+    """
+    cmd = [
+        EDGEONE_CLI, "makers", "deploy", zip_path,
+        "-n", project, "-t", EDGEONE_TOKEN, "-a", EDGEONE_AREA,
+    ]
+    try:
+        proc = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=EDGEONE_DEPLOY_TIMEOUT
+        )
+    except subprocess.TimeoutExpired:
+        return f"deploy: timeout after {EDGEONE_DEPLOY_TIMEOUT}s"
+    except Exception as e:
+        return f"deploy: {e}"
+    if proc.returncode == 0:
+        return "deployed"
+    detail = (proc.stderr or proc.stdout or "").strip().splitlines()
+    return f"deploy: {(detail[-1] if detail else proc.returncode)[:200]}"
+
+
+def deploy_subrepo(repo: str, clone_dir: str) -> str:
+    """Package one subrepo clone (minus .git) and upload to its Makers project."""
+    zip_path = os.path.join(DEPLOY_ROOT, f"{repo}.zip")
+    os.makedirs(DEPLOY_ROOT, exist_ok=True)
+    make_zip(clone_dir, zip_path, ("index.html", subrepo_index_html(repo)))
+    return deploy_zip(zip_path, repo)
+
+
+def deploy_bootstrap() -> str:
+    """Package the bootstrap repo (index.html + edgeone.json) to the main project."""
+    zip_path = os.path.join(DEPLOY_ROOT, "bootstrap.zip")
+    os.makedirs(DEPLOY_ROOT, exist_ok=True)
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        for name in ("index.html", "edgeone.json"):
+            full = os.path.join(WORK_DIR, name)
+            if os.path.isfile(full):
+                zf.write(full, name)
+    return deploy_zip(zip_path, EDGEONE_MAIN_PROJECT)
+
+
 def main() -> int:
     log(f"WORK_DIR={WORK_DIR} ORG={ORG_NAME} staging={STAGING_ROOT} clone={CLONE_ROOT}")
     wipe_staging()
@@ -610,20 +697,39 @@ def main() -> int:
     for r, st in sorted(push_results):
         log(f"  PUSH {r} -> {st}")
 
+    push_failed = [st for _, st in push_results if not st.startswith("ok")]
+    if push_failed:
+        log(f"FATAL: {len(push_failed)} subrepo pushes failed")
+        return 1
+
     # regenerate bootstrap artifacts
     write_mapping(mapping)
     write_edgeone_json(mapping)
     render_index_html(mapping, owner_sizes)
     log(f"mapping.json: {len(mapping)} owners -> {len(repos)} subrepos")
 
+    # deploy to EdgeOne via direct upload (bypasses EdgeOne-side git clone,
+    # which is too slow from Tencent's build machines)
+    if not EDGEONE_TOKEN:
+        log("WARN: EDGEONE_API_TOKEN not set, skipping EdgeOne deploy")
+    else:
+        os.makedirs(DEPLOY_ROOT, exist_ok=True)
+        deploy_results: list[tuple[str, str]] = []
+        for r in repos:
+            clone_dir = os.path.join(CLONE_ROOT, r)
+            deploy_results.append((r, deploy_subrepo(r, clone_dir)))
+        deploy_results.append((EDGEONE_MAIN_PROJECT, deploy_bootstrap()))
+        for name, st in sorted(deploy_results):
+            log(f"  DEPLOY {name} -> {st}")
+        deploy_failed = [st for _, st in deploy_results if st != "deployed"]
+        if deploy_failed:
+            log(f"FATAL: {len(deploy_failed)} EdgeOne deploys failed")
+            return 1
+
     # dead upstream entries must not block the whole sync forever
     allow_failed = int(os.environ.get("ALLOW_FAILED", "10"))
     if failed and len(failed) <= allow_failed:
         log(f"WARN: {len(failed)} failed but <= ALLOW_FAILED={allow_failed}, continuing")
-    push_failed = [st for _, st in push_results if not st.startswith("ok")]
-    if push_failed:
-        log(f"FATAL: {len(push_failed)} subrepo pushes failed")
-        return 1
 
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:

@@ -21,12 +21,17 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Run mirror sync (push to org subrepos)
+      - name: Install EdgeOne CLI
+        run: npm install -g edgeone
+
+      - name: Run mirror sync (push to org subrepos + EdgeOne direct upload)
         run: python3 scripts/mirror.py
         env:
           GITHUB_TOKEN: ${{ github.token }}
           ORG_GH_TOKEN: ${{ secrets.ASTROBOX_ORG_TOKEN }}
           MIRROR_ORG: AstroBox-Repo-Mirror
+          EDGEONE_API_TOKEN: ${{ secrets.EDGEONE_API_TOKEN }}
+          EDGEONE_MAIN_PROJECT: ${{ vars.EDGEONE_MAIN_PROJECT || 'astrobox-bootstrap' }}
 
       - name: Commit and push bootstrap metadata
         run: |
