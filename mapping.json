@@ -4,9 +4,9 @@
   "base_domain": "abox.run",
   "owner_map": {
     "hrsthrt74": "mirror-01",
-    "AstralSightStudios": "mirror-01",
     "Dreamqiucn": "mirror-01",
     "AL-1S-hash": "mirror-01",
+    "AstralSightStudios": "mirror-01",
     "shantuskat": "mirror-01",
     "zzz78bc": "mirror-01",
     "ChiHuan0807": "mirror-01",
@@ -19,8 +19,8 @@
     "YcFeller": "mirror-01",
     "SmallK111407": "mirror-01",
     "AzumaChiaki": "mirror-01",
-    "liuyuze61": "mirror-02",
-    "Ziyimiao5054": "mirror-02",
+    "liuyuze61": "mirror-01",
+    "Ziyimiao5054": "mirror-01",
     "zaona": "mirror-02",
     "waterflames-team": "mirror-02",
     "MineBabyBlue": "mirror-02",
@@ -71,6 +71,7 @@
     "dm1366631": "mirror-02",
     "Shellplusplus": "mirror-02",
     "yxinstu": "mirror-02",
+    "HazeNoTea": "mirror-02",
     "Jursin": "mirror-02",
     "SL9325": "mirror-02",
     "lladlam": "mirror-02",
@@ -79,6 +80,7 @@
     "lin945": "mirror-02",
     "Goge052215": "mirror-02",
     "SXM081115": "mirror-02",
+    "MCXCC303": "mirror-02",
     "jfgege": "mirror-02",
     "hanyu12138": "mirror-02",
     "mqycn": "mirror-02",
@@ -173,6 +175,10 @@
       "repo": "mirror-02",
       "url": "https://mirror-02.abox.run/Goge052215/"
     },
+    "HazeNoTea": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/HazeNoTea/"
+    },
     "Hiqming": {
       "repo": "mirror-02",
       "url": "https://mirror-02.abox.run/Hiqming/"
@@ -192,6 +198,10 @@
     "Jursin": {
       "repo": "mirror-02",
       "url": "https://mirror-02.abox.run/Jursin/"
+    },
+    "MCXCC303": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/MCXCC303/"
     },
     "MapleMapleMa": {
       "repo": "mirror-02",
@@ -290,8 +300,8 @@
       "url": "https://mirror-02.abox.run/YuanRong1026/"
     },
     "Ziyimiao5054": {
-      "repo": "mirror-02",
-      "url": "https://mirror-02.abox.run/Ziyimiao5054/"
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/Ziyimiao5054/"
     },
     "apanzinc": {
       "repo": "mirror-02",
@@ -354,8 +364,8 @@
       "url": "https://mirror-02.abox.run/lin945/"
     },
     "liuyuze61": {
-      "repo": "mirror-02",
-      "url": "https://mirror-02.abox.run/liuyuze61/"
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/liuyuze61/"
     },
     "lladlam": {
       "repo": "mirror-02",

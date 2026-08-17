@@ -101,6 +101,11 @@
       "statusCode": 302
     },
     {
+      "source": "/HazeNoTea/*",
+      "destination": "https://mirror-02.abox.run/HazeNoTea/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/Hiqming/*",
       "destination": "https://mirror-02.abox.run/Hiqming/:splat",
       "statusCode": 302
@@ -123,6 +128,11 @@
     {
       "source": "/Jursin/*",
       "destination": "https://mirror-02.abox.run/Jursin/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/MCXCC303/*",
+      "destination": "https://mirror-02.abox.run/MCXCC303/:splat",
       "statusCode": 302
     },
     {
@@ -247,7 +257,7 @@
     },
     {
       "source": "/Ziyimiao5054/*",
-      "destination": "https://mirror-02.abox.run/Ziyimiao5054/:splat",
+      "destination": "https://mirror-01.abox.run/Ziyimiao5054/:splat",
       "statusCode": 302
     },
     {
@@ -327,7 +337,7 @@
     },
     {
       "source": "/liuyuze61/*",
-      "destination": "https://mirror-02.abox.run/liuyuze61/:splat",
+      "destination": "https://mirror-01.abox.run/liuyuze61/:splat",
       "statusCode": 302
     },
     {
