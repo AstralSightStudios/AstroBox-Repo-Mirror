@@ -4,9 +4,9 @@
   "base_domain": "abox.run",
   "owner_map": {
     "hrsthrt74": "mirror-01",
+    "AstralSightStudios": "mirror-01",
     "Dreamqiucn": "mirror-01",
     "AL-1S-hash": "mirror-01",
-    "AstralSightStudios": "mirror-01",
     "shantuskat": "mirror-01",
     "zzz78bc": "mirror-01",
     "ChiHuan0807": "mirror-01",
@@ -19,16 +19,16 @@
     "YcFeller": "mirror-01",
     "SmallK111407": "mirror-01",
     "AzumaChiaki": "mirror-01",
-    "liuyuze61": "mirror-01",
-    "Ziyimiao5054": "mirror-01",
+    "liuyuze61": "mirror-02",
+    "Ziyimiao5054": "mirror-02",
     "zaona": "mirror-02",
     "waterflames-team": "mirror-02",
     "MineBabyBlue": "mirror-02",
     "pcai7296": "mirror-02",
     "Solan-486": "mirror-02",
     "midi-HL": "mirror-02",
-    "searchstars": "mirror-02",
     "virelyx258": "mirror-02",
+    "searchstars": "mirror-02",
     "jinmohan": "mirror-02",
     "auberdominique23-hash": "mirror-02",
     "cciccicu": "mirror-02",
@@ -36,6 +36,7 @@
     "Hiqming": "mirror-02",
     "Eric-qiqi": "mirror-02",
     "SixOneTeam": "mirror-02",
+    "Searchstars": "mirror-02",
     "Azumachiaki": "mirror-02",
     "OnDriveLine": "mirror-02",
     "leset0ng": "mirror-02",
@@ -44,7 +45,6 @@
     "Tellmeway0": "mirror-02",
     "IKUN-CXKPRO": "mirror-02",
     "SarmonFish": "mirror-02",
-    "Searchstars": "mirror-02",
     "XuebaoHachimi": "mirror-02",
     "easejun": "mirror-02",
     "CoraTech-Wear": "mirror-02",
@@ -300,8 +300,8 @@
       "url": "https://mirror-02.abox.run/YuanRong1026/"
     },
     "Ziyimiao5054": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/Ziyimiao5054/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Ziyimiao5054/"
     },
     "apanzinc": {
       "repo": "mirror-02",
@@ -364,8 +364,8 @@
       "url": "https://mirror-02.abox.run/lin945/"
     },
     "liuyuze61": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/liuyuze61/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/liuyuze61/"
     },
     "lladlam": {
       "repo": "mirror-02",
