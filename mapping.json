@@ -6,9 +6,9 @@
     "hrsthrt74": "mirror-01",
     "AstralSightStudios": "mirror-01",
     "Dreamqiucn": "mirror-01",
+    "zzz78bc": "mirror-01",
     "AL-1S-hash": "mirror-01",
     "shantuskat": "mirror-01",
-    "zzz78bc": "mirror-01",
     "ChiHuan0807": "mirror-01",
     "Cannyworks29": "mirror-01",
     "sf-yuzifu": "mirror-01",
@@ -18,7 +18,7 @@
     "Hobjl-lian": "mirror-01",
     "YcFeller": "mirror-01",
     "SmallK111407": "mirror-01",
-    "AzumaChiaki": "mirror-01",
+    "AzumaChiaki": "mirror-02",
     "liuyuze61": "mirror-02",
     "Ziyimiao5054": "mirror-02",
     "zaona": "mirror-02",
@@ -29,6 +29,7 @@
     "midi-HL": "mirror-02",
     "virelyx258": "mirror-02",
     "searchstars": "mirror-02",
+    "Searchstars": "mirror-02",
     "jinmohan": "mirror-02",
     "auberdominique23-hash": "mirror-02",
     "cciccicu": "mirror-02",
@@ -36,7 +37,6 @@
     "Hiqming": "mirror-02",
     "Eric-qiqi": "mirror-02",
     "SixOneTeam": "mirror-02",
-    "Searchstars": "mirror-02",
     "Azumachiaki": "mirror-02",
     "OnDriveLine": "mirror-02",
     "leset0ng": "mirror-02",
@@ -66,6 +66,7 @@
     "Orange0w0": "mirror-02",
     "RX79XT": "mirror-02",
     "jes-benjamin": "mirror-02",
+    "MCXCC303": "mirror-02",
     "mintsummer67": "mirror-02",
     "sjjsjj8": "mirror-02",
     "dm1366631": "mirror-02",
@@ -80,7 +81,6 @@
     "lin945": "mirror-02",
     "Goge052215": "mirror-02",
     "SXM081115": "mirror-02",
-    "MCXCC303": "mirror-02",
     "jfgege": "mirror-02",
     "hanyu12138": "mirror-02",
     "mqycn": "mirror-02",
@@ -108,8 +108,8 @@
       "url": "https://mirror-01.abox.run/AstralSightStudios/"
     },
     "AzumaChiaki": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/AzumaChiaki/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/AzumaChiaki/"
     },
     "Azumachiaki": {
       "repo": "mirror-02",

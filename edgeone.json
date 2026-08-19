@@ -17,7 +17,7 @@
     },
     {
       "source": "/AzumaChiaki/*",
-      "destination": "https://mirror-01.abox.run/AzumaChiaki/:splat",
+      "destination": "https://mirror-02.abox.run/AzumaChiaki/:splat",
       "statusCode": 302
     },
     {
