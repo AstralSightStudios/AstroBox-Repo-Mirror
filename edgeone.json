@@ -226,6 +226,11 @@
       "statusCode": 302
     },
     {
+      "source": "/Velvetine13245/*",
+      "destination": "https://mirror-02.abox.run/Velvetine13245/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/WenHuaYiYang/*",
       "destination": "https://mirror-02.abox.run/WenHuaYiYang/:splat",
       "statusCode": 302
