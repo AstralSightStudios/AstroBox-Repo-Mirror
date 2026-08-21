@@ -13,11 +13,11 @@
     "Cannyworks29": "mirror-01",
     "sf-yuzifu": "mirror-01",
     "aurysian-yan": "mirror-01",
+    "YcFeller": "mirror-01",
     "CheongSzesuen": "mirror-01",
     "wuhaiqi0621": "mirror-01",
     "Hobjl-lian": "mirror-01",
-    "YcFeller": "mirror-01",
-    "SmallK111407": "mirror-01",
+    "SmallK111407": "mirror-02",
     "AzumaChiaki": "mirror-02",
     "liuyuze61": "mirror-02",
     "Ziyimiao5054": "mirror-02",
@@ -26,6 +26,7 @@
     "MineBabyBlue": "mirror-02",
     "pcai7296": "mirror-02",
     "Solan-486": "mirror-02",
+    "qihe114514": "mirror-02",
     "midi-HL": "mirror-02",
     "virelyx258": "mirror-02",
     "searchstars": "mirror-02",
@@ -82,8 +83,9 @@
     "lin945": "mirror-02",
     "Goge052215": "mirror-02",
     "SXM081115": "mirror-02",
-    "jfgege": "mirror-02",
     "hanyu12138": "mirror-02",
+    "jfgege": "mirror-02",
+    "Awesome6664": "mirror-02",
     "mqycn": "mirror-02",
     "asahiqin": "mirror-02",
     "zyhsck": "mirror-02",
@@ -107,6 +109,10 @@
     "AstralSightStudios": {
       "repo": "mirror-01",
       "url": "https://mirror-01.abox.run/AstralSightStudios/"
+    },
+    "Awesome6664": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Awesome6664/"
     },
     "AzumaChiaki": {
       "repo": "mirror-02",
@@ -265,8 +271,8 @@
       "url": "https://mirror-02.abox.run/SixOneTeam/"
     },
     "SmallK111407": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/SmallK111407/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/SmallK111407/"
     },
     "Solan-486": {
       "repo": "mirror-02",
@@ -395,6 +401,10 @@
     "pcai7296": {
       "repo": "mirror-02",
       "url": "https://mirror-02.abox.run/pcai7296/"
+    },
+    "qihe114514": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/qihe114514/"
     },
     "searchstars": {
       "repo": "mirror-02",

@@ -16,6 +16,11 @@
       "statusCode": 302
     },
     {
+      "source": "/Awesome6664/*",
+      "destination": "https://mirror-02.abox.run/Awesome6664/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/AzumaChiaki/*",
       "destination": "https://mirror-02.abox.run/AzumaChiaki/:splat",
       "statusCode": 302
@@ -212,7 +217,7 @@
     },
     {
       "source": "/SmallK111407/*",
-      "destination": "https://mirror-01.abox.run/SmallK111407/:splat",
+      "destination": "https://mirror-02.abox.run/SmallK111407/:splat",
       "statusCode": 302
     },
     {
@@ -373,6 +378,11 @@
     {
       "source": "/pcai7296/*",
       "destination": "https://mirror-02.abox.run/pcai7296/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/qihe114514/*",
+      "destination": "https://mirror-02.abox.run/qihe114514/:splat",
       "statusCode": 302
     },
     {
