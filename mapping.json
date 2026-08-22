@@ -27,11 +27,11 @@
     "pcai7296": "mirror-02",
     "Solan-486": "mirror-02",
     "qihe114514": "mirror-02",
+    "jinmohan": "mirror-02",
     "midi-HL": "mirror-02",
     "virelyx258": "mirror-02",
     "searchstars": "mirror-02",
     "Searchstars": "mirror-02",
-    "jinmohan": "mirror-02",
     "auberdominique23-hash": "mirror-02",
     "cciccicu": "mirror-02",
     "YangWan233": "mirror-02",
@@ -71,11 +71,11 @@
     "MCXCC303": "mirror-02",
     "mintsummer67": "mirror-02",
     "SL9325": "mirror-02",
+    "HazeNoTea": "mirror-02",
     "sjjsjj8": "mirror-02",
     "dm1366631": "mirror-02",
     "Shellplusplus": "mirror-02",
     "yxinstu": "mirror-02",
-    "HazeNoTea": "mirror-02",
     "Jursin": "mirror-02",
     "lladlam": "mirror-02",
     "MinimumBubble11": "mirror-02",
@@ -83,9 +83,9 @@
     "lin945": "mirror-02",
     "Goge052215": "mirror-02",
     "SXM081115": "mirror-02",
+    "Awesome6664": "mirror-02",
     "hanyu12138": "mirror-02",
     "jfgege": "mirror-02",
-    "Awesome6664": "mirror-02",
     "mqycn": "mirror-02",
     "asahiqin": "mirror-02",
     "zyhsck": "mirror-02",
@@ -95,7 +95,8 @@
     "AetherZeng1145": "mirror-02",
     "Rubbishzzz": "mirror-02",
     "yizigezi": "mirror-02",
-    "CJackHwang": "mirror-02"
+    "CJackHwang": "mirror-02",
+    "Nyx-233": "mirror-02"
   },
   "owners": {
     "AL-1S-hash": {
@@ -225,6 +226,10 @@
     "NEORUAA": {
       "repo": "mirror-02",
       "url": "https://mirror-02.abox.run/NEORUAA/"
+    },
+    "Nyx-233": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Nyx-233/"
     },
     "OnDriveLine": {
       "repo": "mirror-02",

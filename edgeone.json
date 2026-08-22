@@ -161,6 +161,11 @@
       "statusCode": 302
     },
     {
+      "source": "/Nyx-233/*",
+      "destination": "https://mirror-02.abox.run/Nyx-233/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/OnDriveLine/*",
       "destination": "https://mirror-02.abox.run/OnDriveLine/:splat",
       "statusCode": 302
