@@ -117,7 +117,7 @@
     },
     {
       "source": "/Hobjl-lian/*",
-      "destination": "https://mirror-01.abox.run/Hobjl-lian/:splat",
+      "destination": "https://mirror-02.abox.run/Hobjl-lian/:splat",
       "statusCode": 302
     },
     {
@@ -387,7 +387,7 @@
     },
     {
       "source": "/qihe114514/*",
-      "destination": "https://mirror-02.abox.run/qihe114514/:splat",
+      "destination": "https://mirror-01.abox.run/qihe114514/:splat",
       "statusCode": 302
     },
     {

@@ -11,15 +11,15 @@
     "shantuskat": "mirror-01",
     "ChiHuan0807": "mirror-01",
     "Cannyworks29": "mirror-01",
-    "sf-yuzifu": "mirror-01",
     "aurysian-yan": "mirror-01",
+    "sf-yuzifu": "mirror-01",
     "YcFeller": "mirror-01",
     "CheongSzesuen": "mirror-01",
+    "qihe114514": "mirror-01",
     "wuhaiqi0621": "mirror-01",
-    "Hobjl-lian": "mirror-01",
+    "Hobjl-lian": "mirror-02",
     "SmallK111407": "mirror-02",
     "AzumaChiaki": "mirror-02",
-    "qihe114514": "mirror-02",
     "liuyuze61": "mirror-02",
     "Ziyimiao5054": "mirror-02",
     "zaona": "mirror-02",
@@ -192,8 +192,8 @@
       "url": "https://mirror-02.abox.run/Hiqming/"
     },
     "Hobjl-lian": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/Hobjl-lian/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/Hobjl-lian/"
     },
     "IKUN-CXKPRO": {
       "repo": "mirror-02",
@@ -408,8 +408,8 @@
       "url": "https://mirror-02.abox.run/pcai7296/"
     },
     "qihe114514": {
-      "repo": "mirror-02",
-      "url": "https://mirror-02.abox.run/qihe114514/"
+      "repo": "mirror-01",
+      "url": "https://mirror-01.abox.run/qihe114514/"
     },
     "searchstars": {
       "repo": "mirror-02",
