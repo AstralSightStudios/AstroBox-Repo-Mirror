@@ -4,6 +4,7 @@
   "base_domain": "abox.run",
   "owner_map": {
     "hrsthrt74": "mirror-01",
+    "qihe114514": "mirror-01",
     "AstralSightStudios": "mirror-01",
     "Dreamqiucn": "mirror-01",
     "zzz78bc": "mirror-01",
@@ -14,9 +15,8 @@
     "aurysian-yan": "mirror-01",
     "sf-yuzifu": "mirror-01",
     "YcFeller": "mirror-01",
-    "CheongSzesuen": "mirror-01",
-    "qihe114514": "mirror-01",
-    "wuhaiqi0621": "mirror-01",
+    "CheongSzesuen": "mirror-02",
+    "wuhaiqi0621": "mirror-02",
     "Hobjl-lian": "mirror-02",
     "SmallK111407": "mirror-02",
     "AzumaChiaki": "mirror-02",
@@ -36,6 +36,7 @@
     "cciccicu": "mirror-02",
     "YangWan233": "mirror-02",
     "Hiqming": "mirror-02",
+    "XuebaoHachimi": "mirror-02",
     "Eric-qiqi": "mirror-02",
     "SixOneTeam": "mirror-02",
     "Azumachiaki": "mirror-02",
@@ -46,7 +47,6 @@
     "Tellmeway0": "mirror-02",
     "IKUN-CXKPRO": "mirror-02",
     "SarmonFish": "mirror-02",
-    "XuebaoHachimi": "mirror-02",
     "easejun": "mirror-02",
     "CoraTech-Wear": "mirror-02",
     "Internet1235": "mirror-02",
@@ -136,8 +136,8 @@
       "url": "https://mirror-01.abox.run/Cannyworks29/"
     },
     "CheongSzesuen": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/CheongSzesuen/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/CheongSzesuen/"
     },
     "ChiHuan0807": {
       "repo": "mirror-01",
@@ -448,8 +448,8 @@
       "url": "https://mirror-02.abox.run/waterflames-team/"
     },
     "wuhaiqi0621": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/wuhaiqi0621/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/wuhaiqi0621/"
     },
     "yizigezi": {
       "repo": "mirror-02",

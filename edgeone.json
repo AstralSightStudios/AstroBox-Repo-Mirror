@@ -47,7 +47,7 @@
     },
     {
       "source": "/CheongSzesuen/*",
-      "destination": "https://mirror-01.abox.run/CheongSzesuen/:splat",
+      "destination": "https://mirror-02.abox.run/CheongSzesuen/:splat",
       "statusCode": 302
     },
     {
@@ -437,7 +437,7 @@
     },
     {
       "source": "/wuhaiqi0621/*",
-      "destination": "https://mirror-01.abox.run/wuhaiqi0621/:splat",
+      "destination": "https://mirror-02.abox.run/wuhaiqi0621/:splat",
       "statusCode": 302
     },
     {
