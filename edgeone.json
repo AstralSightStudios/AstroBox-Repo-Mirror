@@ -136,6 +136,11 @@
       "statusCode": 302
     },
     {
+      "source": "/LR-C11/*",
+      "destination": "https://mirror-02.abox.run/LR-C11/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/MCXCC303/*",
       "destination": "https://mirror-02.abox.run/MCXCC303/:splat",
       "statusCode": 302
@@ -443,6 +448,11 @@
     {
       "source": "/yizigezi/*",
       "destination": "https://mirror-02.abox.run/yizigezi/:splat",
+      "statusCode": 302
+    },
+    {
+      "source": "/youshen2/*",
+      "destination": "https://mirror-02.abox.run/youshen2/:splat",
       "statusCode": 302
     },
     {
