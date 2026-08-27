@@ -396,6 +396,11 @@
       "statusCode": 302
     },
     {
+      "source": "/rufus-fan/*",
+      "destination": "https://mirror-02.abox.run/rufus-fan/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/searchstars/*",
       "destination": "https://mirror-02.abox.run/searchstars/:splat",
       "statusCode": 302
