@@ -65,6 +65,7 @@
     "txcn727-coder": "mirror-02",
     "rufus-fan": "mirror-02",
     "MapleMapleMa": "mirror-02",
+    "henrrybyhao": "mirror-02",
     "Demon0H": "mirror-02",
     "yzl3014": "mirror-02",
     "Orange0w0": "mirror-02",
@@ -357,6 +358,10 @@
     "hanyu12138": {
       "repo": "mirror-02",
       "url": "https://mirror-02.abox.run/hanyu12138/"
+    },
+    "henrrybyhao": {
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/henrrybyhao/"
     },
     "hrsthrt74": {
       "repo": "mirror-01",

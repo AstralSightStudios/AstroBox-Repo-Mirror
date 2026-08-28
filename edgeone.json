@@ -321,6 +321,11 @@
       "statusCode": 302
     },
     {
+      "source": "/henrrybyhao/*",
+      "destination": "https://mirror-02.abox.run/henrrybyhao/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/hrsthrt74/*",
       "destination": "https://mirror-01.abox.run/hrsthrt74/:splat",
       "statusCode": 302
