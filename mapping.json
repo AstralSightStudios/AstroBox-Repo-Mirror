@@ -3,8 +3,8 @@
   "org": "AstroBox-Repo-Mirror",
   "base_domain": "abox.run",
   "owner_map": {
-    "hrsthrt74": "mirror-01",
     "qihe114514": "mirror-01",
+    "hrsthrt74": "mirror-01",
     "AstralSightStudios": "mirror-01",
     "Dreamqiucn": "mirror-01",
     "zzz78bc": "mirror-01",
@@ -13,8 +13,8 @@
     "Cannyworks29": "mirror-01",
     "ChiHuan0807": "mirror-01",
     "aurysian-yan": "mirror-01",
-    "sf-yuzifu": "mirror-01",
-    "YcFeller": "mirror-01",
+    "sf-yuzifu": "mirror-02",
+    "YcFeller": "mirror-02",
     "CheongSzesuen": "mirror-02",
     "wuhaiqi0621": "mirror-02",
     "Hobjl-lian": "mirror-02",
@@ -42,9 +42,9 @@
     "SixOneTeam": "mirror-02",
     "Azumachiaki": "mirror-02",
     "OnDriveLine": "mirror-02",
+    "mehtmls": "mirror-02",
     "leset0ng": "mirror-02",
     "DDguan2010": "mirror-02",
-    "mehtmls": "mirror-02",
     "Tellmeway0": "mirror-02",
     "youshen2": "mirror-02",
     "SarmonFish": "mirror-02",
@@ -316,8 +316,8 @@
       "url": "https://mirror-02.abox.run/YangWan233/"
     },
     "YcFeller": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/YcFeller/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/YcFeller/"
     },
     "YuanRong1026": {
       "repo": "mirror-02",
@@ -432,8 +432,8 @@
       "url": "https://mirror-02.abox.run/searchstars/"
     },
     "sf-yuzifu": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/sf-yuzifu/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/sf-yuzifu/"
     },
     "shantuskat": {
       "repo": "mirror-01",

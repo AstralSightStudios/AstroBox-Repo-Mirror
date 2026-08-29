@@ -267,7 +267,7 @@
     },
     {
       "source": "/YcFeller/*",
-      "destination": "https://mirror-01.abox.run/YcFeller/:splat",
+      "destination": "https://mirror-02.abox.run/YcFeller/:splat",
       "statusCode": 302
     },
     {
@@ -412,7 +412,7 @@
     },
     {
       "source": "/sf-yuzifu/*",
-      "destination": "https://mirror-01.abox.run/sf-yuzifu/:splat",
+      "destination": "https://mirror-02.abox.run/sf-yuzifu/:splat",
       "statusCode": 302
     },
     {
