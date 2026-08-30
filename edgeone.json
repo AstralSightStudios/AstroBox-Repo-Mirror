@@ -206,6 +206,11 @@
       "statusCode": 302
     },
     {
+      "source": "/Sakurakilove/*",
+      "destination": "https://mirror-02.abox.run/Sakurakilove/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/SarmonFish/*",
       "destination": "https://mirror-02.abox.run/SarmonFish/:splat",
       "statusCode": 302
