@@ -11,8 +11,8 @@
     "AL-1S-hash": "mirror-01",
     "shantuskat": "mirror-01",
     "Cannyworks29": "mirror-01",
-    "ChiHuan0807": "mirror-01",
-    "aurysian-yan": "mirror-01",
+    "ChiHuan0807": "mirror-02",
+    "aurysian-yan": "mirror-02",
     "sf-yuzifu": "mirror-02",
     "YcFeller": "mirror-02",
     "CheongSzesuen": "mirror-02",
@@ -72,8 +72,8 @@
     "RX79XT": "mirror-02",
     "MCXCC303": "mirror-02",
     "jes-benjamin": "mirror-02",
-    "mintsummer67": "mirror-02",
     "SL9325": "mirror-02",
+    "mintsummer67": "mirror-02",
     "HazeNoTea": "mirror-02",
     "Jursin": "mirror-02",
     "sjjsjj8": "mirror-02",
@@ -88,6 +88,7 @@
     "Goge052215": "mirror-02",
     "SXM081115": "mirror-02",
     "Awesome6664": "mirror-02",
+    "Rubbishzzz": "mirror-02",
     "hanyu12138": "mirror-02",
     "jfgege": "mirror-02",
     "mqycn": "mirror-02",
@@ -98,7 +99,6 @@
     "Clighten": "mirror-02",
     "AetherZeng1145": "mirror-02",
     "LR-C11": "mirror-02",
-    "Rubbishzzz": "mirror-02",
     "yizigezi": "mirror-02",
     "CJackHwang": "mirror-02",
     "Nyx-233": "mirror-02"
@@ -145,8 +145,8 @@
       "url": "https://mirror-02.abox.run/CheongSzesuen/"
     },
     "ChiHuan0807": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/ChiHuan0807/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/ChiHuan0807/"
     },
     "Clighten": {
       "repo": "mirror-02",
@@ -345,8 +345,8 @@
       "url": "https://mirror-02.abox.run/auberdominique23-hash/"
     },
     "aurysian-yan": {
-      "repo": "mirror-01",
-      "url": "https://mirror-01.abox.run/aurysian-yan/"
+      "repo": "mirror-02",
+      "url": "https://mirror-02.abox.run/aurysian-yan/"
     },
     "cciccicu": {
       "repo": "mirror-02",

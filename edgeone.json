@@ -52,7 +52,7 @@
     },
     {
       "source": "/ChiHuan0807/*",
-      "destination": "https://mirror-01.abox.run/ChiHuan0807/:splat",
+      "destination": "https://mirror-02.abox.run/ChiHuan0807/:splat",
       "statusCode": 302
     },
     {
@@ -302,7 +302,7 @@
     },
     {
       "source": "/aurysian-yan/*",
-      "destination": "https://mirror-01.abox.run/aurysian-yan/:splat",
+      "destination": "https://mirror-02.abox.run/aurysian-yan/:splat",
       "statusCode": 302
     },
     {
