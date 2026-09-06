@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/33520276q-dotcom/*",
+      "destination": "https://mirror-02.abox.run/33520276q-dotcom/:splat",
+      "statusCode": 302
+    },
+    {
       "source": "/AL-1S-hash/*",
       "destination": "https://mirror-01.abox.run/AL-1S-hash/:splat",
       "statusCode": 302
